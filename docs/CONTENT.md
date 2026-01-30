@@ -291,7 +291,7 @@ All text content for the portfolio in Norwegian (default) and English.
     "master": {
       "title": "Fag fra master i programvareutvikling",
       "period": "Kveldsstudier",
-      "description": "Tok obligatoriske fag i Software Engineering-masteren ved UiB på kveldstid, parallelt med fulltidsjobb."
+      "description": "Obligatoriske fag i Software Engineering-masteren, parallelt med fulltidsjobb."
     }
   }
 }
