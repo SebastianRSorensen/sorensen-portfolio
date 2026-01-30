@@ -159,6 +159,17 @@
   }
 }
 
+/* Noise texture overlay */
+.noise-overlay::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("/noise.svg");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 9999;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
