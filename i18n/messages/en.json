@@ -6,7 +6,7 @@
   "nav": {
     "home": "Home",
     "experience": "Experience",
-    "skills": "Skills",
+    "skills": "Technology",
     "education": "Education",
     "contact": "Contact"
   },
@@ -156,8 +156,7 @@
   },
   "contact": {
     "title": "Contact",
-    "subtitle": "Let's talk",
-    "description": "Open to new opportunities and interesting projects.",
+    "description": "Say hello.",
     "email": {
       "label": "Email",
       "value": "sebastian.rosnes.sorensen@hotmail.com"

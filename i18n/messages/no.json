@@ -6,7 +6,7 @@
   "nav": {
     "home": "Hjem",
     "experience": "Erfaring",
-    "skills": "Kompetanse",
+    "skills": "Teknologi",
     "education": "Utdanning",
     "contact": "Kontakt"
   },
@@ -156,8 +156,7 @@
   },
   "contact": {
     "title": "Kontakt",
-    "subtitle": "La oss snakke",
-    "description": "Åpen for nye muligheter og interessante prosjekter.",
+    "description": "Si gjerne hei.",
     "email": {
       "label": "E-post",
       "value": "sebastian.rosnes.sorensen@hotmail.com"
