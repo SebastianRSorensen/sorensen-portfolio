@@ -1,0 +1,187 @@
+{
+  "metadata": {
+    "title": "Sebastian Rosnes Sørensen | System Developer",
+    "description": "System developer with military background and fintech experience. Building modern web solutions with React, Next.js, and TypeScript."
+  },
+  "nav": {
+    "home": "Home",
+    "story": "Story",
+    "skills": "Skills",
+    "contact": "Contact"
+  },
+  "hero": {
+    "name": "Sebastian Rosnes Sørensen",
+    "title": "System Developer",
+    "tagline": "Developer. Builder. From the Russian border to fintech.",
+    "scrollHint": "Scroll to explore",
+    "location": "Bergen, Norway"
+  },
+  "grense": {
+    "chapter": "01",
+    "title": "GRENSE",
+    "subtitle": "Border Guard, 2020–2021",
+    "period": "January 2020 — January 2021",
+    "role": "Border Hunter",
+    "unit": "Hunter Company, GSV",
+    "description": "Military service in the Norwegian Armed Forces as a Border Hunter at the Garrison in Sør-Varanger. Live operations on the Russian border. A year of discipline, precision, and high-stakes operations.",
+    "highlights": {
+      "0": "Border Hunter at Hunter Company",
+      "1": "Live operations on Russian border",
+      "2": "Patrols in arctic conditions"
+    }
+  },
+  "kunnskap": {
+    "chapter": "02",
+    "title": "KUNNSKAP",
+    "subtitle": "University of Bergen",
+    "period": "2021 — Ongoing",
+    "bachelor": {
+      "title": "Bachelor in Computer Science",
+      "period": "2021–2023",
+      "description": "Program focused on programming, data structures, algorithms, system architecture, databases, web development, IT security, and software systems. Team projects using Java, Python, SQL, TypeScript, and React."
+    },
+    "master": {
+      "title": "Master's in Software Engineering",
+      "period": "Evening studies, ongoing",
+      "description": "Taking required courses in the Software Engineering master's program at UiB in the evenings, alongside full-time work."
+    }
+  },
+  "kode": {
+    "chapter": "03",
+    "title": "KODE",
+    "subtitle": "Professional development",
+    "stacc": {
+      "company": "Stacc AS",
+      "role": "System Developer",
+      "period": "January 2024 — Present",
+      "location": "Bergen",
+      "description": "Working in a team developing credit solutions for consumer finance and sales finance across the Nordics. Full-stack responsibility with React, Next.js, and TypeScript. CI/CD through GitHub Actions. Close collaboration with designers, product owners, and other developers in an agile, self-organized team.",
+      "highlights": {
+        "0": "Full-stack with React, Next.js, TypeScript",
+        "1": "Consumer and sales finance",
+        "2": "CI/CD with GitHub Actions"
+      }
+    },
+    "rosengrip": {
+      "company": "Rosengrip",
+      "role": "Co-founder",
+      "period": "2024 — Present",
+      "location": "Bergen",
+      "description": "Co-founded a web agency creating modern, conversion-focused websites for ambitious businesses. Custom solutions built with Next.js, React, and modern technology.",
+      "link": "https://www.rosengrip.no",
+      "linkText": "rosengrip.no",
+      "highlights": {
+        "0": "Co-founder and developer",
+        "1": "Next.js, React, Tailwind",
+        "2": "Focus on conversion"
+      }
+    },
+    "previousTitle": "Previous experience",
+    "previous": {
+      "company": "Home Nursing Bergen",
+      "role": "Healthcare Worker",
+      "period": "October 2022 — May 2025",
+      "description": "Practical assistance to elderly and care-dependent individuals at home."
+    }
+  },
+  "bygger": {
+    "chapter": "04",
+    "title": "BYGGER",
+    "subtitle": "It never stops",
+    "intro": "I don't just code at work. I build because I enjoy it.",
+    "description": "Free time is spent on hobby projects — from event planning to recruitment tools with AI to completely new lottery systems. Most projects are private, but they show one thing: I love to build.",
+    "projects": {
+      "0": {
+        "name": "Event planner",
+        "description": "Website for organizing parties and events"
+      },
+      "1": {
+        "name": "Recruitment tool",
+        "description": "Find companies easily with AI-powered NACE code search (Anthropic)"
+      },
+      "2": {
+        "name": "Lottery system",
+        "description": "Completely new lottery concept"
+      },
+      "3": {
+        "name": "...and whatever comes next",
+        "description": ""
+      }
+    },
+    "tools": {
+      "title": "Tools",
+      "description": "Claude Code is a regular part of my workflow. AI-assisted development in practice.",
+      "highlight": "Experienced Claude Code user"
+    },
+    "github": {
+      "title": "GitHub",
+      "description": "Follow what I'm building",
+      "cta": "View GitHub profile"
+    }
+  },
+  "techStack": {
+    "title": "Technology",
+    "subtitle": "The tools I use",
+    "frontend": {
+      "title": "Frontend",
+      "items": "React, Next.js, TypeScript, Tailwind CSS"
+    },
+    "backend": {
+      "title": "Backend",
+      "items": "Node.js, PostgreSQL, MongoDB"
+    },
+    "cloud": {
+      "title": "Cloud & Deploy",
+      "items": "AWS, Azure, Vercel"
+    },
+    "devops": {
+      "title": "DevOps",
+      "items": "Docker, Kubernetes, GitHub Actions"
+    },
+    "testing": {
+      "title": "Testing",
+      "items": "Jest, Playwright, Storybook"
+    },
+    "tools": {
+      "title": "Tools",
+      "items": "Claude Code, Kosli, Snyk, Wiz"
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Let's talk",
+    "description": "Open to new opportunities and interesting projects.",
+    "email": {
+      "label": "Email",
+      "value": "sebastian.rosnes.sorensen@hotmail.com"
+    },
+    "phone": {
+      "label": "Phone",
+      "value": "+47 472 78 212"
+    },
+    "location": {
+      "label": "Location",
+      "value": "Bergen, Norway"
+    },
+    "links": {
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "rosengrip": "Rosengrip"
+    }
+  },
+  "footer": {
+    "copyright": "© 2026 Sebastian Rosnes Sørensen",
+    "tagline": "Built with Next.js",
+    "location": "Bergen, Norway"
+  },
+  "languageToggle": {
+    "label": "Language",
+    "switchTo": "NO"
+  },
+  "notFound": {
+    "title": "404",
+    "heading": "Page not found",
+    "description": "Sorry, this page doesn't exist.",
+    "cta": "Back to home"
+  }
+}

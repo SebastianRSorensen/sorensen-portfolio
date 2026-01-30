@@ -1,99 +1,263 @@
-# Project Instructions
+# CLAUDE.md - Portfolio Project Instructions
 
-This is a Next.js website template for creating client websites. Every website must be unique, conversion-optimized, and tailored to the specific client.
+## Project Overview
 
-## Quick Start
+This is Sebastian Rosnes Sørensen's personal portfolio website. A story-driven, animated portfolio inspired by landonorris.com - bold, cinematic, and memorable.
 
-To implement a complete website, simply say:
+**Owner:** Sebastian Rosnes Sørensen
+**Role:** System Developer at Stacc AS, Co-founder of Rosengrip
+**Location:** Bergen, Norway
 
+## Tech Stack (STRICT - Do not deviate)
+
+- **Framework:** Next.js 16+ (App Router, NO src/ directory)
+- **Styling:** Tailwind CSS 4+ (CSS-first configuration)
+- **UI Components:** shadcn/ui
+- **Package Manager:** pnpm
+- **Animations:** Framer Motion
+- **i18n:** next-intl (Norwegian + English)
+- **Deployment:** Vercel
+
+### Critical Technical Rules
+
+1. **NO `src/` directory** - All code lives in root: `app/`, `components/`, `lib/`, etc.
+2. **Use `proxy.ts`** instead of `middleware.ts` (Next.js 16+ naming)
+3. **Tailwind CSS 4+** - Use CSS-first config with `@theme` in globals.css
+4. **pnpm only** - Never use npm or yarn commands
+5. **Server Components by default** - Only use 'use client' when necessary
+
+## Design Philosophy
+
+### What We're Building
+A cinematic, scroll-driven storytelling experience that presents Sebastian's journey from military service to fintech developer. NOT a typical developer portfolio with cards and grids.
+
+### Inspiration: landonorris.com
+- Horizontal scroll galleries
+- Full-viewport sections
+- Bold typography with motion
+- Personal quotes woven throughout
+- Dark, confident aesthetic
+- Scroll-triggered animations
+
+### What to AVOID (AI Slop)
+- Purple gradients on white backgrounds
+- Generic Inter/Roboto fonts
+- Floating cards with shadows
+- "Hi, I'm a passionate developer" copy
+- Icon grids for skills
+- Generic timeline components
+- Cookie-cutter layouts
+
+## Color Palette: Nordic Night
+
+```css
+:root {
+  --background: #0a0f14;
+  --foreground: #e8e4df;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --border: #334155;
+  --card: #0f172a;
+}
 ```
-Implement according to docs/DESCRIPTION.md
-```
 
-This triggers the implementation workflow skill which:
+## Typography
 
-1. Validates `docs/DESCRIPTION.md` is complete
-2. Analyzes the company and derives design direction
-3. **Creates `docs/IMPLEMENTATION_PLAN.md` with checkboxes**
-4. **Waits for your approval before writing any code**
-5. Implements through 10 phases, updating checkboxes as tasks complete
+- **Display/Headings:** A distinctive serif or display font (suggest: Instrument Serif, Playfair Display, or similar)
+- **Body:** Clean sans-serif (suggest: Geist, Satoshi, or similar)
+- **Mono/Code:** JetBrains Mono or Geist Mono
 
-The implementation plan serves as a live progress tracker you can review at any time.
-
-## Tech Stack (MANDATORY)
-
-- **Framework**: Next.js 16+ (NO src directory, use `proxy.ts` instead of middleware)
-- **Styling**: Tailwind CSS 4+ (CSS-first configuration)
-- **Components**: Shadcn/ui
-- **Package Manager**: pnpm
-
-Do not use older versions. Do not use the src directory pattern.
-
-## CRITICAL: Read Skills Before Any Design Work
-
-**BEFORE creating ANY page, component, section, or layout, you MUST:**
-
-1. Read the workflow skill at `.claude/skills/implementation-workflow/SKILL.md`
-2. Read the design skill at `.claude/skills/unique-web-design/SKILL.md`
-3. Read the architecture skill at `.claude/skills/nextjs-architecture/SKILL.md`
-4. Read the client description at `docs/DESCRIPTION.md`
-5. Complete the Company Analysis Protocol from the design skill
-6. Select a distinctive aesthetic direction that fits THIS specific client
-
-**Recommended:** Use "Implement according to docs/DESCRIPTION.md" to follow the complete workflow automatically.
-
-This is non-negotiable. Generic AI-looking websites are not acceptable.
-
-## Design Requirements
-
-Every website must:
-
-- **Look unique** — Not like typical AI-generated sites
-- **Convert visitors** — Clear CTAs, trust signals, minimal friction
-- **Match the client** — Reflect their industry, personality, and audience
-- **Be mobile-first** — 70%+ of traffic is mobile
-
-## What to Avoid (AI Slop)
-
-Never use these without explicit justification:
-
-- Inter, Roboto, or other overused fonts
-- Purple/indigo color schemes
-- The standard Hero → Features → Testimonials → CTA layout
-- Generic rounded-lg cards everywhere
-- "Get Started" or "Learn More" as CTA text
-- Fade-in-up animations on everything
-
-## File Structure
+## Project Structure
 
 ```
 /
-├── .claude/
-│   └── skills/
-│       ├── implementation-workflow/SKILL.md  ← Master workflow (10 phases)
-│       ├── unique-web-design/SKILL.md        ← Design principles
-│       └── nextjs-architecture/SKILL.md      ← Architecture patterns
-├── docs/
-│   ├── DESCRIPTION.md              ← Client info (you create this)
-│   ├── DESCRIPTION.template.md     ← Reference template
-│   └── IMPLEMENTATION_PLAN.md      ← Auto-generated progress tracker
 ├── app/
+│   ├── [locale]/
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   └── globals.css
 │   ├── layout.tsx
-│   ├── page.tsx
-│   └── [routes]/
+│   └── globals.css
 ├── components/
+│   ├── ui/                    # shadcn components
+│   ├── sections/
+│   │   ├── hero.tsx
+│   │   ├── story-grense.tsx
+│   │   ├── story-kunnskap.tsx
+│   │   ├── story-kode.tsx
+│   │   ├── story-bygger.tsx
+│   │   ├── tech-stack.tsx
+│   │   ├── projects.tsx
+│   │   └── contact.tsx
+│   ├── navigation.tsx
+│   ├── footer.tsx
+│   ├── language-toggle.tsx
+│   └── scroll-progress.tsx
 ├── lib/
+│   ├── utils.ts
+│   └── fonts.ts
+├── i18n/
+│   ├── config.ts
+│   ├── request.ts
+│   └── messages/
+│       ├── en.json
+│       └── no.json
 ├── public/
+│   └── images/
+├── docs/                      # Documentation (reference only)
+├── proxy.ts                   # next-intl middleware
+├── next.config.ts
 ├── tailwind.config.ts
-└── package.json
+├── postcss.config.mjs
+├── tsconfig.json
+├── package.json
+└── pnpm-workspace.yaml
 ```
 
-## Quick Reference
+## Content Structure
 
-When starting design work, always ask:
+See `docs/CONTENT.md` for all text content in both languages.
 
-1. "What makes THIS client unique?"
-2. "What aesthetic direction fits their industry and personality?"
-3. "Would this design work for any company, or specifically THIS one?"
+## Key Sections
 
-If the answer to #3 is "any company" — the design is wrong.
+### 1. Hero
+- Full viewport
+- Name reveal animation (staggered letters)
+- Subtitle: "Developer. Builder. From the Russian border to fintech."
+- Scroll indicator
+- Background: subtle gradient or noise texture
+
+### 2. Story: GRENSE (Border)
+- Military service at GSV (Grensevakten)
+- January 2020 - January 2021
+- Grensejeger (Border Hunter) at Jegerkompaniet
+- Operations on Russian border
+- Mood: disciplined, stark, high-stakes
+
+### 3. Story: KUNNSKAP (Knowledge)
+- UiB Bachelor in Informatikk (2021-2023)
+- Master courses in Software Engineering (evening studies)
+- Continued learning while working
+
+### 4. Story: KODE (Code)
+- **Stacc AS** (Jan 2024 - Present)
+  - System Developer
+  - Consumer & sales finance solutions
+  - React, Next.js, TypeScript fullstack
+  - CI/CD with GitHub Actions
+- **Rosengrip** (Co-founder)
+  - Web agency
+  - Link to rosengrip.no
+
+### 5. Story: BYGGER (Builder)
+- The key differentiator section
+- Builds in spare time because he loves it
+- Private projects mentioned (not shown):
+  - Event planning platform
+  - Recruitment tool with Anthropic AI
+  - Lottery system
+  - "...and whatever comes next"
+- Heavy Claude Code user
+- GitHub presence
+
+### 6. Tech Stack
+Visual, not a boring list. Ideas:
+- Floating/orbiting icons
+- Interactive hover states
+- Grouped by category
+
+Categories:
+- Frontend: React, Next.js, TypeScript, Tailwind CSS
+- Backend: Node.js, PostgreSQL, MongoDB
+- Cloud: AWS, Azure, Vercel
+- DevOps: Docker, Kubernetes, GitHub Actions
+- Testing: Jest, Playwright, Storybook
+- Tools: Claude Code, Kosli, Snyk, Wiz
+
+### 7. Contact
+- Email
+- GitHub (prominent)
+- LinkedIn
+- Rosengrip.no
+
+## Animation Guidelines
+
+See `docs/ANIMATIONS.md` for detailed animation specifications.
+
+Key principles:
+- Use Framer Motion for all animations
+- Scroll-triggered reveals (useInView)
+- Staggered children animations
+- Smooth, confident easing (not bouncy)
+- Parallax effects on images
+- Text reveal animations for headings
+
+## i18n Setup
+
+Default locale: `no` (Norwegian)
+Supported: `no`, `en`
+
+Use next-intl with:
+- URL prefix strategy: `/en/...` for English, `/...` for Norwegian
+- Messages in JSON files
+- useTranslations hook in components
+
+## Commands
+
+```bash
+# Install dependencies
+pnpm install
+
+# Development
+pnpm dev
+
+# Build
+pnpm build
+
+# Add shadcn component
+pnpm dlx shadcn@latest add [component]
+```
+
+## Implementation Order
+
+1. Set up base Next.js 16 config (no src/, proxy.ts)
+2. Configure Tailwind CSS 4 with theme
+3. Set up next-intl for i18n
+4. Install and configure Framer Motion
+5. Add fonts (Google Fonts or local)
+6. Create base layout with navigation
+7. Build Hero section
+8. Build Story sections (one by one)
+9. Build Tech Stack section
+10. Build Contact section
+11. Add scroll progress indicator
+12. Polish animations and transitions
+13. Test both languages
+14. Optimize for performance
+
+## Important Notes
+
+- The Security & Compliance Manager title can be mentioned briefly but don't emphasize it
+- Focus on the "builder" identity - someone who codes for fun
+- Military background is a differentiator - use it
+- Claude Code expertise is notable - highlight it
+- Keep the Hjemmesykepleien (home care) section brief - it shows character but isn't the focus
+- All Rosengrip projects are from co-founder - only mention rosengrip.no itself, not specific projects
+
+## Reference Documents
+
+- `docs/ARCHITECTURE.md` - Technical architecture details
+- `docs/DESIGN.md` - Visual design system
+- `docs/CONTENT.md` - All text content (NO/EN)
+- `docs/COMPONENTS.md` - Component specifications
+- `docs/ANIMATIONS.md` - Animation specifications
+
+## Claude Skills
+
+The following skills in `.claude/skills/` enforce project standards and MUST be followed:
+
+- **`unique-web-design`** — Ensures every page, component, and layout is distinctive, conversion-optimized, and tailored to this portfolio. Combats generic AI aesthetics. **Mandatory** for all page, component, and layout creation. Includes anti-AI-slop checklist, typography/color systems, conversion optimization rules, and component design principles.
+
+- **`nextjs-architecture`** — Enforces modern Next.js 2025 best practices: React Server Components, hybrid rendering (SSG/SSR/ISR/CSR), and file organization. Use when creating or refactoring pages, layouts, route handlers, or components. Key rules: keep `page.tsx`/`layout.tsx` as server components, isolate client logic into separate `"use client"` files, and follow the project file structure.

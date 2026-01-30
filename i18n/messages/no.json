@@ -1,0 +1,187 @@
+{
+  "metadata": {
+    "title": "Sebastian Rosnes Sørensen | Systemutvikler",
+    "description": "Systemutvikler med bakgrunn fra Forsvaret og fintech. Bygger moderne webløsninger med React, Next.js og TypeScript."
+  },
+  "nav": {
+    "home": "Hjem",
+    "story": "Historie",
+    "skills": "Kompetanse",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "name": "Sebastian Rosnes Sørensen",
+    "title": "Systemutvikler",
+    "tagline": "Utvikler. Bygger. Fra russergrensen til fintech.",
+    "scrollHint": "Scroll for å utforske",
+    "location": "Bergen, Norge"
+  },
+  "grense": {
+    "chapter": "01",
+    "title": "GRENSE",
+    "subtitle": "Grensevakten, 2020–2021",
+    "period": "Januar 2020 — Januar 2021",
+    "role": "Grensejeger",
+    "unit": "Jegerkompaniet, GSV",
+    "description": "Verneplikt i Forsvaret som Grensejeger ved Garnisonen i Sør-Varanger. Skarpe oppdrag på grensen til Russland. Et år med disiplin, presisjon og operasjoner under press.",
+    "highlights": {
+      "0": "Grensejeger ved Jegerkompaniet",
+      "1": "Skarpe oppdrag på russergrensen",
+      "2": "Patruljer i arktisk klima"
+    }
+  },
+  "kunnskap": {
+    "chapter": "02",
+    "title": "KUNNSKAP",
+    "subtitle": "Universitetet i Bergen",
+    "period": "2021 — Pågående",
+    "bachelor": {
+      "title": "Bachelor i informatikk — Datateknologi",
+      "period": "2021–2023",
+      "description": "Studieprogram med fokus på programmering, datastrukturer, algoritmer, systemarkitektur, databaser, webutvikling, IT-sikkerhet og programvaresystemer. Prosjektarbeid i team med Java, Python, SQL, TypeScript og React."
+    },
+    "master": {
+      "title": "Master i programvareutvikling",
+      "period": "Kveldsstudier, pågående",
+      "description": "Tar obligatoriske fag i Software Engineering-masteren ved UiB på kveldstid, parallelt med fulltidsjobb."
+    }
+  },
+  "kode": {
+    "chapter": "03",
+    "title": "KODE",
+    "subtitle": "Profesjonell utvikling",
+    "stacc": {
+      "company": "Stacc AS",
+      "role": "Systemutvikler",
+      "period": "Januar 2024 — Nå",
+      "location": "Bergen",
+      "description": "Jobber i team som utvikler kredittløsninger for forbrukerfinansiering og salgsfinansiering i Norden. Fullstack-ansvar med React, Next.js og TypeScript. CI/CD gjennom GitHub Actions. Tett samarbeid med designere, produkteiere og andre utviklere i et smidig og selvorganisert team.",
+      "highlights": {
+        "0": "Fullstack med React, Next.js, TypeScript",
+        "1": "Forbruker- og salgsfinansiering",
+        "2": "CI/CD med GitHub Actions"
+      }
+    },
+    "rosengrip": {
+      "company": "Rosengrip",
+      "role": "Medgründer",
+      "period": "2024 — Nå",
+      "location": "Bergen",
+      "description": "Medgründer av webbyrå som lager moderne, konverterende nettsider for ambisiøse bedrifter. Skreddersydde løsninger med Next.js, React og moderne teknologi.",
+      "link": "https://www.rosengrip.no",
+      "linkText": "rosengrip.no",
+      "highlights": {
+        "0": "Medgründer og utvikler",
+        "1": "Next.js, React, Tailwind",
+        "2": "Fokus på konvertering"
+      }
+    },
+    "previousTitle": "Tidligere erfaring",
+    "previous": {
+      "company": "Hjemmesykepleien Bergen",
+      "role": "Helsefagarbeider",
+      "period": "Oktober 2022 — Mai 2025",
+      "description": "Praktisk bistand til eldre og pleietrengende i hjemmet."
+    }
+  },
+  "bygger": {
+    "chapter": "04",
+    "title": "BYGGER",
+    "subtitle": "Det stopper aldri",
+    "intro": "Jeg koder ikke bare på jobb. Jeg bygger fordi jeg liker det.",
+    "description": "Fritiden brukes på hobbyprosjekter — alt fra event-planlegging til rekrutteringsverktøy med AI til helt nye lotterisystemer. De fleste prosjektene er private, men de viser én ting: jeg elsker å bygge.",
+    "projects": {
+      "0": {
+        "name": "Event-planlegger",
+        "description": "Nettside for å organisere fester og arrangementer"
+      },
+      "1": {
+        "name": "Rekrutteringsverktøy",
+        "description": "Finn bedrifter enkelt med AI-drevet NACE-kodesøk (Anthropic)"
+      },
+      "2": {
+        "name": "Lotterisystem",
+        "description": "Helt nytt konsept for lotteri"
+      },
+      "3": {
+        "name": "...og det som kommer neste",
+        "description": ""
+      }
+    },
+    "tools": {
+      "title": "Verktøy",
+      "description": "Claude Code er en fast del av arbeidsflyten min. AI-assistert utvikling i praksis.",
+      "highlight": "Erfaren Claude Code-bruker"
+    },
+    "github": {
+      "title": "GitHub",
+      "description": "Følg med på hva jeg bygger",
+      "cta": "Se GitHub-profilen"
+    }
+  },
+  "techStack": {
+    "title": "Teknologi",
+    "subtitle": "Verktøyene jeg bruker",
+    "frontend": {
+      "title": "Frontend",
+      "items": "React, Next.js, TypeScript, Tailwind CSS"
+    },
+    "backend": {
+      "title": "Backend",
+      "items": "Node.js, PostgreSQL, MongoDB"
+    },
+    "cloud": {
+      "title": "Cloud & Deploy",
+      "items": "AWS, Azure, Vercel"
+    },
+    "devops": {
+      "title": "DevOps",
+      "items": "Docker, Kubernetes, GitHub Actions"
+    },
+    "testing": {
+      "title": "Testing",
+      "items": "Jest, Playwright, Storybook"
+    },
+    "tools": {
+      "title": "Verktøy",
+      "items": "Claude Code, Kosli, Snyk, Wiz"
+    }
+  },
+  "contact": {
+    "title": "Kontakt",
+    "subtitle": "La oss snakke",
+    "description": "Åpen for nye muligheter og interessante prosjekter.",
+    "email": {
+      "label": "E-post",
+      "value": "sebastian.rosnes.sorensen@hotmail.com"
+    },
+    "phone": {
+      "label": "Telefon",
+      "value": "+47 472 78 212"
+    },
+    "location": {
+      "label": "Lokasjon",
+      "value": "Bergen, Norge"
+    },
+    "links": {
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "rosengrip": "Rosengrip"
+    }
+  },
+  "footer": {
+    "copyright": "© 2026 Sebastian Rosnes Sørensen",
+    "tagline": "Bygget med Next.js",
+    "location": "Bergen, Norge"
+  },
+  "languageToggle": {
+    "label": "Språk",
+    "switchTo": "EN"
+  },
+  "notFound": {
+    "title": "404",
+    "heading": "Siden finnes ikke",
+    "description": "Beklager, denne siden eksisterer ikke.",
+    "cta": "Tilbake til forsiden"
+  }
+}
