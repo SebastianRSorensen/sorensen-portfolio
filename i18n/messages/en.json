@@ -5,8 +5,9 @@
   },
   "nav": {
     "home": "Home",
-    "story": "Story",
+    "experience": "Experience",
     "skills": "Skills",
+    "education": "Education",
     "contact": "Contact"
   },
   "hero": {

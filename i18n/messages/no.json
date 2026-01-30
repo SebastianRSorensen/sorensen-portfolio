@@ -5,8 +5,9 @@
   },
   "nav": {
     "home": "Hjem",
-    "story": "Historie",
+    "experience": "Erfaring",
     "skills": "Kompetanse",
+    "education": "Utdanning",
     "contact": "Kontakt"
   },
   "hero": {

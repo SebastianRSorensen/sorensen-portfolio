@@ -7,7 +7,7 @@ import { ExternalLink } from "lucide-react";
 import { StorySection } from "./story-section";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 
-export function StoryKode() {
+export function SectionExperience() {
   const t = useTranslations("kode");
   const cardsRef = useRef(null);
   const cardsInView = useInView(cardsRef, { once: true, margin: "-50px" });

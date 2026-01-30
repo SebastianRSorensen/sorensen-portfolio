@@ -6,13 +6,13 @@ import { useTranslations } from "next-intl";
 import { StorySection } from "./story-section";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 
-export function StoryKunnskap() {
+export function SectionEducation() {
   const t = useTranslations("kunnskap");
   const cardsRef = useRef(null);
   const cardsInView = useInView(cardsRef, { once: true, margin: "-50px" });
 
   return (
-    <StorySection id="kunnskap" chapter={t("chapter")} title={t("title")}>
+    <StorySection id="utdanning" chapter={t("chapter")} title={t("title")}>
       <p className="text-mono text-xs text-accent uppercase tracking-wider mb-8">
         {t("subtitle")} — {t("period")}
       </p>

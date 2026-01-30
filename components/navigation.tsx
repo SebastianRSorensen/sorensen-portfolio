@@ -8,8 +8,9 @@ import { cn } from "@/lib/utils";
 import { LanguageToggle } from "./language-toggle";
 
 const navLinks = [
-  { key: "story", href: "#kode" },
+  { key: "experience", href: "#kode" },
   { key: "skills", href: "#tech-stack" },
+  { key: "education", href: "#utdanning" },
   { key: "contact", href: "#contact" },
 ];
 

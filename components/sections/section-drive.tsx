@@ -7,7 +7,7 @@ import { ArrowRight, Terminal } from "lucide-react";
 import { StorySection } from "./story-section";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 
-export function StoryBygger() {
+export function SectionDrive() {
   const t = useTranslations("bygger");
   const listRef = useRef(null);
   const listInView = useInView(listRef, { once: true, margin: "-50px" });

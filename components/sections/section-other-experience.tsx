@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { StorySection } from "./story-section";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 
-export function StoryGrense() {
+export function SectionOtherExperience() {
   const t = useTranslations("grense");
   const cardsRef = useRef(null);
   const cardsInView = useInView(cardsRef, { once: true, margin: "-50px" });
