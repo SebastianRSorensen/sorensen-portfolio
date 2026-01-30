@@ -1,0 +1,30 @@
+{
+  "$schema": "https://raw.githubusercontent.com/anthropics/claude-code/main/schemas/settings.json",
+  "skills": {
+    "autoLoad": [
+      ".claude/skills/unique-web-design/SKILL.md",
+      ".claude/skills/nextjs-architecture/SKILL.md"
+    ]
+  },
+  "instructions": {
+    "alwaysRead": [
+      "CLAUDE.md",
+      ".claude/skills/unique-web-design/SKILL.md",
+      ".claude/skills/nextjs-architecture/SKILL.md"
+    ],
+    "beforeDesign": [
+      "Read /docs/ folder for client information",
+      "Complete Company Analysis Protocol from skill file",
+      "Select aesthetic direction before writing any code"
+    ]
+  },
+  "codeStyle": {
+    "framework": "next.js",
+    "minVersion": "16",
+    "styling": "tailwindcss-4",
+    "components": "shadcn",
+    "packageManager": "pnpm",
+    "noSrcDirectory": true,
+    "useProxyInsteadOfMiddleware": true
+  }
+}
