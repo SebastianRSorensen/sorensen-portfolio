@@ -5,6 +5,7 @@ import { routing } from "@/i18n/routing";
 import { MotionProvider } from "@/lib/motion-config";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
+import { SmoothScroll } from "@/components/smooth-scroll";
 
 type Props = {
   children: React.ReactNode;
@@ -33,9 +34,11 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <NextIntlClientProvider messages={messages}>
       <MotionProvider>
-        <Navigation />
-        <main>{children}</main>
-        <Footer />
+        <SmoothScroll>
+          <Navigation />
+          <main>{children}</main>
+          <Footer />
+        </SmoothScroll>
       </MotionProvider>
     </NextIntlClientProvider>
   );
