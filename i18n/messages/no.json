@@ -180,6 +180,11 @@
     "tagline": "Bygget med Next.js",
     "location": "Bergen, Norge"
   },
+  "jungleMode": {
+    "activate": "Inn i jungelen",
+    "deactivate": "Tilbake til mørk modus",
+    "label": "Jungelmodus"
+  },
   "languageToggle": {
     "label": "Språk",
     "switchTo": "EN"

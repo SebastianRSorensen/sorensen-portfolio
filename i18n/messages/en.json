@@ -180,6 +180,11 @@
     "tagline": "Built with Next.js",
     "location": "Bergen, Norway"
   },
+  "jungleMode": {
+    "activate": "Enter the jungle",
+    "deactivate": "Return to dark mode",
+    "label": "Jungle Mode"
+  },
   "languageToggle": {
     "label": "Language",
     "switchTo": "NO"

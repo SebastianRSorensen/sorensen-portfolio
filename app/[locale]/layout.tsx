@@ -3,9 +3,11 @@ import { getMessages, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { MotionProvider } from "@/lib/motion-config";
+import { JungleModeProvider } from "@/lib/jungle-mode";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { JungleEnvironment } from "@/components/jungle/jungle-environment";
 
 type Props = {
   children: React.ReactNode;
@@ -34,11 +36,14 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <NextIntlClientProvider messages={messages}>
       <MotionProvider>
-        <SmoothScroll>
-          <Navigation />
-          <main>{children}</main>
-          <Footer />
-        </SmoothScroll>
+        <JungleModeProvider>
+          <SmoothScroll>
+            <Navigation />
+            <JungleEnvironment />
+            <main>{children}</main>
+            <Footer />
+          </SmoothScroll>
+        </JungleModeProvider>
       </MotionProvider>
     </NextIntlClientProvider>
   );

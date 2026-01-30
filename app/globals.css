@@ -46,6 +46,50 @@
   --chart-3: #f59e0b;
   --chart-4: #8b5cf6;
   --chart-5: #ef4444;
+
+  /* Theme transition */
+  transition: background-color 0.8s ease, color 0.6s ease;
+}
+
+/* Jungle Mode palette */
+.jungle {
+  --background: #071a0e;
+  --foreground: #e8e4d0;
+  --card: #0c2614;
+  --card-foreground: #e8e4d0;
+  --popover: #0c2614;
+  --popover-foreground: #e8e4d0;
+  --primary: #e8e4d0;
+  --primary-foreground: #071a0e;
+  --secondary: #1a3a24;
+  --secondary-foreground: #e8e4d0;
+  --muted: #1a3a24;
+  --muted-foreground: #7cb992;
+  --accent: #4ade80;
+  --accent-foreground: #071a0e;
+  --accent-hover: #22c55e;
+  --destructive: #ef4444;
+  --border: #2d5a3d;
+  --input: #2d5a3d;
+  --ring: #4ade80;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --error: #ef4444;
+
+  --sidebar: #0c2614;
+  --sidebar-foreground: #e8e4d0;
+  --sidebar-primary: #4ade80;
+  --sidebar-primary-foreground: #071a0e;
+  --sidebar-accent: #1a3a24;
+  --sidebar-accent-foreground: #e8e4d0;
+  --sidebar-border: #2d5a3d;
+  --sidebar-ring: #4ade80;
+
+  --chart-1: #4ade80;
+  --chart-2: #f59e0b;
+  --chart-3: #22c55e;
+  --chart-4: #a3e635;
+  --chart-5: #fb923c;
 }
 
 @theme inline {
@@ -234,4 +278,39 @@ html.lenis, html.lenis body {
   ::-webkit-scrollbar-thumb:hover {
     background: var(--accent);
   }
+}
+
+/* Jungle mode: smooth transitions for all themed elements */
+.jungle *,
+.jungle *::before,
+.jungle *::after {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
+}
+
+/* Jungle mode noise overlay tint */
+.jungle.noise-overlay::before {
+  background-image: url("/noise.svg");
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+}
+
+/* Jungle mode selection color */
+.jungle ::selection {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+/* Jungle mode scrollbar */
+.jungle ::-webkit-scrollbar-thumb {
+  background: #2d5a3d;
+}
+
+.jungle ::-webkit-scrollbar-thumb:hover {
+  background: #4ade80;
+}
+
+.jungle ::-webkit-scrollbar-track {
+  background: #071a0e;
 }

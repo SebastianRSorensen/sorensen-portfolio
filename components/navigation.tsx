@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { LanguageToggle } from "./language-toggle";
+import { JungleToggle } from "./jungle-toggle";
 import { Magnetic } from "./magnetic";
 
 const navLinks = [
@@ -69,11 +70,13 @@ export function Navigation() {
             </Magnetic>
           ))}
           <div className="w-px h-4 bg-border/50" />
+          <JungleToggle />
           <LanguageToggle />
         </div>
 
         {/* Mobile menu button */}
-        <div className="flex md:hidden items-center gap-4">
+        <div className="flex md:hidden items-center gap-3">
+          <JungleToggle />
           <LanguageToggle />
           <button
             onClick={() => setIsMobileOpen(!isMobileOpen)}
