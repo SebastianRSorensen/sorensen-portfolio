@@ -3,128 +3,180 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { Mail, Phone, MapPin, Github, Linkedin, ExternalLink } from "lucide-react";
-import { easings, staggerContainer, staggerItem } from "@/lib/animations";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Github,
+  Linkedin,
+  ExternalLink,
+  ArrowUpRight,
+} from "lucide-react";
+import { easings } from "@/lib/animations";
+import { Magnetic } from "@/components/magnetic";
+
+const linkVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.6 + i * 0.1,
+      duration: 0.6,
+      ease: [0.16, 1, 0.3, 1] as const,
+    },
+  }),
+};
 
 export function Contact() {
   const t = useTranslations("contact");
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="contact" ref={ref} className="min-h-screen py-24 md:py-32">
-      <div className="max-w-7xl mx-auto px-6 md:px-8">
-        {/* Title */}
-        <motion.span
-          initial={{ opacity: 0, x: -20 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.5, ease: easings.smooth }}
-          className="text-accent font-mono text-sm block mb-4"
-        >
-          06
-        </motion.span>
+    <section
+      id="contact"
+      ref={ref}
+      className="relative py-28 md:py-40 overflow-hidden"
+    >
+      {/* Section divider */}
+      <motion.div
+        initial={{ scaleX: 0 }}
+        animate={isInView ? { scaleX: 1 } : {}}
+        transition={{ duration: 1.2, ease: easings.dramatic }}
+        className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent origin-left"
+      />
 
-        <div className="relative inline-block mb-6">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.1, ease: easings.smooth }}
-            className="text-display text-4xl md:text-6xl text-foreground"
-          >
-            {t("title")}
-          </motion.h2>
+      <div className="max-w-7xl mx-auto px-6 md:px-8">
+        {/* Chapter */}
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.6, ease: easings.smooth }}
+          className="flex items-center gap-4 mb-6"
+        >
+          <span className="text-accent font-mono text-xs tracking-[0.3em] uppercase">
+            06
+          </span>
           <motion.div
             initial={{ scaleX: 0 }}
             animate={isInView ? { scaleX: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.4, ease: easings.smooth }}
-            className="absolute -bottom-2 left-0 h-0.5 w-full bg-accent origin-left"
+            transition={{ duration: 0.8, delay: 0.3, ease: easings.smooth }}
+            className="h-px w-12 bg-accent/40 origin-left"
           />
-        </div>
+        </motion.div>
+
+        {/* Big bold title */}
+        <motion.h2
+          initial={{ opacity: 0, y: 40, clipPath: "inset(0 0 100% 0)" }}
+          animate={
+            isInView ? { opacity: 1, y: 0, clipPath: "inset(0 0 0% 0)" } : {}
+          }
+          transition={{ duration: 0.8, delay: 0.2, ease: easings.dramatic }}
+          className="text-display text-5xl md:text-7xl lg:text-8xl text-foreground mb-4"
+        >
+          {t("title")}
+        </motion.h2>
+
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={isInView ? { scaleX: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.6, ease: easings.dramatic }}
+          className="h-[2px] bg-accent origin-left max-w-[160px] mb-10"
+        />
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.3, ease: easings.smooth }}
-          className="text-body text-lg text-muted-foreground mb-12 max-w-lg"
+          transition={{ delay: 0.4, duration: 0.6, ease: easings.smooth }}
+          className="text-body text-xl text-muted-foreground mb-16 max-w-lg"
         >
           {t("description")}
         </motion.p>
 
+        {/* Contact details - large, clickable */}
+        <div className="space-y-6 mb-16">
+          <motion.a
+            custom={0}
+            variants={linkVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            href={`mailto:${t("email.value")}`}
+            className="group flex items-center gap-4 text-foreground/80 hover:text-accent transition-colors duration-300"
+          >
+            <Mail className="w-5 h-5 text-accent/60 group-hover:text-accent transition-colors" />
+            <span className="text-lg md:text-xl font-mono">
+              {t("email.value")}
+            </span>
+            <ArrowUpRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+          </motion.a>
+
+          <motion.a
+            custom={1}
+            variants={linkVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            href={`tel:${t("phone.value").replace(/\s/g, "")}`}
+            className="group flex items-center gap-4 text-foreground/80 hover:text-accent transition-colors duration-300"
+          >
+            <Phone className="w-5 h-5 text-accent/60 group-hover:text-accent transition-colors" />
+            <span className="text-lg md:text-xl font-mono">
+              {t("phone.value")}
+            </span>
+            <ArrowUpRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+          </motion.a>
+
+          <motion.div
+            custom={2}
+            variants={linkVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="flex items-center gap-4 text-muted-foreground"
+          >
+            <MapPin className="w-5 h-5 text-accent/60" />
+            <span className="text-lg md:text-xl font-mono">
+              {t("location.value")}
+            </span>
+          </motion.div>
+        </div>
+
+        {/* Social links - larger, with magnetic effect */}
         <motion.div
-          variants={staggerContainer}
-          initial="initial"
-          animate={isInView ? "animate" : "initial"}
-          className="space-y-12"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ delay: 1.0, duration: 0.6 }}
+          className="flex flex-wrap gap-4"
         >
-          {/* Contact info */}
-          <div className="space-y-4">
-            <motion.a
-              variants={staggerItem}
-              whileHover={{ x: 5 }}
-              href={`mailto:${t("email.value")}`}
-              className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors group"
-            >
-              <Mail className="w-5 h-5 text-accent" />
-              <span className="text-body">{t("email.value")}</span>
-            </motion.a>
-
-            <motion.a
-              variants={staggerItem}
-              whileHover={{ x: 5 }}
-              href={`tel:${t("phone.value").replace(/\s/g, "")}`}
-              className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors group"
-            >
-              <Phone className="w-5 h-5 text-accent" />
-              <span className="text-body">{t("phone.value")}</span>
-            </motion.a>
-
-            <motion.div
-              variants={staggerItem}
-              className="flex items-center gap-3 text-muted-foreground"
-            >
-              <MapPin className="w-5 h-5 text-accent" />
-              <span className="text-body">{t("location.value")}</span>
-            </motion.div>
-          </div>
-
-          {/* Social links */}
-          <div className="flex gap-6">
-            <motion.a
-              variants={staggerItem}
-              whileHover={{ y: -2 }}
-              href="https://github.com/sebastianrosnes"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Github className="w-5 h-5" />
-              <span className="text-sm">{t("links.github")}</span>
-            </motion.a>
-
-            <motion.a
-              variants={staggerItem}
-              whileHover={{ y: -2 }}
-              href="https://linkedin.com/in/sebastianrosnes"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Linkedin className="w-5 h-5" />
-              <span className="text-sm">{t("links.linkedin")}</span>
-            </motion.a>
-
-            <motion.a
-              variants={staggerItem}
-              whileHover={{ y: -2 }}
-              href="https://www.rosengrip.no"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <ExternalLink className="w-5 h-5" />
-              <span className="text-sm">{t("links.rosengrip")}</span>
-            </motion.a>
-          </div>
+          {[
+            {
+              href: "https://github.com/SebastianRSorensen",
+              icon: Github,
+              label: t("links.github"),
+            },
+            {
+              href: "https://www.linkedin.com/in/sebastian-rosnes-s%C3%B8rensen-64bb5822a/",
+              icon: Linkedin,
+              label: t("links.linkedin"),
+            },
+            {
+              href: "https://www.rosengrip.no",
+              icon: ExternalLink,
+              label: t("links.rosengrip"),
+            },
+          ].map((link) => (
+            <Magnetic key={link.label} strength={0.15}>
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-3 px-5 py-3 rounded-full border border-border/50 text-muted-foreground hover:text-foreground hover:border-accent/40 transition-all duration-300"
+              >
+                <link.icon className="w-4 h-4" />
+                <span className="text-sm font-mono">{link.label}</span>
+                <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </a>
+            </Magnetic>
+          ))}
         </motion.div>
       </div>
     </section>
