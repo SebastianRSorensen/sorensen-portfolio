@@ -158,39 +158,41 @@ Based on 4px grid with Tailwind defaults:
 │     ROSNES                      │
 │     SØRENSEN                    │
 │                                 │
-│     Developer. Builder.         │
-│     From the Russian border     │
-│     to fintech.                 │
+│     Ikke en typisk utvikler.    │
 │                                 │
 │           ↓ scroll              │
 └─────────────────────────────────┘
 ```
 
-**Story Section (Image + Text):**
+**Story Section (Chapter + Content):**
 ```
 ┌─────────────────────────────────┐
-│  ┌─────────────┐                │
-│  │             │    CHAPTER 01  │
-│  │   IMAGE     │    ──────────  │
-│  │             │    GRENSE      │
-│  │             │                │
-│  └─────────────┘    Body text   │
-│                     continues   │
-│                     here...     │
+│                                 │
+│         CHAPTER 01              │
+│         ──────────              │
+│         KODE                    │
+│                                 │
+│         Body text and cards     │
+│         continue here...        │
+│                                 │
 └─────────────────────────────────┘
 ```
 
 **Tech Stack (Grid):**
 ```
 ┌─────────────────────────────────┐
-│         TECH STACK              │
+│         TEKNOLOGI               │
 │                                 │
-│   ┌───┐ ┌───┐ ┌───┐ ┌───┐      │
-│   │ R │ │ N │ │TS │ │TW │      │
-│   └───┘ └───┘ └───┘ └───┘      │
-│   ┌───┐ ┌───┐ ┌───┐ ┌───┐      │
-│   │PG │ │MG │ │DK │ │K8 │      │
-│   └───┘ └───┘ └───┘ └───┘      │
+│   Frontend                      │
+│   [React] [Next.js] [TS] [TW]  │
+│                                 │
+│   Backend                       │
+│   [Node] [NestJS] [PG] [Mongo] │
+│                                 │
+│   Cloud & Deploy                │
+│   [Azure] [Vercel]             │
+│                                 │
+│   ...                           │
 └─────────────────────────────────┘
 ```
 

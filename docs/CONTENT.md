@@ -10,8 +10,7 @@ All text content for the portfolio in Norwegian (default) and English.
 {
   "metadata": {
     "title": "Sebastian Rosnes Sørensen | Systemutvikler",
-    "description": "Systemutvikler med bakgrunn fra Forsvaret og fintech. Bygger moderne webløsninger med React, Next.js og TypeScript.",
-    "keywords": "systemutvikler, utvikler, React, Next.js, TypeScript, Bergen, fintech"
+    "description": "Systemutvikler med bakgrunn fra Forsvaret og fintech. Bygger moderne webløsninger med React, Next.js og TypeScript."
   }
 }
 ```
@@ -22,8 +21,7 @@ All text content for the portfolio in Norwegian (default) and English.
 {
   "metadata": {
     "title": "Sebastian Rosnes Sørensen | System Developer",
-    "description": "System developer with military background and fintech experience. Building modern web solutions with React, Next.js, and TypeScript.",
-    "keywords": "system developer, developer, React, Next.js, TypeScript, Bergen, Norway, fintech"
+    "description": "System developer with military background and fintech experience. Building modern web solutions with React, Next.js, and TypeScript."
   }
 }
 ```
@@ -38,9 +36,9 @@ All text content for the portfolio in Norwegian (default) and English.
 {
   "nav": {
     "home": "Hjem",
-    "story": "Historie",
+    "experience": "Erfaring",
     "skills": "Kompetanse",
-    "projects": "Prosjekter",
+    "education": "Utdanning",
     "contact": "Kontakt"
   }
 }
@@ -52,9 +50,9 @@ All text content for the portfolio in Norwegian (default) and English.
 {
   "nav": {
     "home": "Home",
-    "story": "Story",
+    "experience": "Experience",
     "skills": "Skills",
-    "projects": "Projects",
+    "education": "Education",
     "contact": "Contact"
   }
 }
@@ -69,10 +67,9 @@ All text content for the portfolio in Norwegian (default) and English.
 ```json
 {
   "hero": {
-    "greeting": "",
     "name": "Sebastian Rosnes Sørensen",
     "title": "Systemutvikler",
-    "tagline": "Utvikler. Bygger. Fra russergrensen til fintech.",
+    "tagline": "Ikke en typisk utvikler.",
     "scrollHint": "Scroll for å utforske",
     "location": "Bergen, Norge"
   }
@@ -84,10 +81,9 @@ All text content for the portfolio in Norwegian (default) and English.
 ```json
 {
   "hero": {
-    "greeting": "",
     "name": "Sebastian Rosnes Sørensen",
     "title": "System Developer",
-    "tagline": "Developer. Builder. From the Russian border to fintech.",
+    "tagline": "Not your typical developer.",
     "scrollHint": "Scroll to explore",
     "location": "Bergen, Norway"
   }
@@ -96,149 +92,41 @@ All text content for the portfolio in Norwegian (default) and English.
 
 ---
 
-## Story: GRENSE (Border)
-
-### Norwegian
-
-```json
-{
-  "grense": {
-    "chapter": "01",
-    "title": "GRENSE",
-    "subtitle": "Grensevakten, 2020–2021",
-    "period": "Januar 2020 — Januar 2021",
-    "role": "Grensejeger",
-    "unit": "Jegerkompaniet, GSV",
-    "description": "Verneplikt i Forsvaret som Grensejeger ved Garnisonen i Sør-Varanger. Skarpe oppdrag på grensen til Russland. Et år med disiplin, presisjon og operasjoner under press.",
-    "highlights": [
-      "Grensejeger ved Jegerkompaniet",
-      "Skarpe oppdrag på russergrensen",
-      "Patruljer i arktisk klima"
-    ]
-  }
-}
-```
-
-### English
-
-```json
-{
-  "grense": {
-    "chapter": "01",
-    "title": "GRENSE",
-    "subtitle": "Border Guard, 2020–2021",
-    "period": "January 2020 — January 2021",
-    "role": "Border Hunter",
-    "unit": "Hunter Company, GSV",
-    "description": "Military service in the Norwegian Armed Forces as a Border Hunter at the Garrison in Sør-Varanger. Live operations on the Russian border. A year of discipline, precision, and high-stakes operations.",
-    "highlights": [
-      "Border Hunter at Hunter Company",
-      "Live operations on Russian border",
-      "Patrols in arctic conditions"
-    ]
-  }
-}
-```
-
----
-
-## Story: KUNNSKAP (Knowledge)
-
-### Norwegian
-
-```json
-{
-  "kunnskap": {
-    "chapter": "02",
-    "title": "KUNNSKAP",
-    "subtitle": "Universitetet i Bergen",
-    "period": "2021 — Pågående",
-    "degrees": [
-      {
-        "title": "Bachelor i informatikk — Datateknologi",
-        "period": "2021–2023",
-        "description": "Studieprogram med fokus på programmering, datastrukturer, algoritmer, systemarkitektur, databaser, webutvikling, IT-sikkerhet og programvaresystemer. Prosjektarbeid i team med Java, Python, SQL, TypeScript og React."
-      },
-      {
-        "title": "Master i programvareutvikling",
-        "period": "KveldsStudier, pågående",
-        "description": "Tar obligatoriske fag i Software Engineering-masteren ved UiB på kveldstid, parallelt med fulltidsjobb."
-      }
-    ]
-  }
-}
-```
-
-### English
-
-```json
-{
-  "kunnskap": {
-    "chapter": "02",
-    "title": "KUNNSKAP",
-    "subtitle": "University of Bergen",
-    "period": "2021 — Ongoing",
-    "degrees": [
-      {
-        "title": "Bachelor in Computer Science",
-        "period": "2021–2023",
-        "description": "Program focused on programming, data structures, algorithms, system architecture, databases, web development, IT security, and software systems. Team projects using Java, Python, SQL, TypeScript, and React."
-      },
-      {
-        "title": "Master's in Software Engineering",
-        "period": "Evening studies, ongoing",
-        "description": "Taking required courses in the Software Engineering master's program at UiB in the evenings, alongside full-time work."
-      }
-    ]
-  }
-}
-```
-
----
-
-## Story: KODE (Code)
+## Section 01: KODE (Code) — Professional Experience
 
 ### Norwegian
 
 ```json
 {
   "kode": {
-    "chapter": "03",
+    "chapter": "01",
     "title": "KODE",
     "subtitle": "Profesjonell utvikling",
-    "positions": [
-      {
-        "company": "Stacc AS",
-        "role": "Systemutvikler",
-        "period": "Januar 2024 — Nå",
-        "location": "Bergen",
-        "description": "Jobber i team som utvikler kredittløsninger for forbrukerfinansiering og salgsfinansiering i Norden. Fullstack-ansvar med React, Next.js og TypeScript. CI/CD gjennom GitHub Actions. Tett samarbeid med designere, produkteiere og andre utviklere i et smidig og selvorganisert team.",
-        "highlights": [
-          "Fullstack med React, Next.js, TypeScript",
-          "Forbruker- og salgsfinansiering",
-          "CI/CD med GitHub Actions"
-        ]
-      },
-      {
-        "company": "Rosengrip",
-        "role": "Medgründer",
-        "period": "2024 — Nå",
-        "location": "Bergen",
-        "description": "Medgründer av webbyrå som lager moderne, konverterende nettsider for ambisiøse bedrifter. Skreddersydde løsninger med Next.js, React og moderne teknologi.",
-        "link": "https://www.rosengrip.no",
-        "highlights": [
-          "Medgründer og utvikler",
-          "Next.js, React, Tailwind",
-          "Fokus på konvertering"
-        ]
+    "stacc": {
+      "company": "Stacc AS",
+      "role": "Systemutvikler",
+      "period": "Januar 2024 — Nå",
+      "location": "Bergen",
+      "description": "Jobber i team som utvikler kredittløsninger for forbrukerfinansiering og salgsfinansiering i Norden. Fullstack-ansvar med React, Next.js og TypeScript. CI/CD gjennom GitHub Actions. Tett samarbeid med designere, produkteiere og andre utviklere i et smidig og selvorganisert team.",
+      "highlights": {
+        "0": "Fullstack med React, Next.js, TypeScript",
+        "1": "Forbruker- og salgsfinansiering",
+        "2": "CI/CD med GitHub Actions"
       }
-    ],
-    "previousExperience": {
-      "title": "Tidligere erfaring",
-      "company": "Hjemmesykepleien Bergen",
-      "role": "Helsefagarbeider",
-      "period": "Oktober 2022 — Mai 2025",
-      "description": "Praktisk bistand til eldre og pleietrengende i hjemmet. Medisinlevering, dokumentasjon og oppfølging."
+    },
+    "rosengrip": {
+      "company": "Rosengrip",
+      "role": "Medgründer",
+      "period": "2024 — Nå",
+      "location": "Bergen",
+      "description": "Medgründer av webbyrå som lager moderne, konverterende nettsider for ambisiøse bedrifter. Skreddersydde løsninger med Next.js, React og moderne teknologi.",
+      "link": "https://www.rosengrip.no",
+      "linkText": "rosengrip.no",
+      "highlights": {
+        "0": "Medgründer og utvikler",
+        "1": "Next.js, React, Tailwind",
+        "2": "Fokus på konvertering"
+      }
     }
   }
 }
@@ -249,42 +137,34 @@ All text content for the portfolio in Norwegian (default) and English.
 ```json
 {
   "kode": {
-    "chapter": "03",
+    "chapter": "01",
     "title": "KODE",
     "subtitle": "Professional development",
-    "positions": [
-      {
-        "company": "Stacc AS",
-        "role": "System Developer",
-        "period": "January 2024 — Present",
-        "location": "Bergen",
-        "description": "Working in a team developing credit solutions for consumer finance and sales finance across the Nordics. Full-stack responsibility with React, Next.js, and TypeScript. CI/CD through GitHub Actions. Close collaboration with designers, product owners, and other developers in an agile, self-organized team.",
-        "highlights": [
-          "Full-stack with React, Next.js, TypeScript",
-          "Consumer and sales finance",
-          "CI/CD with GitHub Actions"
-        ]
-      },
-      {
-        "company": "Rosengrip",
-        "role": "Co-founder",
-        "period": "2024 — Present",
-        "location": "Bergen",
-        "description": "Co-founded a web agency creating modern, conversion-focused websites for ambitious businesses. Custom solutions built with Next.js, React, and modern technology.",
-        "link": "https://www.rosengrip.no",
-        "highlights": [
-          "Co-founder and developer",
-          "Next.js, React, Tailwind",
-          "Focus on conversion"
-        ]
+    "stacc": {
+      "company": "Stacc AS",
+      "role": "System Developer",
+      "period": "January 2024 — Present",
+      "location": "Bergen",
+      "description": "Working in a team developing credit solutions for consumer finance and sales finance across the Nordics. Full-stack responsibility with React, Next.js, and TypeScript. CI/CD through GitHub Actions. Close collaboration with designers, product owners, and other developers in an agile, self-organized team.",
+      "highlights": {
+        "0": "Full-stack with React, Next.js, TypeScript",
+        "1": "Consumer and sales finance",
+        "2": "CI/CD with GitHub Actions"
       }
-    ],
-    "previousExperience": {
-      "title": "Previous experience",
-      "company": "Home Nursing Bergen",
-      "role": "Healthcare Worker",
-      "period": "October 2022 — May 2025",
-      "description": "Practical assistance to elderly and care-dependent individuals at home. Medicine delivery, documentation, and follow-up."
+    },
+    "rosengrip": {
+      "company": "Rosengrip",
+      "role": "Co-founder",
+      "period": "2024 — Present",
+      "location": "Bergen",
+      "description": "Co-founded a web agency creating modern, conversion-focused websites for ambitious businesses. Custom solutions built with Next.js, React, and modern technology.",
+      "link": "https://www.rosengrip.no",
+      "linkText": "rosengrip.no",
+      "highlights": {
+        "0": "Co-founder and developer",
+        "1": "Next.js, React, Tailwind",
+        "2": "Focus on conversion"
+      }
     }
   }
 }
@@ -292,38 +172,25 @@ All text content for the portfolio in Norwegian (default) and English.
 
 ---
 
-## Story: BYGGER (Builder)
+## Section 02: DRIV (Drive) — Builder Identity
 
 ### Norwegian
 
 ```json
 {
   "bygger": {
-    "chapter": "04",
-    "title": "BYGGER",
-    "subtitle": "Det stopper aldri",
-    "intro": "Jeg koder ikke bare på jobb. Jeg bygger fordi jeg liker det.",
+    "chapter": "02",
+    "title": "DRIV",
+    "intro": "Koding stopper ikke klokken fire.",
     "description": "Fritiden brukes på hobbyprosjekter — alt fra event-planlegging til rekrutteringsverktøy med AI til helt nye lotterisystemer. De fleste prosjektene er private, men de viser én ting: jeg elsker å bygge.",
-    "projects": [
-      {
-        "name": "Event-planlegger",
-        "description": "Nettside for å organisere fester og arrangementer"
-      },
-      {
-        "name": "Rekrutteringsverktøy",
-        "description": "Finn bedrifter enkelt med AI-drevet NACE-kodesøk (Anthropic)"
-      },
-      {
-        "name": "Lotterisystem",
-        "description": "Helt nytt konsept for lotteri"
-      },
-      {
-        "name": "...og det som kommer neste",
-        "description": ""
-      }
-    ],
+    "projects": {
+      "0": { "name": "Event-planlegger", "description": "Nettside for å organisere fester og arrangementer" },
+      "1": { "name": "Rekrutteringsverktøy", "description": "Finn bedrifter enkelt med AI-drevet NACE-kodesøk (Anthropic)" },
+      "2": { "name": "Lotterisystem", "description": "Helt nytt konsept for lotteri" },
+      "3": { "name": "...og det som kommer neste", "description": "" }
+    },
     "tools": {
-      "title": "Verktøy jeg bruker",
+      "title": "Verktøy",
       "description": "Claude Code er en fast del av arbeidsflyten min. AI-assistert utvikling i praksis.",
       "highlight": "Erfaren Claude Code-bruker"
     },
@@ -341,31 +208,18 @@ All text content for the portfolio in Norwegian (default) and English.
 ```json
 {
   "bygger": {
-    "chapter": "04",
-    "title": "BYGGER",
-    "subtitle": "It never stops",
-    "intro": "I don't just code at work. I build because I enjoy it.",
+    "chapter": "02",
+    "title": "DRIVE",
+    "intro": "Coding doesn't stop at four.",
     "description": "Free time is spent on hobby projects — from event planning to recruitment tools with AI to completely new lottery systems. Most projects are private, but they show one thing: I love to build.",
-    "projects": [
-      {
-        "name": "Event planner",
-        "description": "Website for organizing parties and events"
-      },
-      {
-        "name": "Recruitment tool",
-        "description": "Find companies easily with AI-powered NACE code search (Anthropic)"
-      },
-      {
-        "name": "Lottery system",
-        "description": "Completely new lottery concept"
-      },
-      {
-        "name": "...and whatever comes next",
-        "description": ""
-      }
-    ],
+    "projects": {
+      "0": { "name": "Event planner", "description": "Website for organizing parties and events" },
+      "1": { "name": "Recruitment tool", "description": "Find companies easily with AI-powered NACE code search (Anthropic)" },
+      "2": { "name": "Lottery system", "description": "Completely new lottery concept" },
+      "3": { "name": "...and whatever comes next", "description": "" }
+    },
     "tools": {
-      "title": "Tools I use",
+      "title": "Tools",
       "description": "Claude Code is a regular part of my workflow. AI-assisted development in practice.",
       "highlight": "Experienced Claude Code user"
     },
@@ -380,7 +234,7 @@ All text content for the portfolio in Norwegian (default) and English.
 
 ---
 
-## Tech Stack Section
+## Section 03: Tech Stack
 
 ### Norwegian
 
@@ -389,32 +243,12 @@ All text content for the portfolio in Norwegian (default) and English.
   "techStack": {
     "title": "Teknologi",
     "subtitle": "Verktøyene jeg bruker",
-    "categories": {
-      "frontend": {
-        "title": "Frontend",
-        "items": ["React", "Next.js", "TypeScript", "Tailwind CSS"]
-      },
-      "backend": {
-        "title": "Backend",
-        "items": ["Node.js", "PostgreSQL", "MongoDB"]
-      },
-      "cloud": {
-        "title": "Cloud & Deploy",
-        "items": ["AWS", "Azure", "Vercel"]
-      },
-      "devops": {
-        "title": "DevOps",
-        "items": ["Docker", "Kubernetes", "GitHub Actions"]
-      },
-      "testing": {
-        "title": "Testing",
-        "items": ["Jest", "Playwright", "Storybook"]
-      },
-      "tools": {
-        "title": "Verktøy",
-        "items": ["Claude Code", "Kosli", "Snyk", "Wiz"]
-      }
-    }
+    "frontend": { "title": "Frontend", "items": "React, Next.js, TypeScript, Tailwind CSS" },
+    "backend": { "title": "Backend", "items": "Node.js, NestJS, PostgreSQL, MongoDB" },
+    "cloud": { "title": "Cloud & Deploy", "items": "Azure, Vercel" },
+    "devops": { "title": "DevOps", "items": "Docker, Kubernetes, GitHub Actions" },
+    "testing": { "title": "Testing", "items": "Jest, Playwright, Storybook" },
+    "tools": { "title": "Verktøy", "items": "Claude Code, Bruno, Postman, REST/OpenAPI, Kosli, Snyk, Wiz" }
   }
 }
 ```
@@ -426,31 +260,61 @@ All text content for the portfolio in Norwegian (default) and English.
   "techStack": {
     "title": "Technology",
     "subtitle": "The tools I use",
-    "categories": {
-      "frontend": {
-        "title": "Frontend",
-        "items": ["React", "Next.js", "TypeScript", "Tailwind CSS"]
-      },
-      "backend": {
-        "title": "Backend",
-        "items": ["Node.js", "PostgreSQL", "MongoDB"]
-      },
-      "cloud": {
-        "title": "Cloud & Deploy",
-        "items": ["AWS", "Azure", "Vercel"]
-      },
-      "devops": {
-        "title": "DevOps",
-        "items": ["Docker", "Kubernetes", "GitHub Actions"]
-      },
-      "testing": {
-        "title": "Testing",
-        "items": ["Jest", "Playwright", "Storybook"]
-      },
-      "tools": {
-        "title": "Tools",
-        "items": ["Claude Code", "Kosli", "Snyk", "Wiz"]
-      }
+    "frontend": { "title": "Frontend", "items": "React, Next.js, TypeScript, Tailwind CSS" },
+    "backend": { "title": "Backend", "items": "Node.js, NestJS, PostgreSQL, MongoDB" },
+    "cloud": { "title": "Cloud & Deploy", "items": "Azure, Vercel" },
+    "devops": { "title": "DevOps", "items": "Docker, Kubernetes, GitHub Actions" },
+    "testing": { "title": "Testing", "items": "Jest, Playwright, Storybook" },
+    "tools": { "title": "Tools", "items": "Claude Code, Bruno, Postman, REST/OpenAPI, Kosli, Snyk, Wiz" }
+  }
+}
+```
+
+---
+
+## Section 04: UTDANNING (Education)
+
+### Norwegian
+
+```json
+{
+  "kunnskap": {
+    "chapter": "04",
+    "title": "UTDANNING",
+    "subtitle": "Universitetet i Bergen",
+    "period": "2021 — 2023",
+    "bachelor": {
+      "title": "Bachelor i informatikk — Datateknologi",
+      "period": "2021–2023",
+      "description": "Studieprogram med fokus på programmering, datastrukturer, algoritmer, systemarkitektur, databaser, webutvikling, IT-sikkerhet og programvaresystemer. Prosjektarbeid i team med Java, Python, SQL, TypeScript og React."
+    },
+    "master": {
+      "title": "Fag fra master i programvareutvikling",
+      "period": "Kveldsstudier",
+      "description": "Tok obligatoriske fag i Software Engineering-masteren ved UiB på kveldstid, parallelt med fulltidsjobb."
+    }
+  }
+}
+```
+
+### English
+
+```json
+{
+  "kunnskap": {
+    "chapter": "04",
+    "title": "EDUCATION",
+    "subtitle": "University of Bergen",
+    "period": "2021 — 2023",
+    "bachelor": {
+      "title": "Bachelor in Computer Science",
+      "period": "2021–2023",
+      "description": "Program focused on programming, data structures, algorithms, system architecture, databases, web development, IT security, and software systems. Team projects using Java, Python, SQL, TypeScript, and React."
+    },
+    "master": {
+      "title": "Software Engineering Master courses",
+      "period": "Evening studies",
+      "description": "Completed required courses in the Software Engineering master's program at UiB in the evenings, alongside full-time work."
     }
   }
 }
@@ -458,7 +322,83 @@ All text content for the portfolio in Norwegian (default) and English.
 
 ---
 
-## Contact Section
+## Section 05: ANNEN ERFARING (Other Experience)
+
+### Norwegian
+
+```json
+{
+  "grense": {
+    "chapter": "05",
+    "title": "ANNEN ERFARING",
+    "subtitle": "Lager, forsvar og helsevesen",
+    "nursing": {
+      "company": "Hjemmesykepleien Bergen",
+      "role": "Assistent",
+      "period": "Oktober 2022 — Mai 2025",
+      "description": "Praktisk bistand til eldre og pleietrengende i hjemmet."
+    },
+    "coop": {
+      "company": "Coop Norge SA",
+      "role": "Lagerfunksjonær",
+      "period": "August 2019 — Desember 2022",
+      "description": "Fast 100% stilling ved sentrallager frem til august 2021, med permisjon under førstegangstjenesten (januar 2020 – januar 2021). Overført til Flesland-lageret ved flytting til Bergen for studier, hvor jeg fortsatte deltid parallelt med utdanning."
+    },
+    "military": {
+      "role": "Grensejeger",
+      "unit": "Jegerkompaniet, GSV",
+      "period": "Januar 2020 — Januar 2021",
+      "description": "Verneplikt i Forsvaret som Grensejeger ved Garnisonen i Sør-Varanger. Skarpe oppdrag på grensen til Russland. Et år med disiplin, presisjon og operasjoner under tøffe forhold."
+    },
+    "highlights": {
+      "0": "Grensejeger ved Jegerkompaniet",
+      "1": "Skarpe oppdrag på russergrensen",
+      "2": "Patruljer i arktisk klima"
+    }
+  }
+}
+```
+
+### English
+
+```json
+{
+  "grense": {
+    "chapter": "05",
+    "title": "OTHER EXPERIENCE",
+    "subtitle": "Warehouse, military and healthcare",
+    "nursing": {
+      "company": "Home Nursing Bergen",
+      "role": "Assistant",
+      "period": "October 2022 — May 2025",
+      "description": "Practical assistance to elderly and care-dependent individuals at home."
+    },
+    "coop": {
+      "company": "Coop Norge SA",
+      "role": "Warehouse Associate",
+      "period": "August 2019 — December 2022",
+      "description": "Full-time position at central warehouse until August 2021, with leave of absence during military service (January 2020 – January 2021). Transferred to Flesland warehouse upon relocating to Bergen for studies, continuing part-time alongside education."
+    },
+    "military": {
+      "role": "Ranger",
+      "unit": "Jegerkompaniet, GSV",
+      "period": "January 2020 — January 2021",
+      "description": "Military service in the Norwegian Armed Forces as a Ranger at the Garrison in Sør-Varanger. Live operations on the Russian border. A year of discipline, precision, and tough conditions."
+    },
+    "highlights": {
+      "0": "Ranger at Jegerkompaniet",
+      "1": "Live operations on Russian border",
+      "2": "Patrols in arctic conditions"
+    }
+  }
+}
+```
+
+**Note:** Cards are ordered most-recent-first: Nursing → Coop → Military.
+
+---
+
+## Section 06: Contact
 
 ### Norwegian
 
@@ -484,8 +424,7 @@ All text content for the portfolio in Norwegian (default) and English.
       "github": "GitHub",
       "linkedin": "LinkedIn",
       "rosengrip": "Rosengrip"
-    },
-    "cta": "Send en melding"
+    }
   }
 }
 ```
@@ -514,8 +453,7 @@ All text content for the portfolio in Norwegian (default) and English.
       "github": "GitHub",
       "linkedin": "LinkedIn",
       "rosengrip": "Rosengrip"
-    },
-    "cta": "Send a message"
+    }
   }
 }
 ```
@@ -530,7 +468,7 @@ All text content for the portfolio in Norwegian (default) and English.
 {
   "footer": {
     "copyright": "© 2026 Sebastian Rosnes Sørensen",
-    "tagline": "Bygget med Next.js og ☕",
+    "tagline": "Bygget med Next.js",
     "location": "Bergen, Norge"
   }
 }
@@ -542,7 +480,7 @@ All text content for the portfolio in Norwegian (default) and English.
 {
   "footer": {
     "copyright": "© 2026 Sebastian Rosnes Sørensen",
-    "tagline": "Built with Next.js and ☕",
+    "tagline": "Built with Next.js",
     "location": "Bergen, Norway"
   }
 }
@@ -558,8 +496,7 @@ All text content for the portfolio in Norwegian (default) and English.
 {
   "languageToggle": {
     "label": "Språk",
-    "no": "Norsk",
-    "en": "English"
+    "switchTo": "EN"
   }
 }
 ```
@@ -570,8 +507,7 @@ All text content for the portfolio in Norwegian (default) and English.
 {
   "languageToggle": {
     "label": "Language",
-    "no": "Norsk",
-    "en": "English"
+    "switchTo": "NO"
   }
 }
 ```

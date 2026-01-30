@@ -24,18 +24,17 @@ Detailed specifications for each component in the portfolio.
 
 ### RootLayout (`app/layout.tsx`)
 
-Server component. Sets up HTML structure, fonts, and base styles.
+Server component. Sets up HTML structure, fonts, and base styles. Includes noise texture overlay for subtle grain effect.
 
 ```tsx
 // Server Component
-import { Geist, Geist_Mono } from 'next/font/google'
-// Or local fonts from lib/fonts.ts
+import { instrumentSerif, geistSans, geistMono } from '@/lib/fonts'
 
 export default function RootLayout({ children }) {
   return (
     <html suppressHydrationWarning>
-      <body className={`${fontClasses} antialiased`}>
-        {children}
+      <body className={`${instrumentSerif.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <div className="noise-overlay">{children}</div>
       </body>
     </html>
   )
@@ -44,22 +43,27 @@ export default function RootLayout({ children }) {
 
 ### LocaleLayout (`app/[locale]/layout.tsx`)
 
-Server component. Wraps content with next-intl provider.
+Server component. Wraps content with next-intl provider, MotionProvider, Navigation, and Footer.
 
 ```tsx
 // Server Component
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
+import { MotionProvider } from '@/lib/motion-config'
+import { Navigation } from '@/components/navigation'
+import { Footer } from '@/components/footer'
 
 export default async function LocaleLayout({ children, params }) {
   const { locale } = await params
   const messages = await getMessages()
-  
+
   return (
     <NextIntlClientProvider messages={messages}>
-      <Navigation />
-      <main>{children}</main>
-      <Footer />
+      <MotionProvider>
+        <Navigation />
+        <main>{children}</main>
+        <Footer />
+      </MotionProvider>
     </NextIntlClientProvider>
   )
 }
@@ -71,58 +75,23 @@ export default async function LocaleLayout({ children, params }) {
 
 ### `components/navigation.tsx`
 
-Client component for scroll detection and language toggle.
+Client component for scroll detection, nav links, and language toggle.
 
 **Features:**
 - Fixed position header
-- Transparent → solid on scroll
+- Transparent → solid on scroll (bg-background/90 backdrop-blur-md after 50px)
 - Language toggle (NO/EN)
-- Mobile menu (hamburger)
-- Scroll progress indicator
+- Mobile menu (hamburger via shadcn Sheet)
+- Scroll progress indicator integrated
 
-**Props:** None (uses translations internally)
-
-**Structure:**
-
+**Nav Links:**
 ```tsx
-'use client'
-
-import { useState, useEffect } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { useTranslations } from 'next-intl'
-import { Link } from '@/i18n/routing'
-import { LanguageToggle } from './language-toggle'
-
-export function Navigation() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const { scrollYProgress } = useScroll()
-  const t = useTranslations('nav')
-  
-  // Scroll detection
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-  
-  return (
-    <header className={cn(
-      'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-      isScrolled ? 'bg-background/90 backdrop-blur-md' : 'bg-transparent'
-    )}>
-      {/* Logo */}
-      {/* Nav links (desktop) */}
-      {/* Language toggle */}
-      {/* Mobile menu button */}
-      
-      {/* Scroll progress bar */}
-      <motion.div 
-        className="absolute bottom-0 left-0 h-[2px] bg-accent"
-        style={{ scaleX: scrollYProgress, transformOrigin: '0%' }}
-      />
-    </header>
-  )
-}
+const navLinks = [
+  { key: "experience", href: "#kode" },
+  { key: "skills", href: "#tech-stack" },
+  { key: "education", href: "#utdanning" },
+  { key: "contact", href: "#contact" },
+];
 ```
 
 **Styling:**
@@ -135,55 +104,46 @@ export function Navigation() {
 
 ## Section Components
 
-### Base Section Pattern
+### Page Order
 
-All story sections follow this pattern:
+Sections render in this order in `app/[locale]/page.tsx`:
+
+1. **Hero** — Full viewport name reveal
+2. **SectionExperience** (KODE) — Chapter 01, professional experience
+3. **SectionDrive** (DRIV) — Chapter 02, builder identity
+4. **TechStack** — Chapter 03, technology badges
+5. **SectionEducation** (UTDANNING) — Chapter 04, education
+6. **SectionOtherExperience** (ANNEN ERFARING) — Chapter 05, other experience
+7. **Contact** — Chapter 06, contact info
+
+### Base Section Pattern: StorySection
+
+All story sections use the `StorySection` wrapper (`components/sections/story-section.tsx`).
 
 ```tsx
 'use client'
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { useTranslations } from 'next-intl'
 
-interface SectionProps {
-  id?: string
-  className?: string
+interface StorySectionProps {
+  id: string
+  chapter: string
+  title: string
+  children: React.ReactNode
 }
 
-export function StorySection({ id, className }: SectionProps) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
-  const t = useTranslations('sectionKey')
-  
-  return (
-    <section 
-      id={id}
-      ref={ref}
-      className={cn('min-h-screen py-24 md:py-32', className)}
-    >
-      <div className="container mx-auto px-6 md:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-        >
-          {/* Section content */}
-        </motion.div>
-      </div>
-    </section>
-  )
-}
+// Provides: scroll-triggered chapter number, title with underline draw, children reveal
 ```
 
 ### Hero Section (`components/sections/hero.tsx`)
 
 **Features:**
 - Full viewport height
-- Animated name reveal (letter by letter)
-- Subtitle fade in
+- Animated name reveal (letter by letter) via `hero-name.tsx`
+- Tagline fade in: "Ikke en typisk utvikler." / "Not your typical developer."
 - Scroll indicator
-- Background effect (subtle gradient or noise)
+- Background: subtle noise texture overlay
 
 **Layout:**
 ```
@@ -194,8 +154,7 @@ export function StorySection({ id, className }: SectionProps) {
 │     ROSNES                          │
 │     SØRENSEN                        │
 │                                     │
-│     Utvikler. Bygger.               │
-│     Fra russergrensen til fintech.  │
+│     Ikke en typisk utvikler.        │
 │                                     │
 │              ↓                      │
 │         scroll to explore           │
@@ -203,81 +162,24 @@ export function StorySection({ id, className }: SectionProps) {
 ```
 
 **Animation sequence:**
-1. Name letters stagger in (0.05s delay each)
+1. Name letters stagger in (0.04s delay each)
 2. Underline draws from left
 3. Tagline fades up
 4. Scroll indicator pulses
 
-**Key styles:**
-```css
-.hero-name {
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 10vw, 8rem);
-  line-height: 1;
-  letter-spacing: -0.02em;
-}
-```
-
-### Story: Grense (`components/sections/story-grense.tsx`)
+### SectionExperience (`components/sections/section-experience.tsx`)
 
 **Features:**
-- Chapter number ("01")
-- Title "GRENSE"
-- Image (military/border themed if available)
-- Description text
-- Highlight points
-
-**Layout (desktop):**
-```
-┌─────────────────────────────────────┐
-│                                     │
-│  ┌─────────────┐      01            │
-│  │             │      ────────      │
-│  │   IMAGE     │      GRENSE        │
-│  │  (optional) │                    │
-│  │             │      Grensejeger   │
-│  └─────────────┘      GSV, 2020-21  │
-│                                     │
-│       Description text here...      │
-│                                     │
-└─────────────────────────────────────┘
-```
-
-### Story: Kunnskap (`components/sections/story-kunnskap.tsx`)
-
-**Features:**
-- Chapter number ("02")
-- Education details
-- Two degree cards (Bachelor, Master)
+- Chapter "01", title "KODE"
+- Two position cards: Stacc AS and Rosengrip
+- Tech highlight badges per card
+- External link to rosengrip.no
+- Uses `useTranslations('kode')`
 
 **Layout:**
 ```
 ┌─────────────────────────────────────┐
-│              02                     │
-│           ────────                  │
-│           KUNNSKAP                  │
-│                                     │
-│   ┌─────────────┐ ┌─────────────┐   │
-│   │ Bachelor    │ │ Master      │   │
-│   │ 2021-2023   │ │ Pågående    │   │
-│   │             │ │             │   │
-│   └─────────────┘ └─────────────┘   │
-│                                     │
-└─────────────────────────────────────┘
-```
-
-### Story: Kode (`components/sections/story-kode.tsx`)
-
-**Features:**
-- Chapter number ("03")
-- Two position cards: Stacc and Rosengrip
-- Links to Rosengrip
-- Brief mention of previous experience
-
-**Layout:**
-```
-┌─────────────────────────────────────┐
-│              03                     │
+│              01                     │
 │           ────────                  │
 │            KODE                     │
 │                                     │
@@ -285,6 +187,7 @@ export function StorySection({ id, className }: SectionProps) {
 │   │ STACC AS                    │   │
 │   │ Systemutvikler, 2024-       │   │
 │   │ Consumer & sales finance    │   │
+│   │ [React] [Next.js] [CI/CD]   │   │
 │   └─────────────────────────────┘   │
 │                                     │
 │   ┌─────────────────────────────┐   │
@@ -296,34 +199,35 @@ export function StorySection({ id, className }: SectionProps) {
 └─────────────────────────────────────┘
 ```
 
-### Story: Bygger (`components/sections/story-bygger.tsx`)
+### SectionDrive (`components/sections/section-drive.tsx`)
 
 **Features:**
-- Chapter number ("04")
-- Intro text about building for fun
-- List of hobby projects (no links, just mentions)
-- Claude Code highlight
-- GitHub CTA
+- Chapter "02", title "DRIV" / "DRIVE"
+- Large intro quote: "Koding stopper ikke klokken fire."
+- Staggered project list (no cards, just mentions)
+- Claude Code highlight callout card
+- GitHub CTA button
+- Uses `useTranslations('bygger')`
 
-**This is the differentiator section** - emphasize the "builder" identity.
+**This is the differentiator section** — emphasizes the "builder" identity.
 
 **Layout:**
 ```
 ┌─────────────────────────────────────┐
-│              04                     │
+│              02                     │
 │           ────────                  │
-│           BYGGER                    │
+│            DRIV                     │
 │                                     │
-│   "Jeg koder ikke bare på jobb.    │
-│    Jeg bygger fordi jeg liker det." │
+│   "Koding stopper ikke             │
+│    klokken fire."                  │
 │                                     │
-│   • Event-planlegger               │
-│   • Rekrutteringsverktøy med AI    │
-│   • Lotterisystem                  │
-│   • ...og det som kommer neste     │
+│   — Event-planlegger               │
+│   — Rekrutteringsverktøy med AI    │
+│   — Lotterisystem                  │
+│   — ...og det som kommer neste     │
 │                                     │
 │   ┌─────────────────────────────┐   │
-│   │ 🤖 Erfaren Claude Code-     │   │
+│   │ ⌨ Erfaren Claude Code-     │   │
 │   │    bruker                    │   │
 │   └─────────────────────────────┘   │
 │                                     │
@@ -332,75 +236,105 @@ export function StorySection({ id, className }: SectionProps) {
 └─────────────────────────────────────┘
 ```
 
-### Tech Stack (`components/sections/tech-stack.tsx`)
+### TechStack (`components/sections/tech-stack.tsx`)
 
 **Features:**
-- Grid of technology icons/badges
-- Grouped by category
-- Hover effects
-- NOT a boring list
+- Chapter "03", title from i18n
+- 6 categories in 2-3 column grid
+- Category titles: uppercase, mono, muted-foreground
+- Tech items as hover-transition badges
+- Stagger reveal per category
+- Uses `useTranslations('techStack')`
 
-**Layout options:**
+**Categories:**
+- Frontend: React, Next.js, TypeScript, Tailwind CSS
+- Backend: Node.js, NestJS, PostgreSQL, MongoDB
+- Cloud & Deploy: Azure, Vercel
+- DevOps: Docker, Kubernetes, GitHub Actions
+- Testing: Jest, Playwright, Storybook
+- Tools: Claude Code, Bruno, Postman, REST/OpenAPI, Kosli, Snyk, Wiz
 
-Option A: Floating/orbiting icons
-Option B: Categorized grid with subtle animations
-Option C: Interactive cloud/constellation
+**Badge styling:**
+```tsx
+<span className="px-3 py-1 rounded-full bg-muted text-muted-foreground text-xs font-mono
+  hover:bg-accent hover:text-accent-foreground transition-colors">
+  {name}
+</span>
+```
 
-**Recommended: Categorized grid**
+### SectionEducation (`components/sections/section-education.tsx`)
 
+**Features:**
+- Chapter "04", title "UTDANNING" / "EDUCATION"
+- Section id: `utdanning`
+- Two cards side-by-side on desktop (grid md:grid-cols-2)
+- Bachelor in Computer Science (2021-2023)
+- Software Engineering Master courses (evening studies, completed)
+- Uses `useTranslations('kunnskap')`
+
+**Note:** Master card is titled "Fag fra master i programvareutvikling" / "Software Engineering Master courses" — Sebastian took the required courses but did not complete the full master's degree.
+
+**Layout:**
 ```
 ┌─────────────────────────────────────┐
-│           TEKNOLOGI                 │
+│              04                     │
+│           ────────                  │
+│          UTDANNING                  │
 │                                     │
-│   Frontend                          │
-│   [React] [Next.js] [TS] [Tailwind] │
-│                                     │
-│   Backend                           │
-│   [Node] [PostgreSQL] [MongoDB]     │
-│                                     │
-│   Cloud & DevOps                    │
-│   [AWS] [Azure] [Docker] [K8s]      │
-│                                     │
-│   Testing & Tools                   │
-│   [Jest] [Playwright] [Claude Code] │
+│   ┌─────────────┐ ┌─────────────┐   │
+│   │ Bachelor    │ │ Master-fag  │   │
+│   │ 2021-2023   │ │ Kveldsstud. │   │
+│   │             │ │             │   │
+│   └─────────────┘ └─────────────┘   │
 │                                     │
 └─────────────────────────────────────┘
 ```
 
-**Tech badge styling:**
-```tsx
-<span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full 
-  bg-muted text-muted-foreground text-sm font-mono
-  hover:bg-accent hover:text-accent-foreground transition-colors">
-  {icon && <Icon className="w-4 h-4" />}
-  {name}
-</span>
+### SectionOtherExperience (`components/sections/section-other-experience.tsx`)
+
+**Features:**
+- Chapter "05", title "ANNEN ERFARING" / "OTHER EXPERIENCE"
+- Three experience cards, ordered most-recent-first:
+  1. Home Nursing (Assistent, Oct 2022–May 2025)
+  2. Coop Norge SA (Lagerfunksjonær, Aug 2019–Dec 2022)
+  3. Military (Grensejeger/Ranger, Jan 2020–Jan 2021) — includes highlights list
+- Uses `useTranslations('grense')`
+
+**Layout:**
+```
+┌─────────────────────────────────────┐
+│              05                     │
+│           ────────                  │
+│       ANNEN ERFARING                │
+│                                     │
+│   ┌─────────────────────────────┐   │
+│   │ Assistent                   │   │
+│   │ Hjemmesykepleien Bergen     │   │
+│   └─────────────────────────────┘   │
+│                                     │
+│   ┌─────────────────────────────┐   │
+│   │ Lagerfunksjonær             │   │
+│   │ Coop Norge SA               │   │
+│   └─────────────────────────────┘   │
+│                                     │
+│   ┌─────────────────────────────┐   │
+│   │ Grensejeger / Ranger        │   │
+│   │ Jegerkompaniet, GSV         │   │
+│   │ — Highlights...             │   │
+│   └─────────────────────────────┘   │
+│                                     │
+└─────────────────────────────────────┘
 ```
 
 ### Contact (`components/sections/contact.tsx`)
 
 **Features:**
-- Simple, direct
-- Email (mailto link)
-- Phone (tel link)
-- Social links (GitHub, LinkedIn)
-- Rosengrip link
-
-**Layout:**
-```
-┌─────────────────────────────────────┐
-│            KONTAKT                  │
-│         La oss snakke               │
-│                                     │
-│   sebastian.rosnes.sorensen@...     │
-│   +47 472 78 212                    │
-│                                     │
-│   [GitHub]  [LinkedIn]  [Rosengrip] │
-│                                     │
-│          Bergen, Norge              │
-│                                     │
-└─────────────────────────────────────┘
-```
+- Chapter "06"
+- Simple, centered layout
+- Email (mailto link), Phone (tel link), Location
+- Social links: GitHub, LinkedIn, Rosengrip (with Lucide icons)
+- Hover animation on each link (x: +5, color transition)
+- Uses `useTranslations('contact')`
 
 ---
 
@@ -410,48 +344,16 @@ Option C: Interactive cloud/constellation
 
 ```tsx
 'use client'
-
-import { useLocale } from 'next-intl'
-import { usePathname, useRouter } from '@/i18n/routing'
-
-export function LanguageToggle() {
-  const locale = useLocale()
-  const pathname = usePathname()
-  const router = useRouter()
-  
-  const toggleLocale = () => {
-    const newLocale = locale === 'no' ? 'en' : 'no'
-    router.replace(pathname, { locale: newLocale })
-  }
-  
-  return (
-    <button 
-      onClick={toggleLocale}
-      className="text-sm font-mono text-muted-foreground hover:text-foreground transition-colors"
-    >
-      {locale === 'no' ? 'EN' : 'NO'}
-    </button>
-  )
-}
+// Shows "EN" when locale is 'no', "NO" when locale is 'en'
+// Uses useLocale() and useRouter/usePathname from @/i18n/routing
 ```
 
 ### Scroll Progress (`components/scroll-progress.tsx`)
 
 ```tsx
 'use client'
-
-import { motion, useScroll } from 'framer-motion'
-
-export function ScrollProgress() {
-  const { scrollYProgress } = useScroll()
-  
-  return (
-    <motion.div
-      className="fixed top-0 left-0 right-0 h-1 bg-accent origin-left z-50"
-      style={{ scaleX: scrollYProgress }}
-    />
-  )
-}
+// Thin accent bar at top of viewport, integrated into navigation
+// Uses motion.div with scaleX: scrollYProgress
 ```
 
 ### Animated Text (`components/animated-text.tsx`)
@@ -461,9 +363,6 @@ Reusable text reveal animation component.
 ```tsx
 'use client'
 
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
-
 interface AnimatedTextProps {
   text: string
   className?: string
@@ -471,37 +370,17 @@ interface AnimatedTextProps {
   splitBy?: 'letter' | 'word'
 }
 
-export function AnimatedText({ 
-  text, 
-  className, 
-  delay = 0,
-  splitBy = 'word' 
-}: AnimatedTextProps) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true })
-  
-  const items = splitBy === 'letter' ? text.split('') : text.split(' ')
-  
-  return (
-    <span ref={ref} className={className}>
-      {items.map((item, i) => (
-        <motion.span
-          key={i}
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ 
-            duration: 0.5, 
-            delay: delay + i * (splitBy === 'letter' ? 0.03 : 0.1),
-            ease: [0.25, 0.1, 0.25, 1]
-          }}
-          className="inline-block"
-        >
-          {item}{splitBy === 'word' ? '\u00A0' : ''}
-        </motion.span>
-      ))}
-    </span>
-  )
-}
+// useInView for scroll trigger, staggered animation per letter or word
+```
+
+### Hero Name (`components/sections/hero-name.tsx`)
+
+Dedicated letter-by-letter name animation for the hero section.
+
+```tsx
+'use client'
+// Splits "SEBASTIAN", "ROSNES", "SØRENSEN" into three lines
+// Each letter is a motion.span with staggered delay
 ```
 
 ---
@@ -510,42 +389,20 @@ export function AnimatedText({
 
 ### `components/footer.tsx`
 
-Simple, minimal footer.
+Client component. Minimal footer with copyright and location.
 
 ```tsx
-import { useTranslations } from 'next-intl'
-
-export function Footer() {
-  const t = useTranslations('footer')
-  
-  return (
-    <footer className="py-12 border-t border-border">
-      <div className="container mx-auto px-6 md:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground">
-            {t('copyright')}
-          </p>
-          <p className="text-sm text-muted-foreground">
-            {t('location')}
-          </p>
-        </div>
-      </div>
-    </footer>
-  )
-}
+'use client'
+// py-12 border-t border-border
+// Uses useTranslations('footer')
 ```
 
 ---
 
-## shadcn/ui Components to Install
+## shadcn/ui Components Installed
 
 ```bash
-pnpm dlx shadcn@latest add button
-pnpm dlx shadcn@latest add card
-pnpm dlx shadcn@latest add badge
-pnpm dlx shadcn@latest add separator
-pnpm dlx shadcn@latest add sheet        # For mobile menu
-pnpm dlx shadcn@latest add tooltip      # For tech stack
+pnpm dlx shadcn@latest add button card badge separator sheet tooltip
 ```
 
 ---
@@ -562,17 +419,28 @@ components/
 │   ├── sheet.tsx          ✓ shadcn
 │   └── tooltip.tsx        ✓ shadcn
 ├── sections/
-│   ├── hero.tsx           ○ Custom
-│   ├── story-grense.tsx   ○ Custom
-│   ├── story-kunnskap.tsx ○ Custom
-│   ├── story-kode.tsx     ○ Custom
-│   ├── story-bygger.tsx   ○ Custom
-│   ├── tech-stack.tsx     ○ Custom
-│   ├── projects.tsx       ○ Custom (maybe merge with kode)
-│   └── contact.tsx        ○ Custom
-├── navigation.tsx         ○ Custom
-├── footer.tsx             ○ Custom
-├── language-toggle.tsx    ○ Custom
-├── scroll-progress.tsx    ○ Custom
-└── animated-text.tsx      ○ Custom
+│   ├── hero.tsx               ✓ Custom — Hero section
+│   ├── hero-name.tsx          ✓ Custom — Letter-by-letter name animation
+│   ├── story-section.tsx      ✓ Custom — Reusable section wrapper
+│   ├── section-experience.tsx ✓ Custom — KODE (Chapter 01)
+│   ├── section-drive.tsx      ✓ Custom — DRIV (Chapter 02)
+│   ├── tech-stack.tsx         ✓ Custom — Tech Stack (Chapter 03)
+│   ├── section-education.tsx  ✓ Custom — UTDANNING (Chapter 04)
+│   ├── section-other-experience.tsx ✓ Custom — ANNEN ERFARING (Chapter 05)
+│   └── contact.tsx            ✓ Custom — Contact (Chapter 06)
+├── design-system/
+│   ├── showcase.tsx           ✓ Custom — Design system overview
+│   ├── color-palette.tsx      ✓ Custom
+│   ├── typography-scale.tsx   ✓ Custom
+│   ├── spacing-system.tsx     ✓ Custom
+│   ├── button-styles.tsx      ✓ Custom
+│   ├── badge-styles.tsx       ✓ Custom
+│   ├── card-styles.tsx        ✓ Custom
+│   ├── animation-previews.tsx ✓ Custom
+│   └── interactive-states.tsx ✓ Custom
+├── navigation.tsx         ✓ Custom
+├── footer.tsx             ✓ Custom
+├── language-toggle.tsx    ✓ Custom
+├── scroll-progress.tsx    ✓ Custom
+└── animated-text.tsx      ✓ Custom
 ```

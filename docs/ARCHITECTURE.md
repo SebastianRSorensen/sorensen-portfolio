@@ -10,49 +10,64 @@ This portfolio uses Next.js 16 with the App Router, configured for bilingual sup
 /
 ├── app/
 │   ├── [locale]/
-│   │   ├── layout.tsx         # Locale-specific layout
+│   │   ├── layout.tsx         # Locale-specific layout (providers, nav, footer)
 │   │   ├── page.tsx           # Main portfolio page
-│   │   └── not-found.tsx      # 404 page
-│   ├── globals.css            # Global styles + Tailwind theme
-│   ├── layout.tsx             # Root HTML layout
+│   │   ├── template.tsx       # Page transition (fade-in)
+│   │   ├── not-found.tsx      # 404 page
+│   │   └── design-system/
+│   │       └── page.tsx       # Design system showcase (noindex)
+│   ├── globals.css            # Global styles + Tailwind theme (@theme inline)
+│   ├── layout.tsx             # Root HTML layout (fonts, noise overlay)
 │   └── not-found.tsx          # Root 404
 ├── components/
 │   ├── ui/                    # shadcn/ui primitives
 │   │   ├── button.tsx
 │   │   ├── card.tsx
-│   │   └── ...
+│   │   ├── badge.tsx
+│   │   ├── separator.tsx
+│   │   ├── sheet.tsx
+│   │   └── tooltip.tsx
 │   ├── sections/              # Page sections
-│   │   ├── hero.tsx
-│   │   ├── story-grense.tsx
-│   │   ├── story-kunnskap.tsx
-│   │   ├── story-kode.tsx
-│   │   ├── story-bygger.tsx
-│   │   ├── tech-stack.tsx
-│   │   ├── projects.tsx
-│   │   └── contact.tsx
-│   ├── navigation.tsx         # Header/nav component
-│   ├── footer.tsx
+│   │   ├── hero.tsx                    # Hero with name reveal
+│   │   ├── hero-name.tsx              # Letter-by-letter name animation
+│   │   ├── story-section.tsx          # Reusable section wrapper
+│   │   ├── section-experience.tsx     # KODE — Chapter 01
+│   │   ├── section-drive.tsx          # DRIV — Chapter 02
+│   │   ├── tech-stack.tsx             # Tech Stack — Chapter 03
+│   │   ├── section-education.tsx      # UTDANNING — Chapter 04
+│   │   ├── section-other-experience.tsx # ANNEN ERFARING — Chapter 05
+│   │   └── contact.tsx                # Contact — Chapter 06
+│   ├── design-system/         # Design system showcase components
+│   │   ├── showcase.tsx
+│   │   ├── color-palette.tsx
+│   │   ├── typography-scale.tsx
+│   │   ├── spacing-system.tsx
+│   │   ├── button-styles.tsx
+│   │   ├── badge-styles.tsx
+│   │   ├── card-styles.tsx
+│   │   ├── animation-previews.tsx
+│   │   └── interactive-states.tsx
+│   ├── navigation.tsx         # Fixed header with nav links + mobile menu
+│   ├── footer.tsx             # Minimal footer
 │   ├── language-toggle.tsx    # NO/EN switcher
 │   ├── scroll-progress.tsx    # Progress indicator
 │   └── animated-text.tsx      # Reusable text animations
 ├── lib/
-│   ├── utils.ts               # cn() and utilities
-│   └── fonts.ts               # Font definitions
+│   ├── utils.ts               # cn() utility (clsx + tailwind-merge)
+│   ├── fonts.ts               # Font definitions (Instrument Serif, Geist, Geist Mono)
+│   ├── animations.ts          # Framer Motion variants and easings
+│   └── motion-config.tsx      # MotionConfig provider with reducedMotion="user"
 ├── i18n/
-│   ├── config.ts              # Locale config
+│   ├── config.ts              # Locale config (no, en)
+│   ├── routing.ts             # defineRouting + createNavigation exports
 │   ├── request.ts             # next-intl request handler
 │   └── messages/
 │       ├── en.json            # English translations
 │       └── no.json            # Norwegian translations
-├── hooks/
-│   ├── use-scroll-progress.ts
-│   └── use-active-section.ts
 ├── public/
-│   ├── images/
-│   │   ├── hero/
-│   │   ├── grense/
-│   │   └── ...
-│   └── fonts/                 # Local fonts if used
+│   ├── noise.svg              # SVG noise texture for overlay
+│   └── images/
+├── docs/                      # Documentation (reference only)
 ├── proxy.ts                   # next-intl middleware (NOT middleware.ts)
 ├── next.config.ts
 ├── tailwind.config.ts
@@ -92,102 +107,35 @@ export const config = {
 }
 ```
 
-### tailwind.config.ts (Tailwind CSS 4+)
+### globals.css (Tailwind CSS 4+ with @theme inline)
 
-```typescript
-import type { Config } from 'tailwindcss'
-
-export default {
-  darkMode: 'class',
-  content: [
-    './app/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-  ],
-  theme: {
-    extend: {
-      fontFamily: {
-        display: ['var(--font-display)'],
-        sans: ['var(--font-sans)'],
-        mono: ['var(--font-mono)'],
-      },
-      colors: {
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
-        },
-        muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
-        },
-        card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
-        },
-        border: 'hsl(var(--border))',
-      },
-      animation: {
-        'fade-in': 'fadeIn 0.5s ease-out',
-        'slide-up': 'slideUp 0.5s ease-out',
-        'slide-in-right': 'slideInRight 0.5s ease-out',
-      },
-      keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
-        slideUp: {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-        slideInRight: {
-          '0%': { opacity: '0', transform: 'translateX(-20px)' },
-          '100%': { opacity: '1', transform: 'translateX(0)' },
-        },
-      },
-    },
-  },
-  plugins: [require('tailwindcss-animate')],
-} satisfies Config
-```
-
-### globals.css (Tailwind CSS 4+ with @theme)
+Theme uses hex colors directly (not HSL wrappers). All colors, fonts, and typography utility classes are defined in `globals.css` via `@theme inline`:
 
 ```css
-@import 'tailwindcss';
+@import "tailwindcss";
 
-@theme {
-  --color-background: 210 50% 6%;
-  --color-foreground: 36 16% 90%;
-  --color-accent: 217 91% 60%;
-  --color-accent-foreground: 210 50% 6%;
-  --color-muted: 217 33% 17%;
-  --color-muted-foreground: 215 20% 65%;
-  --color-card: 222 47% 11%;
-  --color-card-foreground: 36 16% 90%;
-  --color-border: 217 33% 28%;
-  
-  --font-display: 'Instrument Serif', serif;
-  --font-sans: 'Geist', sans-serif;
-  --font-mono: 'Geist Mono', monospace;
-}
+@theme inline {
+  --color-background: #0a0f14;
+  --color-foreground: #e8e4df;
+  --color-accent: #3b82f6;
+  --color-accent-hover: #2563eb;
+  --color-accent-foreground: #0a0f14;
+  --color-muted: #1e293b;
+  --color-muted-foreground: #94a3b8;
+  --color-border: #334155;
+  --color-card: #0f172a;
+  --color-card-foreground: #e8e4df;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  
-  body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
-  }
-  
-  ::selection {
-    @apply bg-accent text-accent-foreground;
-  }
+  --font-display: var(--font-instrument-serif), "Playfair Display", Georgia, serif;
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), "JetBrains Mono", monospace;
 }
 ```
+
+Typography utility classes: `.text-display`, `.text-heading`, `.text-body`, `.text-mono`
 
 ## i18n Setup
 
@@ -240,44 +188,64 @@ export default getRequestConfig(async ({ requestLocale }) => {
 ### Server vs Client Components
 
 **Server Components (default):**
-- Layout components
-- Static content sections
-- SEO metadata
+- `app/layout.tsx` — Root layout
+- `app/[locale]/layout.tsx` — Locale layout
+- `app/[locale]/page.tsx` — Main page
+- SEO metadata generation
 
 **Client Components ('use client'):**
+- All section components (Framer Motion animations)
 - Navigation (scroll detection)
 - Language toggle
-- Animated sections (Framer Motion)
-- Interactive elements
+- Footer (translations hook)
+- Design system showcase components
 
 ### Section Component Pattern
 
-Each story section follows this pattern:
+Each story section uses the `StorySection` wrapper and follows this pattern:
 
 ```typescript
 'use client'
 
-import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 import { useTranslations } from 'next-intl'
+import { StorySection } from './story-section'
+import { staggerContainer, staggerItem } from '@/lib/animations'
 
-export function StorySection() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
-  const t = useTranslations('section-name')
-  
+export function SectionName() {
+  const t = useTranslations('translationKey')
+  const cardsRef = useRef(null)
+  const cardsInView = useInView(cardsRef, { once: true, margin: '-50px' })
+
   return (
-    <section ref={ref} className="min-h-screen ...">
+    <StorySection id="section-id" chapter={t('chapter')} title={t('title')}>
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8 }}
+        ref={cardsRef}
+        variants={staggerContainer}
+        initial="initial"
+        animate={cardsInView ? 'animate' : 'initial'}
       >
-        {/* Content */}
+        {/* Stagger-animated cards */}
       </motion.div>
-    </section>
+    </StorySection>
   )
 }
+```
+
+### Page Section Order
+
+```tsx
+// app/[locale]/page.tsx
+<>
+  <Hero />
+  <SectionExperience />   {/* Chapter 01 — KODE */}
+  <SectionDrive />        {/* Chapter 02 — DRIV */}
+  <TechStack />           {/* Chapter 03 — Teknologi */}
+  <SectionEducation />    {/* Chapter 04 — UTDANNING */}
+  <SectionOtherExperience /> {/* Chapter 05 — ANNEN ERFARING */}
+  <Contact />             {/* Chapter 06 — Kontakt */}
+</>
 ```
 
 ## Dependencies
@@ -304,7 +272,6 @@ export function StorySection() {
     "typescript": "^5.7.0",
     "tailwindcss": "^4.0.0",
     "postcss": "^8.4.0",
-    "tailwindcss-animate": "^1.0.0",
     "eslint": "^9.0.0",
     "eslint-config-next": "^16.0.0"
   }
@@ -318,12 +285,13 @@ export function StorySection() {
 3. **Animations:** Use `will-change` sparingly, prefer transform/opacity
 4. **Code Splitting:** Sections lazy-load with `useInView`
 5. **Bundle Size:** Only import needed Framer Motion features
+6. **Reduced Motion:** MotionConfig with `reducedMotion="user"` wraps all content
 
 ## SEO
 
-- Proper meta tags in layout.tsx
-- Open Graph images
-- Structured data for Person schema
+- Proper meta tags in layout.tsx (Open Graph, Twitter cards)
+- Structured data (Person schema)
+- robots: noindex on design-system page
 - Sitemap generation
 - robots.txt
 
@@ -331,6 +299,6 @@ export function StorySection() {
 
 Optimized for Vercel:
 - Automatic builds on push
-- Edge middleware for i18n
+- Edge middleware for i18n (proxy.ts)
 - Image optimization
 - Analytics integration ready

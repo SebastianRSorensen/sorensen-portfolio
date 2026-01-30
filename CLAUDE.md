@@ -22,17 +22,16 @@ This is Sebastian Rosnes Sørensen's personal portfolio website. A story-driven,
 
 1. **NO `src/` directory** - All code lives in root: `app/`, `components/`, `lib/`, etc.
 2. **Use `proxy.ts`** instead of `middleware.ts` (Next.js 16+ naming)
-3. **Tailwind CSS 4+** - Use CSS-first config with `@theme` in globals.css
+3. **Tailwind CSS 4+** - Use CSS-first config with `@theme inline` in globals.css (hex colors, not HSL)
 4. **pnpm only** - Never use npm or yarn commands
 5. **Server Components by default** - Only use 'use client' when necessary
 
 ## Design Philosophy
 
 ### What We're Building
-A cinematic, scroll-driven storytelling experience that presents Sebastian's journey from military service to fintech developer. NOT a typical developer portfolio with cards and grids.
+A cinematic, scroll-driven storytelling experience that presents Sebastian's journey as a developer and builder. Development experience and skills come first, followed by education and other background. NOT a typical developer portfolio with cards and grids.
 
 ### Inspiration: landonorris.com
-- Horizontal scroll galleries
 - Full-viewport sections
 - Bold typography with motion
 - Personal quotes woven throughout
@@ -65,9 +64,9 @@ A cinematic, scroll-driven storytelling experience that presents Sebastian's jou
 
 ## Typography
 
-- **Display/Headings:** A distinctive serif or display font (suggest: Instrument Serif, Playfair Display, or similar)
-- **Body:** Clean sans-serif (suggest: Geist, Satoshi, or similar)
-- **Mono/Code:** JetBrains Mono or Geist Mono
+- **Display/Headings:** Instrument Serif (with Playfair Display fallback)
+- **Body:** Geist
+- **Mono/Code:** Geist Mono
 
 ## Project Structure
 
@@ -77,71 +76,70 @@ A cinematic, scroll-driven storytelling experience that presents Sebastian's jou
 │   ├── [locale]/
 │   │   ├── layout.tsx
 │   │   ├── page.tsx
-│   │   └── globals.css
+│   │   ├── template.tsx
+│   │   ├── not-found.tsx
+│   │   └── design-system/
+│   │       └── page.tsx
 │   ├── layout.tsx
 │   └── globals.css
 ├── components/
 │   ├── ui/                    # shadcn components
 │   ├── sections/
 │   │   ├── hero.tsx
-│   │   ├── story-grense.tsx
-│   │   ├── story-kunnskap.tsx
-│   │   ├── story-kode.tsx
-│   │   ├── story-bygger.tsx
+│   │   ├── hero-name.tsx
+│   │   ├── story-section.tsx
+│   │   ├── section-experience.tsx
+│   │   ├── section-drive.tsx
 │   │   ├── tech-stack.tsx
-│   │   ├── projects.tsx
+│   │   ├── section-education.tsx
+│   │   ├── section-other-experience.tsx
 │   │   └── contact.tsx
+│   ├── design-system/
+│   │   └── showcase.tsx (+ sub-components)
 │   ├── navigation.tsx
 │   ├── footer.tsx
 │   ├── language-toggle.tsx
-│   └── scroll-progress.tsx
+│   ├── scroll-progress.tsx
+│   └── animated-text.tsx
 ├── lib/
 │   ├── utils.ts
-│   └── fonts.ts
+│   ├── fonts.ts
+│   ├── animations.ts
+│   └── motion-config.tsx
 ├── i18n/
 │   ├── config.ts
+│   ├── routing.ts
 │   ├── request.ts
 │   └── messages/
 │       ├── en.json
 │       └── no.json
 ├── public/
+│   ├── noise.svg
 │   └── images/
 ├── docs/                      # Documentation (reference only)
 ├── proxy.ts                   # next-intl middleware
 ├── next.config.ts
 ├── tailwind.config.ts
 ├── postcss.config.mjs
+├── components.json
 ├── tsconfig.json
-├── package.json
-└── pnpm-workspace.yaml
+└── package.json
 ```
 
 ## Content Structure
 
 See `docs/CONTENT.md` for all text content in both languages.
 
-## Key Sections
+## Key Sections (in page order)
 
 ### 1. Hero
 - Full viewport
-- Name reveal animation (staggered letters)
-- Subtitle: "Developer. Builder. From the Russian border to fintech."
+- Name reveal animation (staggered letters): SEBASTIAN / ROSNES / SØRENSEN
+- Tagline: "Ikke en typisk utvikler." / "Not your typical developer."
 - Scroll indicator
-- Background: subtle gradient or noise texture
+- Background: subtle noise texture overlay
 
-### 2. Story: GRENSE (Border)
-- Military service at GSV (Grensevakten)
-- January 2020 - January 2021
-- Grensejeger (Border Hunter) at Jegerkompaniet
-- Operations on Russian border
-- Mood: disciplined, stark, high-stakes
-
-### 3. Story: KUNNSKAP (Knowledge)
-- UiB Bachelor in Informatikk (2021-2023)
-- Master courses in Software Engineering (evening studies)
-- Continued learning while working
-
-### 4. Story: KODE (Code)
+### 2. KODE (Code) — Chapter 01
 - **Stacc AS** (Jan 2024 - Present)
   - System Developer
   - Consumer & sales finance solutions
@@ -151,8 +149,9 @@ See `docs/CONTENT.md` for all text content in both languages.
   - Web agency
   - Link to rosengrip.no
 
-### 5. Story: BYGGER (Builder)
+### 3. DRIV (Drive) — Chapter 02
 - The key differentiator section
+- Intro: "Koding stopper ikke klokken fire." / "Coding doesn't stop at four."
 - Builds in spare time because he loves it
 - Private projects mentioned (not shown):
   - Event planning platform
@@ -162,25 +161,40 @@ See `docs/CONTENT.md` for all text content in both languages.
 - Heavy Claude Code user
 - GitHub presence
 
-### 6. Tech Stack
-Visual, not a boring list. Ideas:
-- Floating/orbiting icons
-- Interactive hover states
-- Grouped by category
+### 4. Tech Stack — Chapter 03
+- Categorized grid with hover badges
+- Categories:
+  - Frontend: React, Next.js, TypeScript, Tailwind CSS
+  - Backend: Node.js, NestJS, PostgreSQL, MongoDB
+  - Cloud & Deploy: Azure, Vercel
+  - DevOps: Docker, Kubernetes, GitHub Actions
+  - Testing: Jest, Playwright, Storybook
+  - Tools: Claude Code, Bruno, Postman, REST/OpenAPI, Kosli, Snyk, Wiz
 
-Categories:
-- Frontend: React, Next.js, TypeScript, Tailwind CSS
-- Backend: Node.js, PostgreSQL, MongoDB
-- Cloud: AWS, Azure, Vercel
-- DevOps: Docker, Kubernetes, GitHub Actions
-- Testing: Jest, Playwright, Storybook
-- Tools: Claude Code, Kosli, Snyk, Wiz
+### 5. UTDANNING (Education) — Chapter 04
+- UiB Bachelor in Informatikk (2021-2023)
+- Software Engineering Master courses (evening studies, completed — not full degree)
 
-### 7. Contact
+### 6. ANNEN ERFARING (Other Experience) — Chapter 05
+- Three cards, most-recent-first:
+  - **Hjemmesykepleien Bergen** — Assistent (Oct 2022–May 2025)
+  - **Coop Norge SA** — Lagerfunksjonær (Aug 2019–Dec 2022)
+  - **Military** — Grensejeger/Ranger at Jegerkompaniet, GSV (Jan 2020–Jan 2021)
+
+### 7. Contact — Chapter 06
 - Email
+- Phone
 - GitHub (prominent)
 - LinkedIn
 - Rosengrip.no
+
+## Navigation
+
+Nav links (in order):
+- Erfaring/Experience → `#kode`
+- Kompetanse/Skills → `#tech-stack`
+- Utdanning/Education → `#utdanning`
+- Kontakt/Contact → `#contact`
 
 ## Animation Guidelines
 
@@ -191,8 +205,8 @@ Key principles:
 - Scroll-triggered reveals (useInView)
 - Staggered children animations
 - Smooth, confident easing (not bouncy)
-- Parallax effects on images
 - Text reveal animations for headings
+- MotionConfig with `reducedMotion="user"`
 
 ## i18n Setup
 
@@ -200,9 +214,9 @@ Default locale: `no` (Norwegian)
 Supported: `no`, `en`
 
 Use next-intl with:
-- URL prefix strategy: `/en/...` for English, `/...` for Norwegian
+- URL prefix strategy: `/en/...` for English, `/...` for Norwegian (localePrefix: 'as-needed')
 - Messages in JSON files
-- useTranslations hook in components
+- useTranslations hook in client components
 
 ## Commands
 
@@ -220,31 +234,18 @@ pnpm build
 pnpm dlx shadcn@latest add [component]
 ```
 
-## Implementation Order
-
-1. Set up base Next.js 16 config (no src/, proxy.ts)
-2. Configure Tailwind CSS 4 with theme
-3. Set up next-intl for i18n
-4. Install and configure Framer Motion
-5. Add fonts (Google Fonts or local)
-6. Create base layout with navigation
-7. Build Hero section
-8. Build Story sections (one by one)
-9. Build Tech Stack section
-10. Build Contact section
-11. Add scroll progress indicator
-12. Polish animations and transitions
-13. Test both languages
-14. Optimize for performance
-
 ## Important Notes
 
-- The Security & Compliance Manager title can be mentioned briefly but don't emphasize it
-- Focus on the "builder" identity - someone who codes for fun
-- Military background is a differentiator - use it
-- Claude Code expertise is notable - highlight it
-- Keep the Hjemmesykepleien (home care) section brief - it shows character but isn't the focus
-- All Rosengrip projects are from co-founder - only mention rosengrip.no itself, not specific projects
+- Focus on the "builder" identity — someone who codes for fun
+- Military background is a differentiator — use it
+- Claude Code expertise is notable — highlight it
+- Coop Norge SA shows work ethic — warehouse work alongside studies
+- Home nursing shows character but isn't the focus
+- Master's courses were completed but the full degree was not — title accordingly
+- All Rosengrip projects are from co-founder — only mention rosengrip.no itself, not specific projects
+- Name is spelled **Sørensen** (with ø)
+- Military role: **Grensejeger** (NO) / **Ranger** (EN) — NOT "Border Hunter"
+- Military unit: **Jegerkompaniet, GSV** — keep Norwegian name in English too
 
 ## Reference Documents
 
