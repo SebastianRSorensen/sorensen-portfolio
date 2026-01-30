@@ -38,7 +38,7 @@ function AnimatedLine({ text, startIndex }: { text: string; startIndex: number }
 }
 
 export function HeroName() {
-  const lines = ["SEBASTIAN", "ROSNES", "SORENSEN"];
+  const lines = ["SEBASTIAN", "ROSNES", "SØRENSEN"];
   let charCount = 0;
 
   return (
@@ -56,5 +56,5 @@ export function HeroName() {
 }
 
 export function getTotalLetterCount() {
-  return "SEBASTIANROSNESSORENSEN".length;
+  return "SEBASTIANROSNESSØRENSEN".length;
 }

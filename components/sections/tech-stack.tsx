@@ -22,7 +22,7 @@ export function TechStack() {
           transition={{ duration: 0.5, ease: easings.smooth }}
           className="text-accent font-mono text-sm block mb-4"
         >
-          05
+          03
         </motion.span>
 
         <div className="relative inline-block mb-12 md:mb-16">

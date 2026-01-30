@@ -12,42 +12,56 @@
   "hero": {
     "name": "Sebastian Rosnes Sørensen",
     "title": "System Developer",
-    "tagline": "Developer. Builder. From the Russian border to fintech.",
+    "tagline": "Not your typical developer.",
     "scrollHint": "Scroll to explore",
     "location": "Bergen, Norway"
   },
   "grense": {
-    "chapter": "01",
-    "title": "GRENSE",
-    "subtitle": "Border Guard, 2020–2021",
-    "period": "January 2020 — January 2021",
-    "role": "Border Hunter",
-    "unit": "Hunter Company, GSV",
-    "description": "Military service in the Norwegian Armed Forces as a Border Hunter at the Garrison in Sør-Varanger. Live operations on the Russian border. A year of discipline, precision, and high-stakes operations.",
+    "chapter": "05",
+    "title": "OTHER EXPERIENCE",
+    "subtitle": "Warehouse, military and healthcare",
+    "coop": {
+      "company": "Coop Norge SA",
+      "role": "Warehouse Associate",
+      "period": "August 2019 — December 2022",
+      "description": "Full-time position at central warehouse until August 2021, with leave of absence during military service (January 2020 – January 2021). Transferred to Flesland warehouse upon relocating to Bergen for studies, continuing part-time alongside education."
+    },
+    "military": {
+      "role": "Ranger",
+      "unit": "Jegerkompaniet, GSV",
+      "period": "January 2020 — January 2021",
+      "description": "Military service in the Norwegian Armed Forces as a Ranger at the Garrison in Sør-Varanger. Live operations on the Russian border. A year of discipline, precision, and tough conditions."
+    },
     "highlights": {
-      "0": "Border Hunter at Hunter Company",
+      "0": "Ranger at Jegerkompaniet",
       "1": "Live operations on Russian border",
       "2": "Patrols in arctic conditions"
+    },
+    "nursing": {
+      "company": "Home Nursing Bergen",
+      "role": "Assistant",
+      "period": "October 2022 — May 2025",
+      "description": "Practical assistance to elderly and care-dependent individuals at home."
     }
   },
   "kunnskap": {
-    "chapter": "02",
-    "title": "KUNNSKAP",
+    "chapter": "04",
+    "title": "EDUCATION",
     "subtitle": "University of Bergen",
-    "period": "2021 — Ongoing",
+    "period": "2021 — 2023",
     "bachelor": {
       "title": "Bachelor in Computer Science",
       "period": "2021–2023",
       "description": "Program focused on programming, data structures, algorithms, system architecture, databases, web development, IT security, and software systems. Team projects using Java, Python, SQL, TypeScript, and React."
     },
     "master": {
-      "title": "Master's in Software Engineering",
-      "period": "Evening studies, ongoing",
-      "description": "Taking required courses in the Software Engineering master's program at UiB in the evenings, alongside full-time work."
+      "title": "Software Engineering Master courses",
+      "period": "Evening studies",
+      "description": "Completed required courses in the Software Engineering master's program at UiB in the evenings, alongside full-time work."
     }
   },
   "kode": {
-    "chapter": "03",
+    "chapter": "01",
     "title": "KODE",
     "subtitle": "Professional development",
     "stacc": {
@@ -75,20 +89,12 @@
         "1": "Next.js, React, Tailwind",
         "2": "Focus on conversion"
       }
-    },
-    "previousTitle": "Previous experience",
-    "previous": {
-      "company": "Home Nursing Bergen",
-      "role": "Healthcare Worker",
-      "period": "October 2022 — May 2025",
-      "description": "Practical assistance to elderly and care-dependent individuals at home."
     }
   },
   "bygger": {
-    "chapter": "04",
-    "title": "BYGGER",
-    "subtitle": "It never stops",
-    "intro": "I don't just code at work. I build because I enjoy it.",
+    "chapter": "02",
+    "title": "DRIVE",
+    "intro": "Coding doesn't stop at four.",
     "description": "Free time is spent on hobby projects — from event planning to recruitment tools with AI to completely new lottery systems. Most projects are private, but they show one thing: I love to build.",
     "projects": {
       "0": {
@@ -128,11 +134,11 @@
     },
     "backend": {
       "title": "Backend",
-      "items": "Node.js, PostgreSQL, MongoDB"
+      "items": "Node.js, NestJS, PostgreSQL, MongoDB"
     },
     "cloud": {
       "title": "Cloud & Deploy",
-      "items": "AWS, Azure, Vercel"
+      "items": "Azure, Vercel"
     },
     "devops": {
       "title": "DevOps",
@@ -144,7 +150,7 @@
     },
     "tools": {
       "title": "Tools",
-      "items": "Claude Code, Kosli, Snyk, Wiz"
+      "items": "Claude Code, Bruno, Postman, REST/OpenAPI, Kosli, Snyk, Wiz"
     }
   },
   "contact": {

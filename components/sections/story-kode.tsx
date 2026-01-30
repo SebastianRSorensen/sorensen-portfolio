@@ -110,21 +110,7 @@ export function StoryKode() {
           </a>
         </motion.div>
 
-        {/* Previous experience */}
-        <div className="pt-8">
-          <p className="text-mono text-xs text-muted-foreground uppercase tracking-wider mb-4">
-            {t("previousTitle")}
-          </p>
-          <div className="text-sm text-muted-foreground">
-            <p>
-              <span className="text-foreground">{t("previous.company")}</span>
-              {" — "}
-              {t("previous.role")}
-            </p>
-            <p className="text-mono text-xs mt-1">{t("previous.period")}</p>
-            <p className="mt-2">{t("previous.description")}</p>
-          </div>
-        </div>
+
       </motion.div>
     </StorySection>
   );

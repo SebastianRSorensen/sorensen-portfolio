@@ -5,8 +5,8 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://sebastiansorensen.dev"),
   title: {
-    default: "Sebastian Rosnes Sorensen | System Developer",
-    template: "%s | Sebastian Rosnes Sorensen",
+    default: "Sebastian Rosnes Sørensen | System Developer",
+    template: "%s | Sebastian Rosnes Sørensen",
   },
   description:
     "System developer with military background and fintech experience. Building modern web solutions with React, Next.js, and TypeScript.",
@@ -14,16 +14,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "nb_NO",
     alternateLocale: "en_US",
-    siteName: "Sebastian Rosnes Sorensen",
-    title: "Sebastian Rosnes Sorensen | System Developer",
+    siteName: "Sebastian Rosnes Sørensen",
+    title: "Sebastian Rosnes Sørensen | System Developer",
     description:
-      "Developer. Builder. From the Russian border to fintech.",
+      "Not your typical developer.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sebastian Rosnes Sorensen | System Developer",
+    title: "Sebastian Rosnes Sørensen | System Developer",
     description:
-      "Developer. Builder. From the Russian border to fintech.",
+      "Not your typical developer.",
   },
   robots: {
     index: true,

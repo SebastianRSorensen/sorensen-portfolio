@@ -37,7 +37,7 @@ export function DesignSystemShowcase() {
         <span className="text-mono text-sm text-accent block mb-4">Design System</span>
         <h1 className="text-display text-5xl md:text-7xl text-foreground">Nordic Night</h1>
         <p className="text-body text-lg text-muted-foreground mt-4 max-w-2xl">
-          Visual language for Sebastian Rosnes Sorensen&apos;s portfolio. Dark, confident,
+          Visual language for Sebastian Rosnes Sørensen&apos;s portfolio. Dark, confident,
           cinematic. Inspired by landonorris.com.
         </p>
       </header>

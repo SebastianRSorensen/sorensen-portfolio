@@ -12,42 +12,56 @@
   "hero": {
     "name": "Sebastian Rosnes Sørensen",
     "title": "Systemutvikler",
-    "tagline": "Utvikler. Bygger. Fra russergrensen til fintech.",
+    "tagline": "Ikke en typisk utvikler.",
     "scrollHint": "Scroll for å utforske",
     "location": "Bergen, Norge"
   },
   "grense": {
-    "chapter": "01",
-    "title": "GRENSE",
-    "subtitle": "Grensevakten, 2020–2021",
-    "period": "Januar 2020 — Januar 2021",
-    "role": "Grensejeger",
-    "unit": "Jegerkompaniet, GSV",
-    "description": "Verneplikt i Forsvaret som Grensejeger ved Garnisonen i Sør-Varanger. Skarpe oppdrag på grensen til Russland. Et år med disiplin, presisjon og operasjoner under press.",
+    "chapter": "05",
+    "title": "ANNEN ERFARING",
+    "subtitle": "Lager, forsvar og helsevesen",
+    "coop": {
+      "company": "Coop Norge SA",
+      "role": "Lagerfunksjonær",
+      "period": "August 2019 — Desember 2022",
+      "description": "Fast 100% stilling ved sentrallager frem til august 2021, med permisjon under førstegangstjenesten (januar 2020 – januar 2021). Overført til Flesland-lageret ved flytting til Bergen for studier, hvor jeg fortsatte deltid parallelt med utdanning."
+    },
+    "military": {
+      "role": "Grensejeger",
+      "unit": "Jegerkompaniet, GSV",
+      "period": "Januar 2020 — Januar 2021",
+      "description": "Verneplikt i Forsvaret som Grensejeger ved Garnisonen i Sør-Varanger. Skarpe oppdrag på grensen til Russland. Et år med disiplin, presisjon og operasjoner under tøffe forhold."
+    },
     "highlights": {
       "0": "Grensejeger ved Jegerkompaniet",
       "1": "Skarpe oppdrag på russergrensen",
       "2": "Patruljer i arktisk klima"
+    },
+    "nursing": {
+      "company": "Hjemmesykepleien Bergen",
+      "role": "Assistent",
+      "period": "Oktober 2022 — Mai 2025",
+      "description": "Praktisk bistand til eldre og pleietrengende i hjemmet."
     }
   },
   "kunnskap": {
-    "chapter": "02",
-    "title": "KUNNSKAP",
+    "chapter": "04",
+    "title": "UTDANNING",
     "subtitle": "Universitetet i Bergen",
-    "period": "2021 — Pågående",
+    "period": "2021 — 2023",
     "bachelor": {
       "title": "Bachelor i informatikk — Datateknologi",
       "period": "2021–2023",
       "description": "Studieprogram med fokus på programmering, datastrukturer, algoritmer, systemarkitektur, databaser, webutvikling, IT-sikkerhet og programvaresystemer. Prosjektarbeid i team med Java, Python, SQL, TypeScript og React."
     },
     "master": {
-      "title": "Master i programvareutvikling",
-      "period": "Kveldsstudier, pågående",
-      "description": "Tar obligatoriske fag i Software Engineering-masteren ved UiB på kveldstid, parallelt med fulltidsjobb."
+      "title": "Fag fra master i programvareutvikling",
+      "period": "Kveldsstudier",
+      "description": "Tok obligatoriske fag i Software Engineering-masteren ved UiB på kveldstid, parallelt med fulltidsjobb."
     }
   },
   "kode": {
-    "chapter": "03",
+    "chapter": "01",
     "title": "KODE",
     "subtitle": "Profesjonell utvikling",
     "stacc": {
@@ -75,20 +89,12 @@
         "1": "Next.js, React, Tailwind",
         "2": "Fokus på konvertering"
       }
-    },
-    "previousTitle": "Tidligere erfaring",
-    "previous": {
-      "company": "Hjemmesykepleien Bergen",
-      "role": "Helsefagarbeider",
-      "period": "Oktober 2022 — Mai 2025",
-      "description": "Praktisk bistand til eldre og pleietrengende i hjemmet."
     }
   },
   "bygger": {
-    "chapter": "04",
-    "title": "BYGGER",
-    "subtitle": "Det stopper aldri",
-    "intro": "Jeg koder ikke bare på jobb. Jeg bygger fordi jeg liker det.",
+    "chapter": "02",
+    "title": "DRIV",
+    "intro": "Koding stopper ikke klokken fire.",
     "description": "Fritiden brukes på hobbyprosjekter — alt fra event-planlegging til rekrutteringsverktøy med AI til helt nye lotterisystemer. De fleste prosjektene er private, men de viser én ting: jeg elsker å bygge.",
     "projects": {
       "0": {
@@ -128,11 +134,11 @@
     },
     "backend": {
       "title": "Backend",
-      "items": "Node.js, PostgreSQL, MongoDB"
+      "items": "Node.js, NestJS, PostgreSQL, MongoDB"
     },
     "cloud": {
       "title": "Cloud & Deploy",
-      "items": "AWS, Azure, Vercel"
+      "items": "Azure, Vercel"
     },
     "devops": {
       "title": "DevOps",
@@ -144,7 +150,7 @@
     },
     "tools": {
       "title": "Verktøy",
-      "items": "Claude Code, Kosli, Snyk, Wiz"
+      "items": "Claude Code, Bruno, Postman, REST/OpenAPI, Kosli, Snyk, Wiz"
     }
   },
   "contact": {
