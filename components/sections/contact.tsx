@@ -70,9 +70,7 @@ export function Contact() {
         <motion.h2
           initial={{ opacity: 0, y: 40, clipPath: "inset(0 0 100% 0)" }}
           animate={
-            isInView
-              ? { opacity: 1, y: 0, clipPath: "inset(0 0 0% 0)" }
-              : {}
+            isInView ? { opacity: 1, y: 0, clipPath: "inset(0 0 0% 0)" } : {}
           }
           transition={{ duration: 0.8, delay: 0.2, ease: easings.dramatic }}
           className="text-display text-5xl md:text-7xl lg:text-8xl text-foreground mb-4"
@@ -151,12 +149,12 @@ export function Contact() {
         >
           {[
             {
-              href: "https://github.com/sebastianrosnes",
+              href: "https://github.com/SebastianRSorensen",
               icon: Github,
               label: t("links.github"),
             },
             {
-              href: "https://linkedin.com/in/sebastianrosnes",
+              href: "https://www.linkedin.com/in/sebastian-rosnes-s%C3%B8rensen-64bb5822a/",
               icon: Linkedin,
               label: t("links.linkedin"),
             },

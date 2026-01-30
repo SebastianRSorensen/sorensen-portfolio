@@ -122,7 +122,7 @@ export function SectionDrive() {
         </p>
         <Magnetic strength={0.1}>
           <motion.a
-            href="https://github.com/sebastianrosnes"
+            href="https://github.com/SebastianRSorensen"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.02 }}
