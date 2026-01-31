@@ -104,3 +104,26 @@ export const staggerItem: Variants = {
     },
   },
 };
+
+// UFO scroll reveal presets
+export const ufoSpring = {
+  flight: { stiffness: 80, damping: 20, mass: 1.2, restDelta: 0.5 },
+  banking: { stiffness: 80, damping: 12, mass: 0.3 },
+} as const;
+
+export const ufoTimings = {
+  enterDelay: 800,
+  beamFadeIn: 0.15,
+  beamFadeOut: 0.15,
+  titleRevealDuration: 0.6,
+  settleDelay: 10,
+  chapterDelay: 0.05,
+  titleDelay: 0.15,
+  underlineDelay: 0.3,
+} as const;
+
+export const spotlightZone = {
+  top: 0.1,
+  bottom: 0.8,
+  center: 0.45,
+} as const;

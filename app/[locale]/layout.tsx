@@ -3,9 +3,12 @@ import { getMessages, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { MotionProvider } from "@/lib/motion-config";
+import { UFOProvider } from "@/lib/ufo-context";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { UFOController } from "@/components/ufo-controller";
+import { ShootingStars } from "@/components/shooting-stars";
 
 type Props = {
   children: React.ReactNode;
@@ -34,11 +37,15 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <NextIntlClientProvider messages={messages}>
       <MotionProvider>
-        <SmoothScroll>
-          <Navigation />
-          <main>{children}</main>
-          <Footer />
-        </SmoothScroll>
+        <UFOProvider>
+          <UFOController />
+          <ShootingStars />
+          <SmoothScroll>
+            <Navigation />
+            <main>{children}</main>
+            <Footer />
+          </SmoothScroll>
+        </UFOProvider>
       </MotionProvider>
     </NextIntlClientProvider>
   );
