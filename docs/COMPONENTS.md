@@ -269,7 +269,7 @@ interface StorySectionProps {
 - Section id: `utdanning`
 - Two cards side-by-side on desktop (grid md:grid-cols-2)
 - Bachelor in Computer Science (2021-2023)
-- Software Engineering Master courses (evening studies, completed)
+- Software Engineering Master courses (2024, completed)
 - Uses `useTranslations('kunnskap')`
 
 **Note:** Master card is titled "Fag fra master i programvareutvikling" / "Software Engineering Master courses" — Sebastian took the required courses but did not complete the full master's degree.
@@ -283,7 +283,7 @@ interface StorySectionProps {
 │                                     │
 │   ┌─────────────┐ ┌─────────────┐   │
 │   │ Bachelor    │ │ Master-fag  │   │
-│   │ 2021-2023   │ │ Kveldsstud. │   │
+│   │ 2021-2023   │ │ 2024.       │   │
 │   │             │ │             │   │
 │   └─────────────┘ └─────────────┘   │
 │                                     │

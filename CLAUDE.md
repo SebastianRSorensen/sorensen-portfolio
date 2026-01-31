@@ -173,7 +173,7 @@ See `docs/CONTENT.md` for all text content in both languages.
 
 ### 5. UTDANNING (Education) — Chapter 04
 - UiB Bachelor in Informatikk (2021-2023)
-- Software Engineering Master courses (evening studies, completed — not full degree)
+- Software Engineering Master courses (2024, completed — not full degree)
 
 ### 6. ANNEN ERFARING (Other Experience) — Chapter 05
 - Three cards, most-recent-first:

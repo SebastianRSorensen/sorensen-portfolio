@@ -290,7 +290,7 @@ All text content for the portfolio in Norwegian (default) and English.
     },
     "master": {
       "title": "Fag fra master i programvareutvikling",
-      "period": "Kveldsstudier",
+      "period": "2024",
       "description": "Obligatoriske fag i Software Engineering-masteren, parallelt med fulltidsjobb."
     }
   }
@@ -313,7 +313,7 @@ All text content for the portfolio in Norwegian (default) and English.
     },
     "master": {
       "title": "Software Engineering Master courses",
-      "period": "Evening studies",
+      "period": "2024",
       "description": "Completed required courses in the Software Engineering master's program at UiB in the evenings, alongside full-time work."
     }
   }
