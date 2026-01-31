@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { instrumentSerif, geistSans, geistMono } from "@/lib/fonts";
+import { instrumentSerif, geistSans, geistMono, spaceGrotesk, jetbrainsMono } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -39,7 +39,7 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning>
       <body
-        className={`${instrumentSerif.variable} ${geistSans.variable} ${geistMono.variable} antialiased noise-overlay`}
+        className={`${instrumentSerif.variable} ${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased noise-overlay`}
       >
         {children}
       </body>

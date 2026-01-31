@@ -1,4 +1,4 @@
-import { Hero } from "@/components/sections/hero";
+import { SectionVideo } from "@/components/sections/section-video";
 import { SectionExperience } from "@/components/sections/section-experience";
 import { SectionDrive } from "@/components/sections/section-drive";
 import { TechStack } from "@/components/sections/tech-stack";
@@ -9,7 +9,7 @@ import { Contact } from "@/components/sections/contact";
 export default function HomePage() {
   return (
     <>
-      <Hero />
+      <SectionVideo />
       <SectionExperience />
       <SectionDrive />
       <TechStack />
