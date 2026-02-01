@@ -342,7 +342,7 @@ All text content for the portfolio in Norwegian (default) and English.
       "company": "Coop Norge SA",
       "role": "Lagerfunksjonær",
       "period": "August 2019 — Desember 2022",
-      "description": "Fast 100% stilling ved sentrallager frem til august 2021, med permisjon under førstegangstjenesten (januar 2020 – januar 2021). Overført til Flesland-lageret ved flytting til Bergen for studier, hvor jeg fortsatte deltid parallelt med utdanning."
+      "description": "Fast 100% stilling ved sentrallager frem til august 2021, med permisjon under førstegangstjenesten (januar 2020 – januar 2021). Overført til Flesland-lageret ved flytting til Bergen for studier, hvor jeg fortsatte deltid parallelt med utdanning og hjemmesykepleien."
     },
     "military": {
       "role": "Grensejeger",
@@ -377,7 +377,7 @@ All text content for the portfolio in Norwegian (default) and English.
       "company": "Coop Norge SA",
       "role": "Warehouse Associate",
       "period": "August 2019 — December 2022",
-      "description": "Full-time position at central warehouse until August 2021, with leave of absence during military service (January 2020 – January 2021). Transferred to Flesland warehouse upon relocating to Bergen for studies, continuing part-time alongside education."
+      "description": "Full-time position at central warehouse until August 2021, with leave of absence during military service (January 2020 – January 2021). Transferred to Flesland warehouse upon relocating to Bergen for studies, continuing part-time alongside education and home nursing."
     },
     "military": {
       "role": "Ranger",
