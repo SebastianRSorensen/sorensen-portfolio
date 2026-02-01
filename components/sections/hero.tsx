@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { HeroName } from "./hero-name";
 import { ParticleField } from "@/components/particle-field";
 import { easings } from "@/lib/animations";
@@ -16,8 +17,36 @@ export function Hero() {
       id="hero"
       className="min-h-screen flex flex-col justify-center relative overflow-hidden"
     >
+      {/* Portrait — cinematic background element */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={nameComplete ? { opacity: 1 } : {}}
+        transition={{ duration: 2.5, ease: easings.dramatic, delay: 0.2 }}
+        className="absolute right-0 top-0 h-full w-[60%] z-0 hidden md:block pointer-events-none select-none"
+        aria-hidden="true"
+      >
+        <Image
+          src="/images/portrait.jpg"
+          alt=""
+          fill
+          priority
+          sizes="(max-width: 768px) 0vw, 60vw"
+          className="object-cover object-top opacity-25 grayscale"
+          style={{
+            maskImage:
+              "linear-gradient(to right, transparent 0%, black 30%, black 75%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to right, transparent 0%, black 30%, black 75%, transparent 100%)",
+          }}
+        />
+        {/* Top fade */}
+        <div className="absolute top-0 left-0 w-full h-1/5 bg-gradient-to-b from-background to-transparent" />
+        {/* Bottom fade */}
+        <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-background to-transparent" />
+      </motion.div>
+
       {/* Particle field background */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-[1]">
         <ParticleField
           particleCount={100}
           connectionDistance={130}
@@ -28,14 +57,14 @@ export function Hero() {
       </div>
 
       {/* Gradient overlays for depth */}
-      <div className="absolute inset-0 z-[1] pointer-events-none">
+      <div className="absolute inset-0 z-[2] pointer-events-none">
         <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-b from-background via-background/50 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-background to-transparent" />
         <div className="absolute top-0 left-0 w-1/4 h-full bg-gradient-to-r from-background/40 to-transparent" />
       </div>
 
       {/* Content */}
-      <div className="relative z-[2] max-w-7xl mx-auto w-full px-6 md:px-8">
+      <div className="relative z-[3] max-w-7xl mx-auto w-full px-6 md:px-8">
         {/* Name */}
         <HeroName onComplete={() => setNameComplete(true)} />
 
@@ -100,7 +129,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={nameComplete ? { opacity: 1 } : {}}
         transition={{ delay: 1.2, duration: 0.8 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-[2] flex flex-col items-center gap-3"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-[3] flex flex-col items-center gap-3"
       >
         <span className="text-mono text-[10px] text-muted-foreground/60 tracking-[0.2em] uppercase">
           {t("scrollHint")}
