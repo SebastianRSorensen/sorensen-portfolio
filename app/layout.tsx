@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { instrumentSerif, geistSans, geistMono } from "@/lib/fonts";
 import "./globals.css";
 
@@ -42,6 +43,7 @@ export default function RootLayout({
         className={`${instrumentSerif.variable} ${geistSans.variable} ${geistMono.variable} antialiased noise-overlay`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
