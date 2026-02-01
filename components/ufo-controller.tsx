@@ -161,6 +161,44 @@ export function UFOController() {
     wanderReadyRef.current = true;
   }, [ufoX, ufoY, randomWanderTarget]);
 
+  const isUfoAboveViewport = useCallback((): boolean => {
+    return ufoY.get() < 0;
+  }, [ufoY]);
+
+  const releaseToWander = useCallback((sectionId: string) => {
+    // Ensure section is revealed (flash beam if not already lit)
+    const wasLit = litSectionsRef.current.has(sectionId);
+    litSectionsRef.current.add(sectionId);
+    if (!wasLit) {
+      beamIntensityMV.set(1);
+      setRenderBeamIntensity(1);
+    }
+
+    // Fade beam out
+    animateBeam(0, 0.2);
+
+    // Clear active section and cancel flights
+    setActiveSection(null);
+    stopFlights();
+    flightRef.current = null;
+
+    // Cancel any post-warp linger
+    if (lingerTimerRef.current) {
+      clearTimeout(lingerTimerRef.current);
+      lingerTimerRef.current = null;
+    }
+    postWarpLingerRef.current = false;
+
+    // Transition to idle wandering
+    phaseRef.current = "idle";
+    setPhase("idle");
+    idleTimeRef.current = performance.now();
+
+    // Init wander with fast initial duration
+    initWander();
+    wanderDurRef.current = 1.2;
+  }, [beamIntensityMV, animateBeam, setActiveSection, stopFlights, initWander, setPhase]);
+
   // Find the first unlit section whose top has entered the viewport
   const findNextTarget = useCallback(() => {
     const sections = sectionsRef.current;
@@ -479,15 +517,28 @@ export function UFOController() {
         const t = (now - idleTimeRef.current) / 1000;
 
         if (activeSectionRef.current) {
-          // Hover above the current title (also during post-warp linger)
-          const reg = sectionsRef.current.get(activeSectionRef.current);
-          if (reg?.titleRef.current) {
-            const rect = reg.titleRef.current.getBoundingClientRect();
-            const baseX = rect.left + rect.width / 2 - UFO_SIZE / 2;
-            const baseY = rect.top - HOVER_OFFSET_Y;
-            ufoX.set(baseX + Math.sin(t * 0.5 * Math.PI * 2) * 3);
-            ufoY.set(baseY + Math.sin(t * 0.8 * Math.PI * 2) * 6);
-            ufoRotate.set(Math.sin(t * 0.6 * Math.PI * 2) * 1.5);
+          if (isUfoAboveViewport()) {
+            // Title scrolled off — clear and wander
+            animateBeam(0, 0.2);
+            setActiveSection(null);
+            if (lingerTimerRef.current) {
+              clearTimeout(lingerTimerRef.current);
+              lingerTimerRef.current = null;
+            }
+            postWarpLingerRef.current = false;
+            initWander();
+            wanderDurRef.current = 1.2;
+          } else {
+            // Hover above the current title (also during post-warp linger)
+            const reg = sectionsRef.current.get(activeSectionRef.current);
+            if (reg?.titleRef.current) {
+              const rect = reg.titleRef.current.getBoundingClientRect();
+              const baseX = rect.left + rect.width / 2 - UFO_SIZE / 2;
+              const baseY = rect.top - HOVER_OFFSET_Y;
+              ufoX.set(baseX + Math.sin(t * 0.5 * Math.PI * 2) * 3);
+              ufoY.set(baseY + Math.sin(t * 0.8 * Math.PI * 2) * 6);
+              ufoRotate.set(Math.sin(t * 0.6 * Math.PI * 2) * 1.5);
+            }
           }
         } else {
           // Wander freely
@@ -525,6 +576,15 @@ export function UFOController() {
       if (currentPhase === "flying" && flightRef.current) {
         const f = flightRef.current;
         const reg = sectionsRef.current.get(f.sectionId);
+
+        // Check if the *target title* scrolled above viewport (not the UFO — it may
+        // legitimately start a flight from above-viewport after a release)
+        if (reg?.titleRef.current && reg.titleRef.current.getBoundingClientRect().bottom < -20) {
+          releaseToWander(f.sectionId);
+          rafRef.current = requestAnimationFrame(loop);
+          return;
+        }
+
         if (reg?.titleRef.current) {
           const target = getTitleTarget(reg.titleRef.current);
 
@@ -561,11 +621,15 @@ export function UFOController() {
       // During settling/illuminating, follow the title so scroll doesn't disconnect
       if (currentPhase === "settling" || currentPhase === "illuminating") {
         if (activeSectionRef.current) {
-          const reg = sectionsRef.current.get(activeSectionRef.current);
-          if (reg?.titleRef.current) {
-            const rect = reg.titleRef.current.getBoundingClientRect();
-            ufoX.set(rect.left + rect.width / 2 - UFO_SIZE / 2);
-            ufoY.set(rect.top - HOVER_OFFSET_Y);
+          if (isUfoAboveViewport()) {
+            releaseToWander(activeSectionRef.current);
+          } else {
+            const reg = sectionsRef.current.get(activeSectionRef.current);
+            if (reg?.titleRef.current) {
+              const rect = reg.titleRef.current.getBoundingClientRect();
+              ufoX.set(rect.left + rect.width / 2 - UFO_SIZE / 2);
+              ufoY.set(rect.top - HOVER_OFFSET_Y);
+            }
           }
         }
       }
@@ -586,6 +650,10 @@ export function UFOController() {
     allLit,
     initWander,
     randomWanderTarget,
+    isUfoAboveViewport,
+    releaseToWander,
+    animateBeam,
+    setActiveSection,
     UFO_SIZE,
     HOVER_OFFSET_Y,
     SPEED_MULTIPLIER_CAP,
