@@ -12,9 +12,6 @@ import { useUFO, type UFOPhase } from "@/lib/ufo-context";
 import { ufoSpring, ufoTimings } from "@/lib/animations";
 import { useLenis } from "@/components/smooth-scroll";
 
-const UFO_SIZE = 100;
-const HOVER_OFFSET_Y = 100;
-
 export function UFOController() {
   const {
     sectionsRef,
@@ -23,11 +20,19 @@ export function UFOController() {
     phase,
     setPhase,
     isEnabled,
+    isMobile,
     beamIntensityMV,
     warpTargetSection,
     triggerWarpReveal,
     clearWarpTarget,
   } = useUFO();
+
+  const UFO_SIZE = isMobile ? 64 : 100;
+  const HOVER_OFFSET_Y = isMobile ? 64 : 100;
+  const UFO_OPACITY = isMobile ? 0.7 : 0.85;
+  const FLIGHT_BASE_DURATION = isMobile ? 1200 : 2000;
+  const SPEED_MULTIPLIER_CAP = isMobile ? 2 : 3;
+  const WANDER_Y_MAX = isMobile ? 0.2 : 0.25;
 
   const lenis = useLenis();
 
@@ -97,7 +102,7 @@ export function UFOController() {
       x: rect.left + rect.width / 2 - UFO_SIZE / 2,
       y: rect.top - HOVER_OFFSET_Y,
     };
-  }, []);
+  }, [UFO_SIZE, HOVER_OFFSET_Y]);
 
   const stopFlights = useCallback(() => {
     flightControlRef.current.forEach((c) => c.stop());
@@ -144,9 +149,9 @@ export function UFOController() {
     const vh = window.innerHeight;
     return {
       x: vw * 0.15 + Math.random() * vw * 0.7 - UFO_SIZE / 2,
-      y: vh * 0.05 + Math.random() * vh * 0.25,
+      y: vh * 0.05 + Math.random() * vh * WANDER_Y_MAX,
     };
-  }, []);
+  }, [UFO_SIZE, WANDER_Y_MAX]);
 
   const initWander = useCallback(() => {
     wanderCenterRef.current = { x: ufoX.get(), y: ufoY.get() };
@@ -199,7 +204,7 @@ export function UFOController() {
           const startX = window.innerWidth * 0.7 - UFO_SIZE / 2;
           ufoX.set(startX);
           ufoY.set(-UFO_SIZE * 2);
-          animate(ufoOpacity, 0.85, { duration: 0.5 });
+          animate(ufoOpacity, UFO_OPACITY, { duration: 0.5 });
 
           const hoverX = window.innerWidth * 0.75 - UFO_SIZE / 2;
           const hoverY = window.innerHeight * 0.12;
@@ -220,7 +225,7 @@ export function UFOController() {
               startX: ufoX.get(),
               startY: ufoY.get(),
               progress: 0,
-              baseDuration: 2000,
+              baseDuration: FLIGHT_BASE_DURATION,
               sectionId,
               onComplete: () => {
                 setActiveSection(sectionId);
@@ -329,7 +334,7 @@ export function UFOController() {
           // Animate: scale 0.1→1, opacity 0→0.85, slight downward settle
           const duration = ufoTimings.warpInDuration;
           const a1 = animate(ufoScale, 1, { duration, ease: "easeOut" });
-          const a2 = animate(ufoOpacity, 0.85, { duration, ease: "easeOut" });
+          const a2 = animate(ufoOpacity, UFO_OPACITY, { duration, ease: "easeOut" });
 
           // Settle down slightly
           const settleY = ufoY.get() + 40;
@@ -405,6 +410,9 @@ export function UFOController() {
       triggerWarpReveal,
       clearWarpTarget,
       lenis,
+      UFO_SIZE,
+      UFO_OPACITY,
+      FLIGHT_BASE_DURATION,
     ]
   );
   useEffect(() => {
@@ -522,7 +530,7 @@ export function UFOController() {
 
           // Advance progress based on frame time and scroll speed
           const speedMultiplier =
-            1 + Math.min(scrollSpeedRef.current / 600, 3);
+            1 + Math.min(scrollSpeedRef.current / 600, SPEED_MULTIPLIER_CAP);
           f.progress += (dt / (f.baseDuration / 1000)) * speedMultiplier;
           const raw = Math.min(1, f.progress);
 
@@ -578,6 +586,9 @@ export function UFOController() {
     allLit,
     initWander,
     randomWanderTarget,
+    UFO_SIZE,
+    HOVER_OFFSET_Y,
+    SPEED_MULTIPLIER_CAP,
   ]);
 
   // Enter immediately

@@ -36,7 +36,7 @@ export function StorySection({
   const sentinelRef = useRef<HTMLDivElement>(null);
   const isSectionInView = useInView(sentinelRef, {
     once: true,
-    margin: "-60px",
+    margin: "-20px 0px -20px 0px",
   });
 
   // Should we use UFO mode? (desktop + motion enabled + context available)
@@ -104,11 +104,10 @@ export function StorySection({
     [0.3, 1, 1, 0.3]
   );
 
-  // In UFO mode: title/chapter/underline shown once revealed by beam (permanent)
+  // In UFO mode: title + content shown once revealed by beam (permanent)
   // In fallback mode: everything uses useInView
-  // Content always uses useInView
   const showTitle = useUFOMode ? revealed : isSectionInView;
-  const showContent = useUFOMode ? revealed || isSectionInView : isSectionInView;
+  const showContent = useUFOMode ? revealed : isSectionInView;
 
   return (
     <section
@@ -116,8 +115,8 @@ export function StorySection({
       ref={sectionRef}
       className={cn("relative py-28 md:py-40 overflow-hidden", className)}
     >
-      {/* Invisible sentinel in normal flow for useInView detection */}
-      <div ref={sentinelRef} className="absolute top-20 left-0 w-px h-px" aria-hidden />
+      {/* Invisible sentinel in normal document flow for reliable useInView detection */}
+      <div ref={sentinelRef} className="w-full h-px -mt-px pointer-events-none" aria-hidden />
 
       {/* Section divider line */}
       <motion.div

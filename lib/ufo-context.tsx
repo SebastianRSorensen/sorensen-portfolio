@@ -39,6 +39,7 @@ interface UFOContextValue {
   phase: UFOPhase;
   setPhase: (phase: UFOPhase) => void;
   isEnabled: boolean;
+  isMobile: boolean;
 
   // Beam intensity as MotionValue (0-1) — no re-renders during animation
   beamIntensityMV: MotionValue<number>;
@@ -58,6 +59,7 @@ export function UFOProvider({ children }: { children: ReactNode }) {
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [phase, setPhase] = useState<UFOPhase>("hidden");
   const [isEnabled, setIsEnabled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   // Stable MotionValue — created once, never replaced
   const beamIntensityMV = useRef(motionValue(0)).current;
@@ -91,25 +93,32 @@ export function UFOProvider({ children }: { children: ReactNode }) {
     setWarpTargetSection(null);
   }, []);
 
-  // Check desktop + motion preference
+  // Check motion preference (UFO enabled on all screen sizes)
   useEffect(() => {
-    const check = () => {
-      const wide = window.innerWidth >= 768;
-      const motionOk = !window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
-      setIsEnabled(wide && motionOk);
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const checkMotion = () => {
+      setIsEnabled(!mq.matches);
     };
 
-    check();
-    window.addEventListener("resize", check);
-
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    mq.addEventListener("change", check);
+    checkMotion();
+    mq.addEventListener("change", checkMotion);
 
     return () => {
-      window.removeEventListener("resize", check);
-      mq.removeEventListener("change", check);
+      mq.removeEventListener("change", checkMotion);
+    };
+  }, []);
+
+  // Track mobile breakpoint for responsive UFO sizing
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => {
+      window.removeEventListener("resize", checkMobile);
     };
   }, []);
 
@@ -124,6 +133,7 @@ export function UFOProvider({ children }: { children: ReactNode }) {
         phase,
         setPhase,
         isEnabled,
+        isMobile,
         beamIntensityMV,
         warpToSection,
         warpTargetSection,
