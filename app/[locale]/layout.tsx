@@ -38,9 +38,9 @@ export default async function LocaleLayout({ children, params }: Props) {
     <NextIntlClientProvider messages={messages}>
       <MotionProvider>
         <UFOProvider>
-          <UFOController />
           <ShootingStars />
           <SmoothScroll>
+            <UFOController />
             <Navigation />
             <main>{children}</main>
             <Footer />

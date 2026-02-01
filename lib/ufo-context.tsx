@@ -18,7 +18,9 @@ export type UFOPhase =
   | "flying"
   | "settling"
   | "illuminating"
-  | "idle";
+  | "idle"
+  | "warping-out"
+  | "warping-in";
 
 interface SectionRegistration {
   sectionRef: RefObject<HTMLElement | null>;
@@ -40,6 +42,13 @@ interface UFOContextValue {
 
   // Beam intensity as MotionValue (0-1) — no re-renders during animation
   beamIntensityMV: MotionValue<number>;
+
+  // Warp navigation
+  warpToSection: (sectionId: string) => void;
+  warpTargetSection: string | null;
+  warpRevealSignal: number;
+  triggerWarpReveal: () => void;
+  clearWarpTarget: () => void;
 }
 
 const UFOContext = createContext<UFOContextValue | null>(null);
@@ -53,6 +62,12 @@ export function UFOProvider({ children }: { children: ReactNode }) {
   // Stable MotionValue — created once, never replaced
   const beamIntensityMV = useRef(motionValue(0)).current;
 
+  // Warp state
+  const [warpTargetSection, setWarpTargetSection] = useState<string | null>(
+    null
+  );
+  const [warpRevealSignal, setWarpRevealSignal] = useState(0);
+
   const registerSection = useCallback(
     (id: string, registration: SectionRegistration) => {
       sectionsRef.current.set(id, registration);
@@ -62,6 +77,18 @@ export function UFOProvider({ children }: { children: ReactNode }) {
 
   const unregisterSection = useCallback((id: string) => {
     sectionsRef.current.delete(id);
+  }, []);
+
+  const warpToSection = useCallback((sectionId: string) => {
+    setWarpTargetSection(sectionId);
+  }, []);
+
+  const triggerWarpReveal = useCallback(() => {
+    setWarpRevealSignal((prev) => prev + 1);
+  }, []);
+
+  const clearWarpTarget = useCallback(() => {
+    setWarpTargetSection(null);
   }, []);
 
   // Check desktop + motion preference
@@ -98,6 +125,11 @@ export function UFOProvider({ children }: { children: ReactNode }) {
         setPhase,
         isEnabled,
         beamIntensityMV,
+        warpToSection,
+        warpTargetSection,
+        warpRevealSignal,
+        triggerWarpReveal,
+        clearWarpTarget,
       }}
     >
       {children}

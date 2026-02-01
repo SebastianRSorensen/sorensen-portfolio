@@ -10,6 +10,7 @@ import {
 import { UFO } from "@/components/icons";
 import { useUFO, type UFOPhase } from "@/lib/ufo-context";
 import { ufoSpring, ufoTimings } from "@/lib/animations";
+import { useLenis } from "@/components/smooth-scroll";
 
 const UFO_SIZE = 100;
 const HOVER_OFFSET_Y = 100;
@@ -23,12 +24,18 @@ export function UFOController() {
     setPhase,
     isEnabled,
     beamIntensityMV,
+    warpTargetSection,
+    triggerWarpReveal,
+    clearWarpTarget,
   } = useUFO();
+
+  const lenis = useLenis();
 
   const ufoX = useMotionValue(-200);
   const ufoY = useMotionValue(-200);
   const ufoRotate = useSpring(0, ufoSpring.banking);
   const ufoOpacity = useMotionValue(0);
+  const ufoScale = useMotionValue(1);
   const [renderBeamIntensity, setRenderBeamIntensity] = useState(0);
 
   const phaseRef = useRef<UFOPhase>("hidden");
@@ -58,6 +65,12 @@ export function UFOController() {
   const wanderStartRef = useRef(0);
   const wanderDurRef = useRef(4);
   const wanderReadyRef = useRef(false);
+
+  // Warp animation refs
+  const warpAnimRef = useRef<ReturnType<typeof animate>[]>([]);
+  // Post-warp linger: keep beam on and hover above section before wandering
+  const postWarpLingerRef = useRef(false);
+  const lingerTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const animateBeam = useCallback(
     (to: number, duration: number) => {
@@ -89,6 +102,11 @@ export function UFOController() {
   const stopFlights = useCallback(() => {
     flightControlRef.current.forEach((c) => c.stop());
     flightControlRef.current = [];
+  }, []);
+
+  const stopWarpAnims = useCallback(() => {
+    warpAnimRef.current.forEach((c) => c.stop());
+    warpAnimRef.current = [];
   }, []);
 
   const flyTo = useCallback(
@@ -229,19 +247,141 @@ export function UFOController() {
               if (activeSectionRef.current) {
                 litSectionsRef.current.add(activeSectionRef.current);
               }
-              // Beam stays on — it fades when the UFO flies away or all sections are lit
               transitionToRef.current("idle");
             }
           }, ufoTimings.beamFadeIn * 1000 + 50);
           break;
         }
 
+        case "warping-out": {
+          if (!sectionId) break;
+
+          // Cancel any in-progress flights or linger
+          stopFlights();
+          stopWarpAnims();
+          if (lingerTimerRef.current) {
+            clearTimeout(lingerTimerRef.current);
+            lingerTimerRef.current = null;
+          }
+          postWarpLingerRef.current = false;
+          flightRef.current = null;
+          wanderReadyRef.current = false;
+
+          // Fade beam to 0
+          animateBeam(0, 0.1);
+
+          // Animate: scale 1→0.1, opacity→0, y moves up 60px
+          const duration = ufoTimings.warpOutDuration;
+          const currentY = ufoY.get();
+          const a1 = animate(ufoScale, 0.1, { duration, ease: "easeIn" });
+          const a2 = animate(ufoOpacity, 0, { duration, ease: "easeIn" });
+          const a3 = animate(ufoY, currentY - 60, {
+            duration,
+            ease: "easeIn",
+            onComplete: () => {
+              // Mark all sections as lit, then remove target from lit set
+              sectionsRef.current.forEach((_reg, id) => {
+                litSectionsRef.current.add(id);
+              });
+              // Remove the target section from lit so it can be beamed
+              litSectionsRef.current.delete(sectionId);
+
+              // Signal non-target sections to instantly reveal
+              triggerWarpReveal();
+
+              // Find the target element and scroll to it
+              const targetReg = sectionsRef.current.get(sectionId);
+              const targetEl = targetReg?.sectionRef.current;
+
+              if (targetEl && lenis) {
+                lenis.scrollTo(targetEl, {
+                  offset: -80,
+                  duration: ufoTimings.warpScrollDuration,
+                  onComplete: () => {
+                    transitionToRef.current("warping-in", sectionId);
+                  },
+                });
+              } else if (targetEl) {
+                // Fallback: no lenis available
+                targetEl.scrollIntoView({ behavior: "smooth" });
+                setTimeout(() => {
+                  transitionToRef.current("warping-in", sectionId);
+                }, ufoTimings.warpScrollDuration * 1000);
+              }
+            },
+          });
+          warpAnimRef.current = [a1, a2, a3];
+          break;
+        }
+
+        case "warping-in": {
+          if (!sectionId) break;
+          stopWarpAnims();
+
+          // Position UFO above target title
+          const targetReg = sectionsRef.current.get(sectionId);
+          if (targetReg?.titleRef.current) {
+            const target = getTitleTarget(targetReg.titleRef.current);
+            ufoX.set(target.x);
+            ufoY.set(target.y - 40); // Start slightly higher
+          }
+
+          // Animate: scale 0.1→1, opacity 0→0.85, slight downward settle
+          const duration = ufoTimings.warpInDuration;
+          const a1 = animate(ufoScale, 1, { duration, ease: "easeOut" });
+          const a2 = animate(ufoOpacity, 0.85, { duration, ease: "easeOut" });
+
+          // Settle down slightly
+          const settleY = ufoY.get() + 40;
+          const a3 = animate(ufoY, settleY, {
+            duration,
+            ease: "easeOut",
+            onComplete: () => {
+              warpAnimRef.current = [];
+
+              // Check if target was already lit (beamed before)
+              const wasAlreadyLit = litSectionsRef.current.has(sectionId);
+
+              // Flag linger so idle keeps beam on after warp
+              postWarpLingerRef.current = true;
+
+              if (wasAlreadyLit) {
+                // Already beamed — just idle (linger will keep beam on)
+                setActiveSection(sectionId);
+                clearWarpTarget();
+                transitionToRef.current("idle");
+              } else {
+                // Need to beam the target
+                setActiveSection(sectionId);
+                clearWarpTarget();
+                transitionToRef.current("settling");
+              }
+            },
+          });
+          warpAnimRef.current = [a1, a2, a3];
+          break;
+        }
+
         case "idle": {
           idleTimeRef.current = performance.now();
           if (allLit()) {
-            animateBeam(0, 0.3);
-            setActiveSection(null);
-            initWander();
+            if (postWarpLingerRef.current) {
+              // Keep beam on and hover above the section for a bit
+              postWarpLingerRef.current = false;
+              if (lingerTimerRef.current) clearTimeout(lingerTimerRef.current);
+              lingerTimerRef.current = setTimeout(() => {
+                lingerTimerRef.current = null;
+                if (phaseRef.current === "idle") {
+                  animateBeam(0, 0.3);
+                  setActiveSection(null);
+                  initWander();
+                }
+              }, 2500);
+            } else {
+              animateBeam(0, 0.3);
+              setActiveSection(null);
+              initWander();
+            }
           }
           break;
         }
@@ -252,17 +392,43 @@ export function UFOController() {
       ufoX,
       ufoY,
       ufoOpacity,
+      ufoScale,
       flyTo,
       stopFlights,
+      stopWarpAnims,
       setActiveSection,
       animateBeam,
       initWander,
       allLit,
+      getTitleTarget,
+      sectionsRef,
+      triggerWarpReveal,
+      clearWarpTarget,
+      lenis,
     ]
   );
   useEffect(() => {
     transitionToRef.current = transitionTo;
   }, [transitionTo]);
+
+  // Watch warpTargetSection to initiate warp
+  useEffect(() => {
+    if (!warpTargetSection) return;
+    const current = phaseRef.current;
+
+    // Don't warp during hidden/entering or during an active warp
+    if (
+      current === "hidden" ||
+      current === "entering" ||
+      current === "warping-out" ||
+      current === "warping-in"
+    ) {
+      clearWarpTarget();
+      return;
+    }
+
+    transitionToRef.current("warping-out", warpTargetSection);
+  }, [warpTargetSection, clearWarpTarget]);
 
   // RAF loop
   useEffect(() => {
@@ -283,6 +449,12 @@ export function UFOController() {
       // Exponential moving average for smooth tracking
       scrollSpeedRef.current += (rawSpeed - scrollSpeedRef.current) * 0.3;
 
+      // During warp phases, keep RAF alive for scroll tracking only
+      if (currentPhase === "warping-out" || currentPhase === "warping-in") {
+        rafRef.current = requestAnimationFrame(loop);
+        return;
+      }
+
       // When idle, check if the next unlit section has entered the viewport
       if (currentPhase === "idle" && !allLit()) {
         const next = findNextTarget();
@@ -298,8 +470,8 @@ export function UFOController() {
         const now = performance.now();
         const t = (now - idleTimeRef.current) / 1000;
 
-        if (activeSectionRef.current && !allLit()) {
-          // Hover above the current title
+        if (activeSectionRef.current) {
+          // Hover above the current title (also during post-warp linger)
           const reg = sectionsRef.current.get(activeSectionRef.current);
           if (reg?.titleRef.current) {
             const rect = reg.titleRef.current.getBoundingClientRect();
@@ -432,11 +604,18 @@ export function UFOController() {
       setActiveSection(null);
       beamIntensityMV.set(0);
       ufoOpacity.set(0);
+      ufoScale.set(1);
       stopFlights();
+      stopWarpAnims();
       cancelAnimationFrame(rafRef.current);
       cancelAnimationFrame(beamRafRef.current);
       litSectionsRef.current.clear();
       wanderReadyRef.current = false;
+      postWarpLingerRef.current = false;
+      if (lingerTimerRef.current) {
+        clearTimeout(lingerTimerRef.current);
+        lingerTimerRef.current = null;
+      }
     }
   }, [
     isEnabled,
@@ -444,7 +623,9 @@ export function UFOController() {
     setActiveSection,
     beamIntensityMV,
     ufoOpacity,
+    ufoScale,
     stopFlights,
+    stopWarpAnims,
   ]);
 
   if (!isEnabled) return null;
@@ -457,6 +638,7 @@ export function UFOController() {
         y: ufoY,
         rotate: ufoRotate,
         opacity: ufoOpacity,
+        scale: ufoScale,
         zIndex: 40,
       }}
     >

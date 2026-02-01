@@ -79,6 +79,19 @@ export function StorySection({
     return () => unsubscribe();
   }, [ufo, useUFOMode, id]);
 
+  // Warp reveal: instantly show non-target sections when warp signal fires
+  useEffect(() => {
+    if (!ufo || !useUFOMode) return;
+    if (ufo.warpRevealSignal === 0) return;
+
+    // If this section is NOT the warp target, reveal it instantly
+    if (ufo.warpTargetSection !== id && !revealedRef.current) {
+      revealedRef.current = true;
+      illuminatedRef.current = true;
+      setRevealed(true);
+    }
+  }, [ufo?.warpRevealSignal, ufo?.warpTargetSection, ufo, useUFOMode, id]);
+
   // Parallax effect for the section
   const { scrollYProgress } = useScroll({
     target: sectionRef,

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="dome" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#67e8f9"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <linearGradient id="body" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6b7280"/>
+      <stop offset="50%" stop-color="#4b5563"/>
+      <stop offset="100%" stop-color="#374151"/>
+    </linearGradient>
+  </defs>
+  <!-- Beam hint -->
+  <path d="M10 18 L3 30 L29 30 L22 18 Z" fill="#a5f3fc" opacity="0.2"/>
+  <!-- Saucer body -->
+  <ellipse cx="16" cy="16" rx="12" ry="4" fill="url(#body)"/>
+  <!-- Body rim -->
+  <ellipse cx="16" cy="15" rx="11" ry="3" fill="#9ca3af" opacity="0.3"/>
+  <!-- Bottom ring -->
+  <ellipse cx="16" cy="17.5" rx="9" ry="2.5" fill="#1f2937"/>
+  <!-- Lights -->
+  <circle cx="10" cy="17" r="1.4" fill="#fbbf24"/>
+  <circle cx="16" cy="18" r="1.4" fill="#34d399"/>
+  <circle cx="22" cy="17" r="1.4" fill="#f87171"/>
+  <!-- Glass dome -->
+  <ellipse cx="16" cy="13" rx="6" ry="5" fill="url(#dome)" opacity="0.7"/>
+  <!-- Dome highlight -->
+  <ellipse cx="14.5" cy="11" rx="2" ry="1.5" fill="#fff" opacity="0.4"/>
+  <!-- Alien eyes -->
+  <circle cx="14.5" cy="13.5" r="1" fill="#a5f3fc"/>
+  <circle cx="17.5" cy="13.5" r="1" fill="#a5f3fc"/>
+</svg>

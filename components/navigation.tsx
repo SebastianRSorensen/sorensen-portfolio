@@ -5,6 +5,7 @@ import { motion, useScroll, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useUFOOptional } from "@/lib/ufo-context";
 import { LanguageToggle } from "./language-toggle";
 import { Magnetic } from "./magnetic";
 
@@ -20,6 +21,7 @@ export function Navigation() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const { scrollYProgress } = useScroll();
   const t = useTranslations("nav");
+  const ufo = useUFOOptional();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -29,6 +31,17 @@ export function Navigation() {
 
   const scrollTo = (href: string) => {
     setIsMobileOpen(false);
+
+    // Extract section id from href (e.g. "#kode" → "kode")
+    const sectionId = href.replace("#", "");
+
+    // If UFO is enabled, use warp navigation
+    if (ufo?.isEnabled) {
+      ufo.warpToSection(sectionId);
+      return;
+    }
+
+    // Fallback: native smooth scroll
     const el = document.querySelector(href);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });

@@ -120,6 +120,9 @@ export const ufoTimings = {
   chapterDelay: 0.05,
   titleDelay: 0.15,
   underlineDelay: 0.3,
+  warpOutDuration: 0.4,
+  warpInDuration: 0.35,
+  warpScrollDuration: 0.8,
 } as const;
 
 export const spotlightZone = {
