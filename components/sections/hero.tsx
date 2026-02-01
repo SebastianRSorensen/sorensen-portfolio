@@ -22,7 +22,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={nameComplete ? { opacity: 1 } : {}}
         transition={{ duration: 2.5, ease: easings.dramatic, delay: 0.2 }}
-        className="absolute right-0 top-0 h-full w-[60%] z-0 hidden md:block pointer-events-none select-none"
+        className="absolute inset-0 md:left-auto md:right-0 md:w-[60%] z-0 pointer-events-none select-none"
         aria-hidden="true"
       >
         <Image
@@ -30,19 +30,22 @@ export function Hero() {
           alt=""
           fill
           priority
-          sizes="(max-width: 768px) 0vw, 60vw"
-          className="object-cover object-top opacity-25 grayscale"
+          sizes="(max-width: 768px) 100vw, 60vw"
+          className="object-cover object-top opacity-15 grayscale md:opacity-25"
           style={{
             maskImage:
-              "linear-gradient(to right, transparent 0%, black 30%, black 75%, transparent 100%)",
+              "linear-gradient(to bottom, transparent 0%, black 25%, black 65%, transparent 100%)",
             WebkitMaskImage:
-              "linear-gradient(to right, transparent 0%, black 30%, black 75%, transparent 100%)",
+              "linear-gradient(to bottom, transparent 0%, black 25%, black 65%, transparent 100%)",
           }}
         />
+        {/* Desktop: horizontal mask via overlay */}
+        <div className="hidden md:block absolute left-0 top-0 h-full w-2/5 bg-linear-to-r from-background to-transparent" />
+        <div className="hidden md:block absolute right-0 top-0 h-full w-1/4 bg-linear-to-l from-background to-transparent" />
         {/* Top fade */}
-        <div className="absolute top-0 left-0 w-full h-1/5 bg-gradient-to-b from-background to-transparent" />
+        <div className="absolute top-0 left-0 w-full h-1/5 bg-linear-to-b from-background to-transparent" />
         {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-background to-transparent" />
+        <div className="absolute bottom-0 left-0 w-full h-1/3 bg-linear-to-t from-background to-transparent" />
       </motion.div>
 
       {/* Particle field background */}
