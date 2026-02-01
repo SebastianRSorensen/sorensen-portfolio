@@ -151,7 +151,7 @@
     },
     "tools": {
       "title": "Tools",
-      "items": "Claude Code, Prisma, Bruno, Postman, REST/OpenAPI, Kosli, Snyk, Wiz"
+      "items": "Claude Code, GitHub, Camunda, Prisma, Bruno, Postman, Swagger, Docusaurus, REST/OpenAPI, Kosli, Snyk, Wiz"
     }
   },
   "contact": {
