@@ -29,6 +29,10 @@ export function Navigation() {
 
   const scrollTo = (href: string) => {
     setIsMobileOpen(false);
+    const sectionId = href.replace("#", "");
+    window.dispatchEvent(
+      new CustomEvent("ufo-navigate", { detail: { targetId: sectionId } })
+    );
     const el = document.querySelector(href);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });

@@ -238,9 +238,9 @@ export function UFOController() {
 
         case "idle": {
           idleTimeRef.current = performance.now();
-          if (allLit()) {
+          // If all lit and no active section, start wandering
+          if (allLit() && !activeSectionRef.current) {
             animateBeam(0, 0.3);
-            setActiveSection(null);
             initWander();
           }
           break;
@@ -298,16 +298,24 @@ export function UFOController() {
         const now = performance.now();
         const t = (now - idleTimeRef.current) / 1000;
 
-        if (activeSectionRef.current && !allLit()) {
+        if (activeSectionRef.current) {
           // Hover above the current title
           const reg = sectionsRef.current.get(activeSectionRef.current);
           if (reg?.titleRef.current) {
             const rect = reg.titleRef.current.getBoundingClientRect();
-            const baseX = rect.left + rect.width / 2 - UFO_SIZE / 2;
-            const baseY = rect.top - HOVER_OFFSET_Y;
-            ufoX.set(baseX + Math.sin(t * 0.5 * Math.PI * 2) * 3);
-            ufoY.set(baseY + Math.sin(t * 0.8 * Math.PI * 2) * 6);
-            ufoRotate.set(Math.sin(t * 0.6 * Math.PI * 2) * 1.5);
+
+            // If title scrolled out of viewport, release to wander
+            if (rect.bottom < -50 || rect.top > window.innerHeight + 50) {
+              setActiveSection(null);
+              animateBeam(0, 0.3);
+              initWander();
+            } else {
+              const baseX = rect.left + rect.width / 2 - UFO_SIZE / 2;
+              const baseY = rect.top - HOVER_OFFSET_Y;
+              ufoX.set(baseX + Math.sin(t * 0.5 * Math.PI * 2) * 3);
+              ufoY.set(baseY + Math.sin(t * 0.8 * Math.PI * 2) * 6);
+              ufoRotate.set(Math.sin(t * 0.6 * Math.PI * 2) * 1.5);
+            }
           }
         } else {
           // Wander freely
@@ -406,6 +414,80 @@ export function UFOController() {
     allLit,
     initWander,
     randomWanderTarget,
+    animateBeam,
+    setActiveSection,
+  ]);
+
+  // Handle nav clicks — teleport UFO to target, force-reveal sections above
+  useEffect(() => {
+    if (!isEnabled) return;
+
+    const handler = (e: Event) => {
+      const { targetId } = (e as CustomEvent).detail;
+      const sections = sectionsRef.current;
+
+      // Get sections ordered by DOM position
+      const ordered: { id: string; top: number }[] = [];
+      sections.forEach((reg, id) => {
+        const el = reg.sectionRef.current;
+        if (el) ordered.push({ id, top: el.getBoundingClientRect().top });
+      });
+      ordered.sort((a, b) => a.top - b.top);
+
+      const targetIdx = ordered.findIndex((s) => s.id === targetId);
+      if (targetIdx === -1) return;
+
+      // Force-reveal ALL sections (except the target, which the UFO will beam)
+      const toReveal: string[] = [];
+      for (const entry of ordered) {
+        if (entry.id !== targetId && !litSectionsRef.current.has(entry.id)) {
+          toReveal.push(entry.id);
+        }
+        litSectionsRef.current.add(entry.id);
+      }
+      if (toReveal.length > 0) {
+        window.dispatchEvent(
+          new CustomEvent("ufo-force-reveal", {
+            detail: { sectionIds: toReveal },
+          })
+        );
+      }
+
+      // Stop any in-progress flight
+      stopFlights();
+      flightRef.current = null;
+
+      // Teleport UFO to the target section
+      const targetReg = sections.get(targetId);
+      if (targetReg?.titleRef.current) {
+        const target = getTitleTarget(targetReg.titleRef.current);
+        ufoX.set(target.x);
+        ufoY.set(target.y);
+      }
+
+      // Make UFO visible if still hidden
+      if (phaseRef.current === "hidden") {
+        animate(ufoOpacity, 0.85, { duration: 0.3 });
+      }
+
+      // Beam the target section — update ref directly so the settling RAF loop
+      // tracks the title immediately (state setter alone has a one-frame delay)
+      activeSectionRef.current = targetId;
+      setActiveSection(targetId);
+      transitionToRef.current("settling");
+    };
+
+    window.addEventListener("ufo-navigate", handler);
+    return () => window.removeEventListener("ufo-navigate", handler);
+  }, [
+    isEnabled,
+    sectionsRef,
+    getTitleTarget,
+    ufoX,
+    ufoY,
+    ufoOpacity,
+    stopFlights,
+    setActiveSection,
   ]);
 
   // Enter immediately

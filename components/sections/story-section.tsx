@@ -79,6 +79,20 @@ export function StorySection({
     return () => unsubscribe();
   }, [ufo, useUFOMode, id]);
 
+  // Listen for force-reveal events (nav click skipping past this section)
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const { sectionIds } = (e as CustomEvent).detail;
+      if (sectionIds.includes(id) && !revealedRef.current) {
+        revealedRef.current = true;
+        illuminatedRef.current = true;
+        setRevealed(true);
+      }
+    };
+    window.addEventListener("ufo-force-reveal", handler);
+    return () => window.removeEventListener("ufo-force-reveal", handler);
+  }, [id]);
+
   // Parallax effect for the section
   const { scrollYProgress } = useScroll({
     target: sectionRef,
