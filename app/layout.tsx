@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Sebastian Rosnes Sørensen | Systemutvikler",
     description:
-      "Systemutvikler med bakgrunn fra Forsvaret og fintech. Bygger moderne webløsninger med React, Next.js og TypeScript.",
+      "Systemutvikler med bakgrunn fra fintech og Forsvaret. Bygger moderne webløsninger med React, Next.js og TypeScript.",
   },
   robots: {
     index: true,
