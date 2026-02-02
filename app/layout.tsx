@@ -1,7 +1,4 @@
 import type { Metadata } from "next";
-import { Analytics } from "@vercel/analytics/next";
-import { instrumentSerif, geistSans, geistMono } from "@/lib/fonts";
-import { JsonLd } from "@/components/json-ld";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -68,15 +65,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html suppressHydrationWarning>
-      <body
-        className={`${instrumentSerif.variable} ${geistSans.variable} ${geistMono.variable} antialiased noise-overlay`}
-      >
-        <JsonLd />
-        {children}
-        <Analytics />
-      </body>
-    </html>
-  );
+  return children;
 }

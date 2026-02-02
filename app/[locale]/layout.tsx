@@ -1,9 +1,12 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { Analytics } from "@vercel/analytics/next";
 import { routing } from "@/i18n/routing";
+import { instrumentSerif, geistSans, geistMono } from "@/lib/fonts";
 import { MotionProvider } from "@/lib/motion-config";
 import { UFOProvider } from "@/lib/ufo-context";
+import { JsonLd } from "@/components/json-ld";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { SmoothScroll } from "@/components/smooth-scroll";
@@ -51,18 +54,26 @@ export default async function LocaleLayout({ children, params }: Props) {
   const messages = await getMessages();
 
   return (
-    <NextIntlClientProvider messages={messages}>
-      <MotionProvider>
-        <UFOProvider>
-          <ShootingStars />
-          <SmoothScroll>
-            <UFOController />
-            <Navigation />
-            <main>{children}</main>
-            <Footer />
-          </SmoothScroll>
-        </UFOProvider>
-      </MotionProvider>
-    </NextIntlClientProvider>
+    <html lang={locale} suppressHydrationWarning>
+      <body
+        className={`${instrumentSerif.variable} ${geistSans.variable} ${geistMono.variable} antialiased noise-overlay`}
+      >
+        <JsonLd />
+        <NextIntlClientProvider messages={messages}>
+          <MotionProvider>
+            <UFOProvider>
+              <ShootingStars />
+              <SmoothScroll>
+                <UFOController />
+                <Navigation />
+                <main>{children}</main>
+                <Footer />
+              </SmoothScroll>
+            </UFOProvider>
+          </MotionProvider>
+        </NextIntlClientProvider>
+        <Analytics />
+      </body>
+    </html>
   );
 }
