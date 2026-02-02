@@ -19,9 +19,25 @@ export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "metadata" });
 
+  const baseUrl = "https://sebastiansorensen.no";
+  const canonicalUrl = locale === "no" ? baseUrl : `${baseUrl}/${locale}`;
+
   return {
     title: t("title"),
     description: t("description"),
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        "nb-NO": baseUrl,
+        en: `${baseUrl}/en`,
+      },
+    },
+    openGraph: {
+      title: t("title"),
+      description: t("description"),
+      url: canonicalUrl,
+      locale: locale === "no" ? "nb_NO" : "en_US",
+    },
   };
 }
 
