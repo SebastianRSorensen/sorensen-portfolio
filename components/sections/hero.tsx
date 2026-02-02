@@ -134,7 +134,7 @@ export function Hero() {
         transition={{ delay: 1.2, duration: 0.8 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-[3] flex flex-col items-center gap-3"
       >
-        <span className="text-mono text-[10px] text-muted-foreground/60 tracking-[0.2em] uppercase">
+        <span className="text-mono text-[10px] text-muted-foreground tracking-[0.2em] uppercase">
           {t("scrollHint")}
         </span>
         <motion.div

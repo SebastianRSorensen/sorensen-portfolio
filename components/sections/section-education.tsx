@@ -26,7 +26,7 @@ export function SectionEducation() {
 
   return (
     <StorySection id="utdanning" chapter={t("chapter")} title={t("title")}>
-      <p className="text-mono text-xs text-accent/70 uppercase tracking-[0.2em] mb-10">
+      <p className="text-mono text-xs text-accent uppercase tracking-[0.2em] mb-10">
         {t("subtitle")} — {t("period")}
       </p>
 
@@ -44,7 +44,7 @@ export function SectionEducation() {
             <h3 className="text-heading text-xl text-foreground">
               {t("bachelor.title")}
             </h3>
-            <p className="text-mono text-xs text-accent/70 tracking-wider">
+            <p className="text-mono text-xs text-accent tracking-wider">
               {t("bachelor.period")}
             </p>
             <p className="text-body text-muted-foreground leading-relaxed">
@@ -66,7 +66,7 @@ export function SectionEducation() {
             <h3 className="text-heading text-xl text-foreground">
               {t("master.title")}
             </h3>
-            <p className="text-mono text-xs text-accent/70 tracking-wider">
+            <p className="text-mono text-xs text-accent tracking-wider">
               {t("master.period")}
             </p>
             <p className="text-body text-muted-foreground leading-relaxed">

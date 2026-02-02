@@ -40,7 +40,7 @@ export function SectionExperience() {
 
   return (
     <StorySection id="kode" chapter={t("chapter")} title={t("title")}>
-      <p className="text-mono text-xs text-accent/70 uppercase tracking-[0.2em] mb-10">
+      <p className="text-mono text-xs text-accent uppercase tracking-[0.2em] mb-10">
         {t("subtitle")}
       </p>
 
@@ -67,7 +67,7 @@ export function SectionExperience() {
                 </p>
               </div>
               <div className="md:text-right shrink-0">
-                <p className="text-mono text-xs text-accent/70 tracking-wider">
+                <p className="text-mono text-xs text-accent tracking-wider">
                   {t("stacc.period")}
                 </p>
                 <p className="text-mono text-xs text-muted-foreground mt-1">
@@ -112,7 +112,7 @@ export function SectionExperience() {
                 </p>
               </div>
               <div className="md:text-right shrink-0">
-                <p className="text-mono text-xs text-accent/70 tracking-wider">
+                <p className="text-mono text-xs text-accent tracking-wider">
                   {t("rosengrip.period")}
                 </p>
                 <p className="text-mono text-xs text-muted-foreground mt-1">

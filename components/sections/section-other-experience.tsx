@@ -32,7 +32,7 @@ export function SectionOtherExperience() {
 
   return (
     <StorySection id="grense" chapter={t("chapter")} title={t("title")}>
-      <p className="text-mono text-xs text-accent/70 uppercase tracking-[0.2em] mb-10">
+      <p className="text-mono text-xs text-accent uppercase tracking-[0.2em] mb-10">
         {t("subtitle")}
       </p>
 
@@ -56,7 +56,7 @@ export function SectionOtherExperience() {
                   {t("nursing.company")}
                 </p>
               </div>
-              <p className="text-mono text-xs text-accent/70 tracking-wider shrink-0">
+              <p className="text-mono text-xs text-accent tracking-wider shrink-0">
                 {t("nursing.period")}
               </p>
             </div>
@@ -85,7 +85,7 @@ export function SectionOtherExperience() {
                   {t("coop.company")}
                 </p>
               </div>
-              <p className="text-mono text-xs text-accent/70 tracking-wider shrink-0">
+              <p className="text-mono text-xs text-accent tracking-wider shrink-0">
                 {t("coop.period")}
               </p>
             </div>
@@ -117,7 +117,7 @@ export function SectionOtherExperience() {
                   {t("military.unit")}
                 </p>
               </div>
-              <p className="text-mono text-xs text-accent/70 tracking-wider shrink-0">
+              <p className="text-mono text-xs text-accent tracking-wider shrink-0">
                 {t("military.period")}
               </p>
             </div>
@@ -138,7 +138,7 @@ export function SectionOtherExperience() {
                   className="flex items-start gap-3"
                 >
                   <span className="text-accent mt-0.5 text-sm">—</span>
-                  <p className="text-sm text-foreground/80">{highlight}</p>
+                  <p className="text-sm text-foreground">{highlight}</p>
                 </motion.div>
               ))}
             </div>

@@ -44,7 +44,7 @@ export function TechStack() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ delay: 0.2, duration: 0.6 }}
-        className="text-mono text-xs text-accent/70 uppercase tracking-[0.2em] mb-12"
+        className="text-mono text-xs text-accent uppercase tracking-[0.2em] mb-12"
       >
         {t("subtitle")}
       </motion.p>
@@ -149,7 +149,7 @@ export function TechStack() {
                         style={
                           {
                             borderColor: `rgba(${cat.color}, 0.15)`,
-                            color: `rgba(${cat.color}, 0.8)`,
+                            color: `rgb(${cat.color})`,
                             "--hover-bg": `rgba(${cat.color}, 0.1)`,
                           } as React.CSSProperties
                         }

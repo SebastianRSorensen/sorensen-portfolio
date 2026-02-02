@@ -6,8 +6,8 @@ import {
   Mail,
   Phone,
   MapPin,
-  Github,
-  Linkedin,
+  GithubIcon,
+  LinkedinIcon,
   ExternalLink,
   ArrowUpRight,
 } from "lucide-react";
@@ -51,9 +51,9 @@ export function Contact() {
           whileInView="visible"
           viewport={{ once: true }}
           href={`mailto:${t("email.value")}`}
-          className="group flex items-center gap-4 min-w-0 text-foreground/80 hover:text-accent transition-colors duration-300"
+          className="group flex items-center gap-4 min-w-0 text-foreground hover:text-accent transition-colors duration-300"
         >
-          <Mail className="w-5 h-5 shrink-0 text-accent/60 group-hover:text-accent transition-colors" />
+          <Mail className="w-5 h-5 shrink-0 text-accent group-hover:text-accent transition-colors" />
           <span className="text-sm sm:text-lg md:text-xl font-mono truncate">
             {t("email.value")}
           </span>
@@ -67,9 +67,9 @@ export function Contact() {
           whileInView="visible"
           viewport={{ once: true }}
           href={`tel:${t("phone.value").replace(/\s/g, "")}`}
-          className="group flex items-center gap-4 text-foreground/80 hover:text-accent transition-colors duration-300"
+          className="group flex items-center gap-4 text-foreground hover:text-accent transition-colors duration-300"
         >
-          <Phone className="w-5 h-5 text-accent/60 group-hover:text-accent transition-colors" />
+          <Phone className="w-5 h-5 text-accent group-hover:text-accent transition-colors" />
           <span className="text-lg md:text-xl font-mono">
             {t("phone.value")}
           </span>
@@ -84,7 +84,7 @@ export function Contact() {
           viewport={{ once: true }}
           className="flex items-center gap-4 text-muted-foreground"
         >
-          <MapPin className="w-5 h-5 text-accent/60" />
+          <MapPin className="w-5 h-5 text-accent" />
           <span className="text-lg md:text-xl font-mono">
             {t("location.value")}
           </span>
@@ -102,12 +102,12 @@ export function Contact() {
         {[
           {
             href: "https://github.com/SebastianRSorensen",
-            icon: Github,
+            icon: GithubIcon,
             label: t("links.github"),
           },
           {
             href: "https://www.linkedin.com/in/sebastian-rosnes-s%C3%B8rensen-64bb5822a/",
-            icon: Linkedin,
+            icon: LinkedinIcon,
             label: t("links.linkedin"),
           },
           {

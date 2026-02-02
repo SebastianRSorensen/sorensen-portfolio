@@ -64,7 +64,7 @@ export function SectionDrive() {
           >
             <div className="flex items-baseline justify-between gap-4">
               <div className="flex items-baseline gap-4">
-                <span className="text-mono text-xs text-accent/50">
+                <span className="text-mono text-xs text-accent">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <p className="text-lg text-foreground group-hover:text-accent transition-colors duration-300">
@@ -103,7 +103,7 @@ export function SectionDrive() {
 
         <div className="flex items-center gap-3 mb-4">
           <Terminal className="w-5 h-5 text-accent" />
-          <p className="text-mono text-xs text-accent/70 uppercase tracking-[0.2em]">
+          <p className="text-mono text-xs text-accent uppercase tracking-[0.2em]">
             {t("tools.title")}
           </p>
         </div>
