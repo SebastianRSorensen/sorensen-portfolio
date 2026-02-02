@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Sebastian Rosnes Sørensen — Systemutvikler",
     short_name: "S. Sørensen",
     description:
-      "Systemutvikler med bakgrunn fra Forsvaret og fintech. Bygger moderne webløsninger med React, Next.js og TypeScript.",
+      "Systemutvikler med bakgrunn fra fintech. Bygger moderne webløsninger med React, Next.js og TypeScript.",
     start_url: "/",
     display: "standalone",
     background_color: "#0a0f14",
