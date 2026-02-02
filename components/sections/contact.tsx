@@ -51,13 +51,13 @@ export function Contact() {
           whileInView="visible"
           viewport={{ once: true }}
           href={`mailto:${t("email.value")}`}
-          className="group flex items-center gap-4 text-foreground/80 hover:text-accent transition-colors duration-300"
+          className="group flex items-center gap-4 min-w-0 text-foreground/80 hover:text-accent transition-colors duration-300"
         >
-          <Mail className="w-5 h-5 text-accent/60 group-hover:text-accent transition-colors" />
-          <span className="text-lg md:text-xl font-mono">
+          <Mail className="w-5 h-5 shrink-0 text-accent/60 group-hover:text-accent transition-colors" />
+          <span className="text-sm sm:text-lg md:text-xl font-mono truncate">
             {t("email.value")}
           </span>
-          <ArrowUpRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+          <ArrowUpRight className="w-4 h-4 shrink-0 hidden sm:block opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
         </motion.a>
 
         <motion.a
