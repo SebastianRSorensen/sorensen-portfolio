@@ -92,11 +92,28 @@ export function StorySection({
     }
   }, [ufo?.warpRevealSignal, ufo?.warpTargetSection, ufo, useUFOMode, id]);
 
-  // Parallax effect for the section
+  // Fallback: if the section has been scrolled well past without UFO reveal,
+  // force-reveal it so fast-scrolling never leaves invisible content
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
+
+  useEffect(() => {
+    if (!useUFOMode || revealedRef.current) return;
+
+    const unsubscribe = scrollYProgress.on("change", (v) => {
+      // v ≈ 0.5 means the section is roughly centered in the viewport;
+      // if the UFO hasn't revealed it by then, force-reveal as a fallback
+      if (v > 0.5 && !revealedRef.current) {
+        revealedRef.current = true;
+        illuminatedRef.current = true;
+        setRevealed(true);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [useUFOMode, scrollYProgress]);
 
   const contentOpacity = useTransform(
     scrollYProgress,
