@@ -97,7 +97,8 @@
       "role": "Founder & solo developer",
       "period": "2026 — Present",
       "location": "Bergen",
-      "description": "AI-powered platform for TTRPG character portraits with print-on-demand. Full-stack project built solo — from image generation to payment processing and international shipping logistics. More details below.",
+      "description": "AI-powered platform for TTRPG character portraits with print-on-demand. Full-stack project built solo — from image generation to payment processing and international shipping logistics.",
+      "deepDiveLink": "See full project breakdown",
       "link": "https://loreprint.com",
       "linkText": "loreprint.com",
       "highlights": {

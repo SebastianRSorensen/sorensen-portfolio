@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ArrowDown } from "lucide-react";
 import { StorySection } from "./story-section";
 import { Magnetic } from "@/components/magnetic";
 
@@ -139,17 +139,26 @@ export function SectionExperience() {
                 </span>
               ))}
             </div>
-            <Magnetic strength={0.15}>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
               <a
-                href={t("loreprint.link")}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#loreprint"
                 className="inline-flex items-center gap-2 text-sm text-foreground hover:text-accent transition-colors group/link"
               >
-                {t("loreprint.linkText")}
-                <ArrowUpRight className="w-4 h-4 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                {t("loreprint.deepDiveLink")}
+                <ArrowDown className="w-4 h-4 transition-transform group-hover/link:translate-y-0.5" />
               </a>
-            </Magnetic>
+              <Magnetic strength={0.15}>
+                <a
+                  href={t("loreprint.link")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm text-foreground hover:text-accent transition-colors group/link"
+                >
+                  {t("loreprint.linkText")}
+                <ArrowUpRight className="w-4 h-4 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                </a>
+              </Magnetic>
+            </div>
           </div>
         </motion.div>
 

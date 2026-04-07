@@ -97,7 +97,8 @@
       "role": "Gründer & eneutvikler",
       "period": "2026 — Nå",
       "location": "Bergen",
-      "description": "AI-drevet plattform for TTRPG-karakterportretter med print-on-demand. Fullstack-prosjekt bygget alene — fra bildegenerering til betalingsløsning og internasjonal fraktlogistikk. Mer detaljer under.",
+      "description": "AI-drevet plattform for TTRPG-karakterportretter med print-on-demand. Fullstack-prosjekt bygget alene — fra bildegenerering til betalingsløsning og internasjonal fraktlogistikk.",
+      "deepDiveLink": "Se fullstendig prosjektgjennomgang",
       "link": "https://loreprint.com",
       "linkText": "loreprint.com",
       "highlights": {
