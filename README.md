@@ -1,6 +1,8 @@
 # Sebastian Rosnes Sørensen - Portfolio
 
-Personal portfolio website built with Next.js 16, Tailwind CSS 4, and Framer Motion.
+A cinematic, scroll-driven portfolio website. Full-viewport sections, bold typography, scroll-triggered animations, and a dark Nordic aesthetic.
+
+**Live:** [sebastiansorensen.no](https://sebastiansorensen.no)
 
 ## Tech Stack
 
@@ -9,25 +11,22 @@ Personal portfolio website built with Next.js 16, Tailwind CSS 4, and Framer Mot
 - **UI Components:** shadcn/ui
 - **Animations:** Framer Motion
 - **i18n:** next-intl (NO/EN)
+- **Deployment:** Vercel
 - **Package Manager:** pnpm
 
 ## Getting Started
 
 ```bash
-# Install dependencies
 pnpm install
-
-# Run development server
 pnpm dev
-
-# Build for production
-pnpm build
-
-# Start production server
-pnpm start
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to view the site.
+
+```bash
+pnpm build    # Production build
+pnpm start    # Start production server
+```
 
 ## Project Structure
 
@@ -37,10 +36,12 @@ Open [http://localhost:3000](http://localhost:3000) to view the site.
 │   ├── [locale]/          # Locale-based routing
 │   │   ├── layout.tsx     # Root layout with providers
 │   │   ├── page.tsx       # Home page
-│   │   └── globals.css    # Global styles + theme
+│   │   └── design-system/ # Design system showcase
+│   ├── layout.tsx         # Base layout with metadata
+│   └── globals.css        # Global styles + theme
 ├── components/
 │   ├── ui/                # shadcn/ui components
-│   ├── sections/          # Page sections
+│   ├── sections/          # Page sections (hero, experience, etc.)
 │   └── ...                # Shared components
 ├── i18n/
 │   ├── config.ts          # Locale configuration
@@ -48,12 +49,12 @@ Open [http://localhost:3000](http://localhost:3000) to view the site.
 │   └── request.ts         # next-intl request config
 ├── lib/
 │   ├── utils.ts           # Utility functions
-│   └── fonts.ts           # Font configuration
+│   ├── fonts.ts           # Font configuration
+│   └── animations.ts      # Animation presets
 ├── public/
 │   └── images/            # Static images
 ├── docs/                  # Project documentation
-├── proxy.ts               # next-intl middleware
-└── CLAUDE.md              # AI assistant instructions
+└── proxy.ts               # next-intl middleware
 ```
 
 ## Languages
@@ -61,41 +62,11 @@ Open [http://localhost:3000](http://localhost:3000) to view the site.
 - **Norwegian (default):** `/`
 - **English:** `/en`
 
-## Development
-
-### Adding shadcn/ui Components
-
-```bash
-pnpm dlx shadcn@latest add button
-pnpm dlx shadcn@latest add card
-# etc.
-```
-
-### Fonts
-
-Fonts are configured in `lib/fonts.ts` and imported in the root layout.
-
-### Animations
-
-All animations use Framer Motion. See `docs/ANIMATIONS.md` for specifications.
-
-## Deployment
-
-Optimized for Vercel deployment. Push to main branch for automatic deployment.
-
-## Documentation
-
-- `CLAUDE.md` - AI assistant instructions
-- `docs/ARCHITECTURE.md` - Technical architecture
-- `docs/DESIGN.md` - Visual design system
-- `docs/CONTENT.md` - All text content
-- `docs/COMPONENTS.md` - Component specifications
-- `docs/ANIMATIONS.md` - Animation guidelines
-
 ## Author
 
 **Sebastian Rosnes Sørensen**
-- System Developer at Stacc AS
+- Full-stack developer at Stacc AS
+- Founder of Loreprint AS
 - Co-founder at Rosengrip
 - Bergen, Norway
 
