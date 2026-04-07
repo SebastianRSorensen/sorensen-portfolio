@@ -6,6 +6,7 @@
   "nav": {
     "home": "Hjem",
     "experience": "Erfaring",
+    "loreprint": "Loreprint",
     "skills": "Teknologi",
     "education": "Utdanning",
     "contact": "Kontakt"
@@ -18,7 +19,7 @@
     "location": "Bergen, Norge"
   },
   "grense": {
-    "chapter": "05",
+    "chapter": "06",
     "title": "ANNEN ERFARING",
     "subtitle": "Lager, forsvar og helsevesen",
     "coop": {
@@ -46,7 +47,7 @@
     }
   },
   "kunnskap": {
-    "chapter": "04",
+    "chapter": "05",
     "title": "UTDANNING",
     "subtitle": "Universitetet i Bergen",
     "period": "2021 — 2023",
@@ -90,10 +91,24 @@
         "1": "Next.js, React, Tailwind",
         "2": "Fokus på konvertering"
       }
+    },
+    "loreprint": {
+      "company": "Loreprint AS",
+      "role": "Gründer & eneutvikler",
+      "period": "2026 — Nå",
+      "location": "Bergen",
+      "description": "AI-drevet plattform for TTRPG-karakterportretter med print-on-demand. Fullstack-prosjekt bygget alene — fra bildegenerering til betalingsløsning og internasjonal fraktlogistikk. Mer detaljer under.",
+      "link": "https://loreprint.com",
+      "linkText": "loreprint.com",
+      "highlights": {
+        "0": "Solo fullstack med Next.js 16, Supabase, Stripe",
+        "1": "AI-bildepipeline med FLUX.2 og Real-ESRGAN",
+        "2": "Print-on-demand via Gelato API"
+      }
     }
   },
   "bygger": {
-    "chapter": "02",
+    "chapter": "03",
     "title": "DRIV",
     "intro": "Koding stopper ikke klokken fire.",
     "description": "Fritiden brukes på hobbyprosjekter — alt fra event-planlegging til rekrutteringsverktøy med AI til helt nye lotterisystemer. De fleste prosjektene er private, men de viser én ting: jeg elsker å bygge.",
@@ -126,20 +141,48 @@
       "cta": "Se GitHub-profilen"
     }
   },
+  "loreprint": {
+    "chapter": "02",
+    "title": "LOREPRINT",
+    "intro": "Fra idé til produksjon — bygget alene.",
+    "description": "Loreprint lar rollespillere beskrive sine TTRPG-karakterer og iterere på AI-genererte portretter, for deretter å bestille fysiske trykk levert til døren. Bygget som en fullstack-plattform med AI-bildegenerering, betalingsløsning, internasjonal fraktlogistikk og print-on-demand. Registrert som Loreprint AS under SRS Ventures AS.",
+    "highlights": {
+      "0": {
+        "title": "AI-bildepipeline",
+        "description": "FLUX.2-generering via Black Forest Labs → Real-ESRGAN-oppskalering → trykkeklar prosessering. Hele pipelinen fra tekstbeskrivelse til printbar fil."
+      },
+      "1": {
+        "title": "Print-on-demand",
+        "description": "Gelato API-integrasjon med 140+ produksjonssentre i 32 land. Automatisk ordreopprettelse, fraktberegning og statussporing via webhooks."
+      },
+      "2": {
+        "title": "Betaling & handlekurv",
+        "description": "Stripe Checkout med flervare-handlekurv, MVA-håndtering og NOK-valuta. Inngest for asynkron ordrebehandling etter betaling."
+      },
+      "3": {
+        "title": "Fullstack-arkitektur",
+        "description": "Next.js 16, Supabase med RLS, Cloudflare R2, Vercel. Komplett i18n (norsk + engelsk) med lokaliserte URL-er. SEO med strukturerte data og bloggmotor."
+      }
+    },
+    "tech": "Next.js 16, TypeScript, Tailwind CSS v4, Supabase, Stripe, Cloudflare R2, Inngest, Gelato API, FLUX.2, Real-ESRGAN, next-intl, TanStack Query, shadcn/ui, Zod, Brevo, Discord OAuth",
+    "cta": "Besøk Loreprint",
+    "link": "https://loreprint.com"
+  },
   "techStack": {
+    "chapter": "04",
     "title": "Teknologi",
     "subtitle": "Verktøyene jeg bruker",
     "frontend": {
       "title": "Frontend",
-      "items": "React, Next.js, TypeScript, Tailwind CSS"
+      "items": "React, Next.js, TypeScript, Tailwind CSS, shadcn/ui, TanStack Query"
     },
     "backend": {
       "title": "Backend",
-      "items": "Node.js, NestJS, PostgreSQL, MongoDB"
+      "items": "Node.js, NestJS, PostgreSQL, MongoDB, Supabase, Inngest, Zod"
     },
     "cloud": {
       "title": "Cloud & Deploy",
-      "items": "Azure, Vercel"
+      "items": "Azure, Vercel, Cloudflare R2, Stripe"
     },
     "devops": {
       "title": "DevOps",
@@ -151,10 +194,11 @@
     },
     "tools": {
       "title": "Verktøy",
-      "items": "Claude Code, GitHub, Camunda, Prisma, Bruno, Postman, Swagger, Docusaurus, REST/OpenAPI, Kosli, Snyk, Wiz"
+      "items": "Claude Code, GitHub, Camunda, Prisma, Bruno, Postman, Swagger, Docusaurus, REST/OpenAPI, Kosli, Snyk, Wiz, Brevo, Upstash Redis"
     }
   },
   "contact": {
+    "chapter": "07",
     "title": "Kontakt",
     "description": "Si gjerne hei.",
     "email": {

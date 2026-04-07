@@ -11,6 +11,7 @@ import { Magnetic } from "./magnetic";
 
 const navLinks = [
   { key: "experience", href: "#kode" },
+  { key: "loreprint", href: "#loreprint" },
   { key: "skills", href: "#tech-stack" },
   { key: "education", href: "#utdanning" },
   { key: "contact", href: "#contact" },

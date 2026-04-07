@@ -38,7 +38,7 @@ export function TechStack() {
   }));
 
   return (
-    <StorySection id="tech-stack" chapter="03" title={t("title")}>
+    <StorySection id="tech-stack" chapter={t("chapter")} title={t("title")}>
       <motion.p
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}

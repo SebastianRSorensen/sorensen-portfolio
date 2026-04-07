@@ -31,7 +31,7 @@ export function Contact() {
   const t = useTranslations("contact");
 
   return (
-    <StorySection id="contact" chapter="06" title={t("title")}>
+    <StorySection id="contact" chapter={t("chapter")} title={t("title")}>
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

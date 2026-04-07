@@ -32,6 +32,12 @@ export function SectionExperience() {
     t("stacc.highlights.2"),
   ];
 
+  const loreprintHighlights = [
+    t("loreprint.highlights.0"),
+    t("loreprint.highlights.1"),
+    t("loreprint.highlights.2"),
+  ];
+
   const rosengripHighlights = [
     t("rosengrip.highlights.0"),
     t("rosengrip.highlights.1"),
@@ -91,9 +97,65 @@ export function SectionExperience() {
           </div>
         </motion.div>
 
-        {/* Rosengrip */}
+        {/* Loreprint */}
         <motion.div
           custom={1}
+          variants={cardVariants}
+          initial="hidden"
+          animate={cardsInView ? "visible" : "hidden"}
+          className="group relative bg-card/50 border border-border/50 rounded-xl p-8 md:p-10 hover:border-accent/30 transition-colors duration-500"
+        >
+          <div className="absolute inset-0 rounded-xl bg-accent/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+          <div className="relative">
+            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
+              <div>
+                <h3 className="text-heading text-2xl text-foreground">
+                  {t("loreprint.company")}
+                </h3>
+                <p className="text-base text-muted-foreground mt-1">
+                  {t("loreprint.role")}
+                </p>
+              </div>
+              <div className="md:text-right shrink-0">
+                <p className="text-mono text-xs text-accent/70 tracking-wider">
+                  {t("loreprint.period")}
+                </p>
+                <p className="text-mono text-xs text-muted-foreground mt-1">
+                  {t("loreprint.location")}
+                </p>
+              </div>
+            </div>
+            <p className="text-body text-muted-foreground leading-relaxed mb-6 max-w-2xl">
+              {t("loreprint.description")}
+            </p>
+            <div className="flex flex-wrap gap-2 mb-6">
+              {loreprintHighlights.map((h, i) => (
+                <span
+                  key={i}
+                  className="px-3 py-1.5 rounded-full border border-border/50 text-muted-foreground text-xs font-mono hover:border-accent/50 hover:text-accent transition-colors duration-300"
+                >
+                  {h}
+                </span>
+              ))}
+            </div>
+            <Magnetic strength={0.15}>
+              <a
+                href={t("loreprint.link")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-foreground hover:text-accent transition-colors group/link"
+              >
+                {t("loreprint.linkText")}
+                <ArrowUpRight className="w-4 h-4 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+              </a>
+            </Magnetic>
+          </div>
+        </motion.div>
+
+        {/* Rosengrip */}
+        <motion.div
+          custom={2}
           variants={cardVariants}
           initial="hidden"
           animate={cardsInView ? "visible" : "hidden"}
