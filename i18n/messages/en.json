@@ -175,7 +175,7 @@
     "subtitle": "The tools I use",
     "frontend": {
       "title": "Frontend",
-      "items": "React, Next.js, TypeScript, Tailwind CSS, shadcn/ui, TanStack Query"
+      "items": "HTML, CSS, JavaScript, TypeScript, React, Next.js, Tailwind CSS, shadcn/ui, TanStack Query, Responsive Design, WCAG/Accessibility"
     },
     "backend": {
       "title": "Backend",
@@ -191,7 +191,7 @@
     },
     "testing": {
       "title": "Testing",
-      "items": "Jest, Playwright, Storybook"
+      "items": "Jest, Playwright, Storybook, Performance Optimization"
     },
     "tools": {
       "title": "Tools",
@@ -218,7 +218,10 @@
       "github": "GitHub",
       "linkedin": "LinkedIn",
       "rosengrip": "Rosengrip"
-    }
+    },
+    "downloadCv": "Download CV",
+    "cvNorwegian": "Norsk",
+    "cvEnglish": "English"
   },
   "footer": {
     "copyright": "© 2026 Sebastian Rosnes Sørensen",

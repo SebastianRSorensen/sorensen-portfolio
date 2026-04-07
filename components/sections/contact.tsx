@@ -10,6 +10,7 @@ import {
   Linkedin,
   ExternalLink,
   ArrowUpRight,
+  FileDown,
 } from "lucide-react";
 import { Magnetic } from "@/components/magnetic";
 import { StorySection } from "./story-section";
@@ -126,6 +127,37 @@ export function Contact() {
               <link.icon className="w-4 h-4" />
               <span className="text-sm font-mono">{link.label}</span>
               <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </a>
+          </Magnetic>
+        ))}
+      </motion.div>
+
+      {/* CV download buttons */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.8, duration: 0.6 }}
+        className="flex flex-wrap gap-4 mt-6"
+      >
+        {[
+          {
+            href: "/sebastian-sorensen-cv-no.pdf",
+            label: `${t("downloadCv")} — ${t("cvNorwegian")}`,
+          },
+          {
+            href: "/sebastian-sorensen-cv-en.pdf",
+            label: `${t("downloadCv")} — ${t("cvEnglish")}`,
+          },
+        ].map((cv) => (
+          <Magnetic key={cv.href} strength={0.15}>
+            <a
+              href={cv.href}
+              download
+              className="group flex items-center gap-3 px-5 py-3 rounded-full border border-border/50 text-muted-foreground hover:text-foreground hover:border-accent/40 transition-all duration-300"
+            >
+              <FileDown className="w-4 h-4" />
+              <span className="text-sm font-mono">{cv.label}</span>
             </a>
           </Magnetic>
         ))}
