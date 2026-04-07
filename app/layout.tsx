@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: "%s | Sebastian Rosnes Sørensen",
   },
   description:
-    "Systemutvikler med bakgrunn fra Forsvaret og fintech. Bygger moderne webløsninger med React, Next.js og TypeScript i Bergen.",
+    "Systemutvikler i Bergen. Bygger moderne webløsninger med React, Next.js og TypeScript — fra fintech til egne prosjekter.",
   keywords: [
     "systemutvikler",
     "system developer",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     siteName: "Sebastian Rosnes Sørensen",
     title: "Sebastian Rosnes Sørensen | Systemutvikler",
     description:
-      "Systemutvikler med bakgrunn fra Forsvaret og fintech. Bygger moderne webløsninger med React, Next.js og TypeScript.",
+      "Systemutvikler med bakgrunn fra fintech. Bygger moderne webløsninger med React, Next.js og TypeScript.",
     url: "https://sebastiansorensen.no",
   },
   twitter: {
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     canonical: "https://sebastiansorensen.no",
     languages: {
       "nb-NO": "https://sebastiansorensen.no",
-      "en": "https://sebastiansorensen.no/en",
+      en: "https://sebastiansorensen.no/en",
     },
   },
 };
